@@ -32,7 +32,7 @@ basic_function.welcome() #print welcome headers
 global_variables._init()
 global_variables.import_variables_from_file()
 
-global_variables.set_value('e','sdsdsdsdsddsd')
+global_variables.set_value('num',1)
 global_variables.get_dict()
 
 def main():
@@ -61,7 +61,7 @@ def main():
     
     #for i in range(1,2):
     #myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-    #myimap.imap_login('xx1','p')
+    #imap_operations.imap_login('10.49.58.239',20143,'xx1','p')
     
     #myimap.imap_logout()
 

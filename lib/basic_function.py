@@ -63,25 +63,30 @@ def parse_testcaselocation(testcaselocation):
         return testcaselocation
         
 
-def traverse_judge(casename,currentlists,num):
+def traverse_judge(casename,currentlists,cmpnum):
     """decide import or reload testcase file"""
     
-    print('num=',num)
     import os
     import sys
     from imp import reload         # reload setup.py ,run.py ,teardown.py  in each traverse
+    import global_variables
+    
+    num = global_variables.get_value('num')
     realcasename = casename+'.py'
     if  realcasename in currentlists:  # run setup
         casepath = os.getcwd()
-        print(casepath)
+        #print(casepath)
         sys.path.append(casepath)
         #print(casepath)
-        print(casename)
-        if num == 1:
+        #print(casename)
+        if num == cmpnum:
+            num += 1
+            global_variables.set_value('num',num)
             __import__(casename)
         else:
-            reload(casename)
-        num += 1     
+            #reload(casename)
+            reload(sys.modules[casename])
+            
     	
                            
 def traverse(Path):
@@ -90,7 +95,6 @@ def traverse(Path):
     import os
     import sys
 
-    a=b=c=1    
     os.chdir(Path)                 # switch to current Path
     currentlists = os.listdir('.') # get current folder and file names in current path
     for list in currentlists:      # delete the hiden files and folders
@@ -101,14 +105,14 @@ def traverse(Path):
             currentlists.remove(list)
     #print(currentlists)
     
-    traverse_judge('setup',currentlists,a)      # run setup
-    traverse_judge('run',currentlists,b)        # run run                    
+    traverse_judge('setup',currentlists,1)      # run setup
+    traverse_judge('run',currentlists,2)        # run run                    
     for list in currentlists:
         if os.path.isdir(list):
             traverse(list)
             #os.chdir(list)
             #print (os.getcwd())        
-    traverse_judge('teardown',currentlists,c)   # run teardown 
+    traverse_judge('teardown',currentlists,3)   # run teardown 
     #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
         
