@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*- 
 # this module contains some functions that will used commenly
 
+
 def welcome():
     """the welcome function used to print some welcome header when using this WuKOng test suits"""
     print('#'*100)
     print('#'*13,end=''),print("{:^74}".format('This is WuKong test suit, welcome!'),end=''),print('#'*13)
     print('#'*100,end='\n\n')
     
-    
-    
-    
-    
+
 def parse_args():
     """this function used to parse the arguements providded,help determine the testcase location,logging levels,etc"""    
     import sys
@@ -30,10 +28,9 @@ def parse_args():
             argvlist.remove('-vv')
     else:
         chloglevel = 'ERROR'
+    print ("==> The testcase location paramaters are:\n",'    '+str(argvlist)), print()
+    print ("==> The chloglevel paramater is:\n",'    '+chloglevel), print()
     return argvlist,chloglevel
-    
-    
-    
     
         
 def parse_testcaselocation(testcaselocation):
@@ -46,60 +43,75 @@ def parse_testcaselocation(testcaselocation):
     # print(len(testcaselocation))
     if len(testcaselocation) == 0 or  len(testcaselocation) == 1:
         if testcaselocation == [] or (testcaselocation[0] == 'Test_Cases' and testcaselocation[-1] == 'Test_Cases'):
-            # print('Using default testcase location:Test_Cases')            
+            print("==> The testcase located in:\n",['Test_Cases']),print()            
             return (['Test_Cases'])
         elif os.path.isfile(testcaselocation[0]):
             with open(testcaselocation[0]) as file_obj:
                 lines = file_obj.read().splitlines()
-            # print('The testcase contains in files are:')
-            # for line in lines:
-                # print(line.strip())
+            print('==> The testcase located in:'),print()  
+            for line in lines:
+                print('    '+line.strip())
             return lines
         else:
-            # print('Using customized testcase location:',testcaselocation[0])
+            print("==> The testcase located in:\n",'    '+testcaselocation[0]),print()  
+            testcaselocation
             return testcaselocation
     else:
-        # print('The testcase locations are:')
-        # for testcase in testcaselocation:
-        #    print(testcase)
+        print('==> The testcase located in:')
+        for testcase in testcaselocation:
+            print('    '+testcase)
         return testcaselocation
         
-        
-        
-        
-                 
+
+def traverse_judge(casename,currentlists,num):
+    """decide import or reload testcase file"""
+    
+    print('num=',num)
+    import os
+    import sys
+    from imp import reload         # reload setup.py ,run.py ,teardown.py  in each traverse
+    realcasename = casename+'.py'
+    if  realcasename in currentlists:  # run setup
+        casepath = os.getcwd()
+        print(casepath)
+        sys.path.append(casepath)
+        #print(casepath)
+        print(casename)
+        if num == 1:
+            __import__(casename)
+        else:
+            reload(casename)
+        num += 1     
+    	
+                           
 def traverse(Path):
     """traverse testcases under give Path,normal first execute setup,then run,last teardown for each testcase"""
     
-    import os    
+    import os
+    import sys
+
+    a=b=c=1    
     os.chdir(Path)                 # switch to current Path
     currentlists = os.listdir('.') # get current folder and file names in current path
     for list in currentlists:      # delete the hiden files and folders
         if list.startswith('.'):
             currentlists.remove(list)
+    for list in currentlists:      # delete the '__pycache__/' folderss
+        if '__pycache__' in list:
+            currentlists.remove(list)
     #print(currentlists)
-    if 'setup' in currentlists:            # run setup
-        import setup
-        ./setup
-        #os.system('chmod +x setup;./setup')            
-    if 'run' in currentlists:              # run run
-        import run
-        ./run
-        #os.system('chmod +x run;./run')           
+    
+    traverse_judge('setup',currentlists,a)      # run setup
+    traverse_judge('run',currentlists,b)        # run run                    
     for list in currentlists:
         if os.path.isdir(list):
             traverse(list)
             #os.chdir(list)
             #print (os.getcwd())        
-    if 'teardown' in currentlists:         # run teardown 
-        import teardown
-        ./teardownteardown
-        #os.system('chmod +x teardown;./teardown')
+    traverse_judge('teardown',currentlists,c)   # run teardown 
+    #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
         
-
-
-
 
 def execute(Paths,initialpath):
     """this function is used to traverse all folders and files under target path,and run specific scripts"""
@@ -108,4 +120,3 @@ def execute(Paths,initialpath):
     for Path in Paths:         # traverse each Path in Paths
         os.chdir(initialpath)  # switch to initialpath ,initialze
         traverse(Path)         # execute testcases under Path
-        

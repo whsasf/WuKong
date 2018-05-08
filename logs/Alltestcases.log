@@ -568,3 +568,8 @@
 [2018-05-08 09:41:21,047]-[basic_class]-[WARNING]- warning
 [2018-05-08 09:41:21,047]-[basic_class]-[ERROR]- error
 [2018-05-08 09:41:21,047]-[basic_class]-[CRITICAL]- critical
+[2018-05-08 14:25:35,607]-[basic_class]-[DEBUG]- debug
+[2018-05-08 14:25:35,607]-[basic_class]-[INFO]- info
+[2018-05-08 14:25:35,607]-[basic_class]-[WARNING]- warning
+[2018-05-08 14:25:35,607]-[basic_class]-[ERROR]- error
+[2018-05-08 14:25:35,608]-[basic_class]-[CRITICAL]- critical

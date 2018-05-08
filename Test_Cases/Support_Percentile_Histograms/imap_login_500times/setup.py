@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-print(initialpath)
+
 import basic_function
 import basic_class
 import imap_operations
+import global_variables
 
-
+print (global_variables.get_value('initialpath'))
 
 
 myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
