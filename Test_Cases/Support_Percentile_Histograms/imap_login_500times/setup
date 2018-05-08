@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+print(initialpath)
+import basic_function
+import basic_class
+import imap_operations
+
+
+
+
+myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+myimap.imap_login('xx1','p')
+myimap.imap_logout()
