@@ -70,23 +70,36 @@ def traverse_judge(casename,currentlists):
     import sys
     from imp import reload         # reload setup.py ,run.py ,teardown.py  in each traverse
     import global_variables
+    import shutil
     import pprint
+
+    #shutil.copyfile(casename, "hello2.py")
+
+    num = global_variables.get_value('num') 
+    oldcasename = casename+'.py'
     
-    num = global_variables.get_value('num')
-    tmp = global_variables.get_value('tmp')
-    realcasename = casename+'.py'
-    if  realcasename in currentlists:  # run setup
-        casepath = os.getcwd()
+    if  oldcasename in currentlists:  # run setup
+        #casepath = os.getcwd()
         #print(casepath)
-        sys.path.append(casepath)
+        #sys.path.append(casepath)
         #print(casepath)
         #print(casename)
-        __import__ (casename)
-        del sys.modules[casename]
+        #execfile('./setup.py')
         
-            
-    	
-                           
+
+        newcasename = casename+str(num)+'.py'
+        os.rename(oldcasename,newcasename)
+        path = os.getcwd()
+        sys.path.append(path)
+        
+        __import__ (casename+str(num))
+        num += 1
+        global_variables.set_value('num',num)
+        #pprint.pprint(sys.modules)
+        #del sys.modules[casename+str(num)]
+        os.rename(newcasename,oldcasename) 
+
+                          
 def traverse(Path):
     """traverse testcases under give Path,normal first execute setup,then run,last teardown for each testcase"""
     
@@ -94,6 +107,7 @@ def traverse(Path):
     import sys
 
     os.chdir(Path)                 # switch to current Path
+    
     currentlists = os.listdir('.') # get current folder and file names in current path
     for list in currentlists:      # delete the hiden files and folders
         if list.startswith('.'):
@@ -101,7 +115,8 @@ def traverse(Path):
     for list in currentlists:      # delete the '__pycache__/' folderss
         if '__pycache__' in list:
             currentlists.remove(list)
-    #print(currentlists)
+            
+    #print('currentlists:',currentlists)
     
     traverse_judge('setup',currentlists)      # run setup
     traverse_judge('run',currentlists)        # run run                    

@@ -7,14 +7,15 @@ This Python file is the main Python run script
 Created on 2018/04/16
 """
 
-
 def setpath():   
     """setpath function add lib folder to sys.path for modules search"""
     import os
     import sys
     cpath = os.getcwd()  #get current path
     #print ('Current path is: ',cpath)
-    sys.path.append(cpath+'/lib') # append lib folder to sys.path
+    sys.path.append(cpath+'/lib/python') # append lib/pthon folder to sys.path
+    sys.path.append(cpath+'/lib/shell')  # append lib/shell folder to sys.path
+    sys.path.append(cpath+'/lib/perl')   # append lib/perl  folder to sys.path
     #print (sys.path)    
 setpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
 
@@ -33,7 +34,6 @@ global_variables._init()
 global_variables.import_variables_from_file()
 
 global_variables.set_value('num',1)
-global_variables.set_value('tmp',1)
 global_variables.get_dict()
 
 def main():
@@ -43,9 +43,9 @@ def main():
     
     initialpath = os.getcwd() #get initial path,will back here after each traverse
     print('==> The initial path is:',initialpath),print()
-    global_variables.set_value('initialpath',initialpath)
+    #global_variables.set_value('initialpath',initialpath)
     
-    basic_function.execute(tclocation,initialpath) #executing testcases 
+    #basic_function.execute(tclocation,initialpath) #executing testcases 
     
     #mylogger=basic_class.Loggger('WuKong',chloglevel)
     
@@ -60,12 +60,14 @@ def main():
  
     #traverse
     
-    #for i in range(1,2):
-    #myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-    #imap_operations.imap_login('10.49.58.239',20143,'xx1','p')
+    for i in range(1,100):
+        myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+        myimap.imap_login('xx1','p')
+        myimap.imap_select()
+        myimap.imap_fetch('1:6','rfc822')
+        myimap.imap_logout()
     
     #myimap.imap_logout()
-
     
     #myssh = Remote_Ops('10.49.58.239','root','letmein')
     #myssh.remote_operations('ls -al',1,'.',61)
