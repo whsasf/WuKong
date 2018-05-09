@@ -43,9 +43,9 @@ def main():
     
     initialpath = os.getcwd() #get initial path,will back here after each traverse
     print('==> The initial path is:',initialpath),print()
-    #global_variables.set_value('initialpath',initialpath)
+    global_variables.set_value('initialpath',initialpath)
     
-    #basic_function.execute(tclocation,initialpath) #executing testcases 
+    basic_function.execute(tclocation,initialpath) #executing testcases 
     
     #mylogger=basic_class.Loggger('WuKong',chloglevel)
     
@@ -60,12 +60,12 @@ def main():
  
     #traverse
     
-    for i in range(1,100):
-        myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-        myimap.imap_login('xx1','p')
-        myimap.imap_select()
-        myimap.imap_fetch('1:6','rfc822')
-        myimap.imap_logout()
+    #for i in range(1,100):
+    #    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+    #    myimap.imap_login('xx1','p')
+    #    myimap.imap_select()
+    #    myimap.imap_fetch('1:6','rfc822')
+    #    myimap.imap_logout()
     
     #myimap.imap_logout()
     

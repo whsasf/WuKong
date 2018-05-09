@@ -85,7 +85,6 @@ def traverse_judge(casename,currentlists):
         #print(casepath)
         #print(casename)
         #execfile('./setup.py')
-        
 
         newcasename = casename+str(num)+'.py'
         os.rename(oldcasename,newcasename)
