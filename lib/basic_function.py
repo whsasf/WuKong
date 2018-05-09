@@ -63,15 +63,17 @@ def parse_testcaselocation(testcaselocation):
         return testcaselocation
         
 
-def traverse_judge(casename,currentlists,cmpnum):
+def traverse_judge(casename,currentlists):
     """decide import or reload testcase file"""
     
     import os
     import sys
     from imp import reload         # reload setup.py ,run.py ,teardown.py  in each traverse
     import global_variables
+    import pprint
     
     num = global_variables.get_value('num')
+    tmp = global_variables.get_value('tmp')
     realcasename = casename+'.py'
     if  realcasename in currentlists:  # run setup
         casepath = os.getcwd()
@@ -79,13 +81,9 @@ def traverse_judge(casename,currentlists,cmpnum):
         sys.path.append(casepath)
         #print(casepath)
         #print(casename)
-        if num == cmpnum:
-            num += 1
-            global_variables.set_value('num',num)
-            __import__(casename)
-        else:
-            #reload(casename)
-            reload(sys.modules[casename])
+        __import__ (casename)
+        del sys.modules[casename]
+        
             
     	
                            
@@ -105,14 +103,14 @@ def traverse(Path):
             currentlists.remove(list)
     #print(currentlists)
     
-    traverse_judge('setup',currentlists,1)      # run setup
-    traverse_judge('run',currentlists,2)        # run run                    
+    traverse_judge('setup',currentlists)      # run setup
+    traverse_judge('run',currentlists)        # run run                    
     for list in currentlists:
         if os.path.isdir(list):
             traverse(list)
             #os.chdir(list)
             #print (os.getcwd())        
-    traverse_judge('teardown',currentlists,3)   # run teardown 
+    traverse_judge('teardown',currentlists)   # run teardown 
     #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
         

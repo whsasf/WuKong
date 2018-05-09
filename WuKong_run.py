@@ -33,6 +33,7 @@ global_variables._init()
 global_variables.import_variables_from_file()
 
 global_variables.set_value('num',1)
+global_variables.set_value('tmp',1)
 global_variables.get_dict()
 
 def main():
