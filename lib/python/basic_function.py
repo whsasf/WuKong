@@ -87,8 +87,9 @@ def traverse_judge(casename,currentlists):
         #execfile('./setup.py')
 
         newcasename = casename+str(num)+'.py'
-        os.rename(oldcasename,newcasename)
+        shutil.copyfile(oldcasename,newcasename)
         path = os.getcwd()
+        print(path)
         sys.path.append(path)
         
         __import__ (casename+str(num))
@@ -96,7 +97,7 @@ def traverse_judge(casename,currentlists):
         global_variables.set_value('num',num)
         #pprint.pprint(sys.modules)
         #del sys.modules[casename+str(num)]
-        os.rename(newcasename,oldcasename) 
+        #os.remove(newcasename) 
 
                           
 def traverse(Path):

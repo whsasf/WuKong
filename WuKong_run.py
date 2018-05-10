@@ -41,11 +41,11 @@ def main():
     testcaselocation,chloglevel = basic_function.parse_args()  # parse the paramaters to find the chloglevel and testcaselocation
     tclocation = basic_function.parse_testcaselocation(testcaselocation) # format testcase location in a list for given formats
     
-    #initialpath = os.getcwd() #get initial path,will back here after each traverse
-    #print('==> The initial path is:',initialpath),print()
-    #global_variables.set_value('initialpath',initialpath)
+    initialpath = os.getcwd() #get initial path,will back here after each traverse
+    print('==> The initial path is:',initialpath),print()
+    global_variables.set_value('initialpath',initialpath)
     
-    #basic_function.execute(tclocation,initialpath) #executing testcases 
+    basic_function.execute(tclocation,initialpath) #executing testcases 
     
     #mylogger=basic_class.Loggger('WuKong',chloglevel)
     
@@ -60,18 +60,18 @@ def main():
  
     #traverse
     
-    for i in range(1,3):
-        myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+    #for i in range(1,3):
+    #    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
         #myimap.imap_login('xx1','pp')
-        try:
-            myimap.imap_authenticate('xx1','pp')
-        except:
-            print('some error happened, butwill pass')
-            pass
+    #    try:
+    #        myimap.imap_authenticate('xx1','pp')
+    #    except:
+    #        print('some error happened, butwill pass')
+    #        pass
         #myimap.imap_login('xx1','pp')
         #myimap.imap_select()
         #myimap.imap_fetch('1:6','rfc822')
-        myimap.imap_logout()
+    #    myimap.imap_logout()
     
     #myimap.imap_logout()
     
