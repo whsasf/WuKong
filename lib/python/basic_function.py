@@ -68,35 +68,25 @@ def traverse_judge(casename,currentlists):
     
     import os
     import sys
-    from imp import reload         # reload setup.py ,run.py ,teardown.py  in each traverse
     import global_variables
-    import shutil
-    import pprint
-
-    #shutil.copyfile(casename, "hello2.py")
+    import time
 
     num = global_variables.get_value('num') 
     oldcasename = casename+'.py'
     
-    if  oldcasename in currentlists:  # run setup
-        #casepath = os.getcwd()
-        #print(casepath)
-        #sys.path.append(casepath)
-        #print(casepath)
-        #print(casename)
-        #execfile('./setup.py')
-
+    if  oldcasename in currentlists:
         newcasename = casename+str(num)+'.py'
-        shutil.copyfile(oldcasename,newcasename)
+        os.rename(oldcasename,newcasename)
         path = os.getcwd()
-        print(path)
+        #print(path)
         sys.path.append(path)
         
         __import__ (casename+str(num))
         num += 1
         global_variables.set_value('num',num)
-        #pprint.pprint(sys.modules)
         #del sys.modules[casename+str(num)]
+        time.sleep(0.01) #without this sleep, next "os.rename" command may failed
+        os.rename(newcasename,oldcasename)
         #os.remove(newcasename) 
 
                           
@@ -118,17 +108,17 @@ def traverse(Path):
             
     #print('currentlists:',currentlists)
     
-    traverse_judge('setup',currentlists)      # run setup
-    traverse_judge('run',currentlists)        # run run                    
+    traverse_judge('setup',currentlists)      # run setup if exists
+    traverse_judge('run',currentlists)        # run run if exists                
     for list in currentlists:
         if os.path.isdir(list):
             traverse(list)
             #os.chdir(list)
             #print (os.getcwd())        
-    traverse_judge('teardown',currentlists)   # run teardown 
+    traverse_judge('teardown',currentlists)   # run teardown if exists 
     #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
-        
+
 
 def execute(Paths,initialpath):
     """this function is used to traverse all folders and files under target path,and run specific scripts"""
