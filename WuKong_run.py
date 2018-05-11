@@ -25,6 +25,8 @@ import basic_class
 import imap_operations
 import os
 import global_variables
+import sys
+import pprint
 
 
 basic_function.welcome() #print welcome headers
@@ -46,7 +48,7 @@ def main():
     global_variables.set_value('initialpath',initialpath)
     
     basic_function.execute(tclocation,initialpath) #executing testcases 
-    
+    #pprint.pprint(sys.modules)
     #mylogger=basic_class.Loggger('WuKong',chloglevel)
     
     #mylogger.debug('debug')

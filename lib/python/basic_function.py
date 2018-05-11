@@ -75,18 +75,20 @@ def traverse_judge(casename,currentlists):
     oldcasename = casename+'.py'
     
     if  oldcasename in currentlists:
-        newcasename = casename+str(num)+'.py'
+        newcase = casename+str(num)
+        newcasename = newcase+'.py'
         os.rename(oldcasename,newcasename)
         path = os.getcwd()
         #print(path)
         sys.path.append(path)
         
-        __import__ (casename+str(num))
+        __import__ (newcase)
         num += 1
         global_variables.set_value('num',num)
-        #del sys.modules[casename+str(num)]
         time.sleep(0.01) #without this sleep, next "os.rename" command may failed
+
         os.rename(newcasename,oldcasename)
+        del sys.modules[newcase]
         #os.remove(newcasename) 
 
                           
