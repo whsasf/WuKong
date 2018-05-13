@@ -49,13 +49,13 @@ def main():
     
     basic_function.execute(tclocation,initialpath) #executing testcases 
     #pprint.pprint(sys.modules)
-    #mylogger=basic_class.Loggger('WuKong',chloglevel)
+    mylogger=basic_class.Loggger('WuKong',chloglevel)
     
-    #mylogger.debug('debug')
-    #mylogger.info('info')
-    #mylogger.warning('warning')
-    #mylogger.error('error')
-    #mylogger.critical('critical')
+    mylogger.debug('debug')
+    mylogger.info('info')
+    mylogger.warning('warning')
+    mylogger.error('error')
+    mylogger.critical('critical')
     
   
     #import need modules

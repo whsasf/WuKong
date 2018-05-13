@@ -82,13 +82,15 @@ def traverse_judge(casename,currentlists):
         #print(path)
         sys.path.append(path)
         
-        __import__ (newcase)
-        num += 1
-        global_variables.set_value('num',num)
-        time.sleep(0.01) #without this sleep, next "os.rename" command may failed
+        try:
+            __import__ (newcase)
+            num += 1
+            global_variables.set_value('num',num)
+            time.sleep(0.01) #without this sleep, next "os.rename" command may failed
 
-        os.rename(newcasename,oldcasename)
-        del sys.modules[newcase]
+        finally:
+            os.rename(newcasename,oldcasename) # must reverse name change anyway 
+            del sys.modules[newcase]
         #os.remove(newcasename) 
 
                           
