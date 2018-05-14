@@ -17,12 +17,12 @@ print('5-run')
 #   #myimap.imap_select()
 #   #myimap.imap_fetch('1:6','rfc822')
 #    myimap.imap_logout()
-from WuKong_run import mylogger as mylogger2
+#from WuKong_run import mylogger as mylogger2
 #mylogger2=basic_class.Loggger('WuKong','WARNING')
 
-mylogger2.debug('debug2')
-mylogger2.info('info2')
-mylogger2.warning('warning2')
-mylogger2.error('error2')
-mylogger2.critical('critical2')
+#mylogger2.debug('debug2')
+#mylogger2.info('info2')
+#mylogger2.warning('warning2')
+#mylogger2.error('error2')
+#mylogger2.critical('critical2')
 

@@ -6,10 +6,9 @@ def _init():
     _global_dict = {}
 
 
-def import_variables_from_file():
+def import_variables_from_file(locations):
     """read given variable files from variable files under  etc path"""
-    
-    variable_files = ['etc/global.vars','etc/user.vars'] # define a list contains the variable files
+    variable_files = locations # define a list contains the variable files
     for variable_file in variable_files:
         with open(variable_file) as file_object:
             lines = file_object.read().splitlines()

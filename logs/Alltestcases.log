@@ -1,0 +1,15 @@
+[2018-05-14 22:41:50,859]-[basic_class]-[DEBUG]- debug
+[2018-05-14 22:41:50,859]-[basic_class]-[INFO]- info
+[2018-05-14 22:41:50,859]-[basic_class]-[WARNING]- warning
+[2018-05-14 22:41:50,859]-[basic_class]-[ERROR]- error
+[2018-05-14 22:41:50,860]-[basic_class]-[CRITICAL]- critical
+[2018-05-14 22:41:59,547]-[basic_class]-[DEBUG]- debug
+[2018-05-14 22:41:59,547]-[basic_class]-[INFO]- info
+[2018-05-14 22:41:59,547]-[basic_class]-[WARNING]- warning
+[2018-05-14 22:41:59,547]-[basic_class]-[ERROR]- error
+[2018-05-14 22:41:59,547]-[basic_class]-[CRITICAL]- critical
+[2018-05-14 22:45:08,627]-[basic_class]-[DEBUG]- debug
+[2018-05-14 22:45:08,627]-[basic_class]-[INFO]- info
+[2018-05-14 22:45:08,628]-[basic_class]-[WARNING]- warning
+[2018-05-14 22:45:08,628]-[basic_class]-[ERROR]- error
+[2018-05-14 22:45:08,628]-[basic_class]-[CRITICAL]- critical

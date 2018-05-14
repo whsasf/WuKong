@@ -53,8 +53,9 @@ class Loggger():
         else:
             self.ch.setLevel(logging.ERROR)
         #self.ch.setLevel(logging.ERROR)        
-        currentpath = global_variables.get_value('currentpath')
-        self.fh = logging.FileHandler(currentpath+'/logs/Alltestcases.log')
+        initialpath = global_variables.get_value('initialpath')
+        print('initialpath='+initialpath)
+        self.fh = logging.FileHandler(initialpath+'/logs/Alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
         self.formatter = logging.Formatter('[%(asctime)s]-[%(name)s]-[%(levelname)s]- %(message)s')
         self.ch.setFormatter(self.formatter)
@@ -76,4 +77,5 @@ class Loggger():
 
     def critical(self,criticalmessages='this is critical message'):    
         self.logger.critical(criticalmessages)
-     
+
+#mylogger = Loggger('WuKong','WARNING')     
