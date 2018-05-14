@@ -16,6 +16,7 @@ def setpath():
     sys.path.append(cpath+'/lib/python') # append lib/pthon folder to sys.path
     sys.path.append(cpath+'/lib/shell')  # append lib/shell folder to sys.path
     sys.path.append(cpath+'/lib/perl')   # append lib/perl  folder to sys.path
+    sys.path.append(cpath)   # 
     #print (sys.path)    
 setpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
 
@@ -33,8 +34,11 @@ basic_function.welcome() #print welcome headers
 
 
 global_variables._init()
+
 global_variables.import_variables_from_file()
 
+currentpath = os.getcwd()
+global_variables.set_value('currentpath',currentpath)
 global_variables.set_value('num',1)
 global_variables.get_dict()
 

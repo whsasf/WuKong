@@ -4,6 +4,7 @@
 # import need moduels
 import os      # import listdir,getcwd,chdir,system,path #used in class Directory
 import logging # import StreamHandler,FileHandler,Formatter,getLogger,info,debug,warning,error,critical #used in class Loggger
+import global_variables
 
 class Discovery():
     """class Discovery used to traverse the testcases and run them"""   
@@ -52,7 +53,8 @@ class Loggger():
         else:
             self.ch.setLevel(logging.ERROR)
         #self.ch.setLevel(logging.ERROR)        
-        self.fh = logging.FileHandler('logs/Alltestcases.log')
+        currentpath = global_variables.get_value('currentpath')
+        self.fh = logging.FileHandler(currentpath+'/logs/Alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
         self.formatter = logging.Formatter('[%(asctime)s]-[%(name)s]-[%(levelname)s]- %(message)s')
         self.ch.setFormatter(self.formatter)
