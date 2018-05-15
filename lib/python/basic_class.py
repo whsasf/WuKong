@@ -78,4 +78,4 @@ class Loggger():
     def critical(self,criticalmessages='this is critical message'):    
         self.logger.critical(criticalmessages)
 
-#mylogger = Loggger('WuKong','WARNING')     
+mylogger = Loggger('WuKong','WARNING')     
