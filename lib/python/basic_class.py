@@ -53,9 +53,9 @@ class Loggger():
         else:
             self.ch.setLevel(logging.ERROR)
         #self.ch.setLevel(logging.ERROR)        
-        initialpath = global_variables.get_value('initialpath')
-        print('initialpath='+initialpath)
-        self.fh = logging.FileHandler(initialpath+'/logs/Alltestcases.log')
+        #initialpath = global_variables.get_value('initialpath')
+        #print('initialpath='+initialpath)
+        self.fh = logging.FileHandler('logs/Alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
         self.formatter = logging.Formatter('[%(asctime)s]-[%(name)s]-[%(levelname)s]- %(message)s')
         self.ch.setFormatter(self.formatter)

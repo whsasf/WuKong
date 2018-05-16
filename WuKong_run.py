@@ -13,7 +13,7 @@ def setpath():
     import os
     import sys
     global initialpath
-    initialpath = os.getcwd()  #get current path
+    initialpath = os.getcwd()  #get initial path
     #print ('Current path is: ',cpath)
     sys.path.append(initialpath+'/lib/python') # append lib/pthon folder to sys.path
     sys.path.append(initialpath+'/lib/shell')  # append lib/shell folder to sys.path
@@ -55,13 +55,13 @@ def main():
     
     basic_function.execute(tclocation,initialpath) #executing testcases 
     #pprint.pprint(sys.modules)
-    mylogger=basic_class.Loggger('WuKong',chloglevel)
+    #mylogger=basic_class.Loggger('WuKong',chloglevel)
     
-    mylogger.debug('debug')
-    mylogger.info('info')
-    mylogger.warning('warning')
-    mylogger.error('error')
-    mylogger.critical('critical')
+    basic_class.mylogger.debug('debug')
+    basic_class.mylogger.info('info')
+    basic_class.mylogger.warning('warning')
+    basic_class.mylogger.error('error')
+    basic_class.mylogger.critical('critical')
     
   
     #import need modules
