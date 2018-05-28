@@ -1,0 +1,31 @@
+su: user mx_account does not exist
+su: user mx_account does not exist
+su: user mx_account does not exist
+su: user mx_account does not exist
+su: user mx_account does not exist
+su: user mx_account does not exist
+su: user mx_account does not exist
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_INVALID_EMAIL
+Short Message: Invalid email format.
+Long message: [%email% does not match the regex pattern ^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$]
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_INVALID_EMAIL
+Short Message: Invalid email format.
+Long message: [%email% does not match the regex pattern ^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$]
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_INVALID_EMAIL
+Short Message: Invalid email format.
+Long message: [%email% does not match the regex pattern ^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$]
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_INVALID_EMAIL
+Short Message: Invalid email format.
+Long message: [%email% does not match the regex pattern ^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$]
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_ALREADY_EXISTS
+Short Message: The given Mailbox is already exists.
+Long message: [LDAP: error code 68 - Entry Already Exists]
+ERROR: Unable to perform mailbox creation operation
+Error Code: MBX_ALREADY_EXISTS
+Short Message: The given Mailbox is already exists.
+Long message: [LDAP: error code 68 - Entry Already Exists]

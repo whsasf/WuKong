@@ -22,31 +22,31 @@ basic_class.mylogger.info('Preparing... get some variables needed for tests')
 imap1_host = global_variables.get_value('imap1_host')
 imap1_port = global_variables.get_value('imap1_port')
 mx_account = global_variables.get_value('mx_account')     # imail by default
-mx1_host1 = global_variables.get_value('mx1_host1')
+mx1_host1_ip = global_variables.get_value('mx1_host1_ip')
 root_account = global_variables.get_value('root_account') # root by default
 root_passwd = global_variables.get_value('root_passwd')   # 
 test_account_base = global_variables.get_value('test_account_base')
 default_domain = global_variables.get_value('default_domain')
 
-basic_class.mylogger.debug('	imap1_host='+imap1_host)
-basic_class.mylogger.debug('	imap1_port='+imap1_port)
-basic_class.mylogger.debug('	mx_account='+mx_account)
-basic_class.mylogger.debug('	mx1_host1='+mx1_host1)
-basic_class.mylogger.debug('	root_account='+root_account)
-basic_class.mylogger.debug('	root_passwd='+root_passwd)
-basic_class.mylogger.debug('	test_account_base='+test_account_base)
-basic_class.mylogger.debug('	default_domain='+default_domain)
+basic_class.mylogger.debug(' imap1_host='+imap1_host)
+basic_class.mylogger.debug(' imap1_port='+imap1_port)
+basic_class.mylogger.debug(' mx_account='+mx_account)
+basic_class.mylogger.debug(' mx1_host1_ip='+mx1_host1_ip)
+basic_class.mylogger.debug(' root_account='+root_account)
+basic_class.mylogger.debug(' root_passwd='+root_passwd)
+basic_class.mylogger.debug(' test_account_base='+test_account_base)
+basic_class.mylogger.debug(' default_domain='+default_domain)
 
 #myssh = Remote_Ops('10.49.58.239','root','letmein')
 
 #basic_class.mylogger.info('step1:set keys')
-#remote_operations.remote_operation('su - mx_account -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=StatImapAuthCommand 200\";imconfcontrol -install -key \"/*/common/reportParamsInterval= 120\"\'',mx1_host1,root_account,root_passwd,0)
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=StatImapAuthCommand 200\";imconfcontrol -install -key \"/*/common/reportParamsInterval=120\"\''.format(mx_account),0)
 
 #basic_class.mylogger.info('step2:create 250 accounts')
-#remote_operations.remote_operation('su - mx_account -c \'for ((i=1;i<=250;i++));do account-create test_account_base\$i@default_domain   test_account_base\$i default;done\'',mx1_host1,root_account,root_passwd,1,'Mailbox Deleted Successfully',250)
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',2)
 
 #basic_class.mylogger.info('step3: clear current imapserv.stat file')
-#remote_operation('su - mx_account -c "> log/imapserv.stat"',mx1_host1,root_account,root_passwd,0)
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
 
 
 

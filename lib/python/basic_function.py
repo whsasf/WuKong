@@ -4,18 +4,33 @@
 
 def welcome():
     """the welcome function used to print some welcome header when using this WuKOng test suits"""
+    
     print('#'*100)
     print('#'*13,end=''),print("{:^74}".format('This is WuKong test suit, welcome!'),end=''),print('#'*13)
     print('#'*100,end='\n\n')
     
 
+
 def parse_args():
-    """this function used to parse the arguements providded,help determine the testcase location,logging levels,etc"""    
+    """this function used to parse the arguements providded,help determine the testcase location,logging levels,etc"""
+     
     import sys
+    import global_variables
+    
     argvnum = len(sys.argv) # number of total argements,the real arguements number is 
     argvlist = sys.argv[1:] # total real arguments(shell name excludded)
-    # print(argvnum)
-    # print(argvlist)
+    global_variables.set_value('argvnum',argvnum)   # store length of arguments into dict 
+    global_variables.set_value('argvlist',argvlist) # store arguments into dict
+
+
+
+def parse_chloglevel():
+    """this function gte the chloglevel of this test"""
+    
+    parse_args()   # get all args            
+    import global_variables
+    
+    argvlist = global_variables.get_value('argvlist')           # get argvlist of arguments
     if argvlist.count('-v') > 1 or argvlist.count('-vv') > 1:   # determine the chloglevel (displayed to screen)
         print("multiple '-v' or '-vv' detected,please make sure only one entered!")
         exit()
@@ -28,13 +43,30 @@ def parse_args():
             argvlist.remove('-vv')
     else:
         chloglevel = 'ERROR'
-    print ("==> The testcase location paramaters are:\n",'    '+str(argvlist)), print()
-    print ("==> The chloglevel paramater is:\n",'    '+chloglevel), print()
-    return argvlist,chloglevel
+    global_variables.set_value('chloglevel',chloglevel) # store chloglevel into dict
+    return chloglevel
+
+
     
-        
+#def log_all_args():
+#    """This function used to log all arguments"""
+#    
+#    import basic_class
+#    import global_variables
+#    global_variables.get_value('argvlist',argvlist)
+#    basic_class.mylogger.info('The testcase location paramaters are:'+str(argvlist))
+#    basic_class.mylogger.info('The chloglevel is:'+str(argvlist))
+    
+#    print ("==> The testcase location paramaters are:\n",'    '+str(argvlist)), print()
+#    print ("==> The chloglevel paramater is:\n",'    '+chloglevel), print()
+#    return argvlist,chloglevel
+    
+    
+
+            
 def parse_testcaselocation(testcaselocation):
     """this function will chelk if the testcaselocation is:
+    
        (1)the default testcase location:TestCases folder
        (2)some (any) individual folders of some testcases
        (3)a file ,that contains the location of testcases"""       
@@ -62,6 +94,7 @@ def parse_testcaselocation(testcaselocation):
             print('    '+testcase)
         return testcaselocation
         
+
 
 def traverse_judge(casename,currentlists):
     """decide import or reload testcase file"""
@@ -93,6 +126,7 @@ def traverse_judge(casename,currentlists):
             del sys.modules[newcase]
         #os.remove(newcasename) 
 
+
                           
 def traverse(Path):
     """traverse testcases under give Path,normal first execute setup,then run,last teardown for each testcase"""
@@ -122,6 +156,7 @@ def traverse(Path):
     traverse_judge('teardown',currentlists)   # run teardown if exists 
     #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
+
 
 
 def execute(Paths,initialpath):

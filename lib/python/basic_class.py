@@ -4,7 +4,7 @@
 # import need moduels
 import os      # import listdir,getcwd,chdir,system,path #used in class Directory
 import logging # import StreamHandler,FileHandler,Formatter,getLogger,info,debug,warning,error,critical #used in class Loggger
-import global_variables
+#import global_variables
 
 class Discovery():
     """class Discovery used to traverse the testcases and run them"""   
@@ -56,7 +56,7 @@ class Loggger():
         #print('initialpath='+initialpath)
         self.fh = logging.FileHandler('logs/Alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
-        self.formatter = logging.Formatter('[%(asctime)s]-[%(name)s]-[%(levelname)s]- %(message)s')
+        self.formatter = logging.Formatter('[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s')
         self.ch.setFormatter(self.formatter)
         self.fh.setFormatter(self.formatter)
         self.logger.addHandler(self.ch)
@@ -76,5 +76,8 @@ class Loggger():
 
     def critical(self,criticalmessages='this is critical message'):    
         self.logger.critical(criticalmessages)
-
-mylogger = Loggger('WuKong','WARNING')     
+if True:
+    from basic_function import parse_chloglevel
+    
+    chloglevel = parse_chloglevel() 
+    mylogger = Loggger('WuKong',chloglevel)   

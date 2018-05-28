@@ -1,69 +1,70 @@
 # -*- coding: utf-8 -*- 
 
-import paramiko     # third party libs needs for ssh authentication
-
-#class Remote_Ops():
-
-    """this class defines the basic functions of ssh operations"""
+def remote_operation(sshhost,username,passwd,cmds,\
+    confirmflag = 1,\
+    confirmobj = '',\
+    confirmobjcount = 1,\
+    sshport = 22,\
+    outlog ='sshout.log',\
+    errorlog ='ssherror.log',\
+    paramikologenable = 0 \
+    ):     
     
-    def __init__(self,sshhost,user,passwd,sshport = 22,outlog ='sshout.log',errorlog ='ssherror.log',paramikologenable = 0):
-        """initialize some paramaters"""
-        
-        self.sshhost = sshhost  # ssh destination hosts,can be IP or resolvable hostnames
-        self.user = user        # account-name used to establish ssh connection
-        self.passwd = passwd    # account-password used to establish ssh connection
-       
-        self.sshport = sshport                          # defaule ssh connection port ,22 by default
-        self.outlog = outlog                            # normal ssh log file
-        self.errorlog = errorlog                        # error ssh log file
-        self.paramikologenable = paramikologenable      # by default, paramikologdisabled ,set to 1 to enable
-    	      
-    def remote_operations(self,cmds,confirmflag = 1,confirmobj = '',confirmobjcount = 1):     
-        '''function to run commands via ssh'''
-                
-        self.cmds = cmds         # the commands going to run via ssh
-        
-        self.confirmflag = confirmflag         # if need check the outcome to confirm operation success or failed,default 1
-        self.confirmobj = confirmobj           # the target need to to compared or searched or confirmed,default empty
-        self.confirmobjcount = confirmobjcount # the accurance of confirmobj,default 1
-        
-        if self.paramikologenable == 1:
-            paramiko.util.log_to_file('ssh.log') #set up paramiko logging,disbale by default
-                
-        self.ssh = paramiko.SSHClient()
-        self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.ssh.connect(hostname = self.sshhost, port = self.sshport, username = self.user, password = self.passwd)
-        self.stdin, self.stdout, self.stderr = self.ssh.exec_command(self.cmds)
-        self.okout = self.stdout.read()
-        self.errout = self.stderr.read()
-        #print ('err:'+str(errout,'utf-8'))
-        #print ('ok:'+str(okout,'utf-8'))
-        if self.confirmflag == 1:
-            if len(self.okout) == 0:  
-                self.out=str(self.errout,'utf-8')
-                print(self.out,end = '')
-                
-                #write error log to file
-                with open(self.errorlog,'a') as self.file_object_err:
-                    self.file_object_err.write(self.out)
-                print (self.out.count(self.confirmobj))
-                if self.out.count(self.confirmobj) == self.confirmobjcount:
-                    print('\033[1;32m  Operation success\033[0m')
-                else:
-                    print ('\033[1;31m  Operation failed,no need to continue,please check'+self.errorlog+'!\033[0m')
-            else:
-                self.out=str(self.okout,'utf-8')
-                print(self.out,end = '')
-                
-                #write out log to file
-                with open(self.outlog,'a') as self.file_object_ok:
-                    self.file_object_ok.write(self.out)
-                print (self.out.count(self.confirmobj))
-                if self.out.count(self.confirmobj) == self.confirmobjcount:
+    """This function will used to do remote operations through ssh"""
 
-                    print('\033[1;32m  Operation success\033[0m')
-                else:
-                    print('\033[1;31m  Operation failed\033[0m')
+    import paramiko                   # third party libs needs for ssh authentication
+
+    sshhost = sshhost                 # ssh destination hosts,can be IP or resolvable hostnames
+    username = username                       # account-name used to establish ssh connection
+    passwd = passwd                   # account-password used to establish ssh connection
+    cmds = cmds                       # the commands going to run via ssh
+    confirmflag = confirmflag         # if need check the outcome to confirm operation success or failed,default 1
+    confirmobj = confirmobj           # the target need to to compared or searched or confirmed,default empty
+    confirmobjcount = confirmobjcount # the accurance of confirmobj,default 1
+    sshport = sshport                     # defaule ssh connection port ,22 by default
+    outlog = outlog                       # normal ssh log file
+    errorlog = errorlog                   # error ssh log file
+    paramikologenable = paramikologenable # by default, paramikologdisabled ,set to 1 to enable            
+
+    
+    if paramikologenable == 1:
+        paramiko.util.log_to_file('ssh.log') #set up paramiko logging,disbale by default
+            
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname = sshhost, port = sshport, username = username, password = passwd)
+
+    stdin, stdout, stderr = ssh.exec_command(cmds)
+    okout = stdout.read()
+    errout = stderr.read()
+    #print ('err:'+str(errout,'utf-8'))
+    #print ('ok:'+str(okout,'utf-8'))
+    if confirmflag == 1:
+        if len(okout) == 0:  
+            out=str(errout,'utf-8')
+            print(out,end = '')
+            
+            #write error log to file
+            with open(errorlog,'a') as file_object_err:
+                file_object_err.write(out)
+            print (out.count(confirmobj))
+            if out.count(confirmobj) == confirmobjcount:
+                print('\033[1;32m  Operation success\033[0m')
+            else:
+                print ('\033[1;31m  Operation failed,no need to continue,please check'+errorlog+'!\033[0m')
         else:
-            print ('\033[1;32m  Operation success\033[0m')
-        self.ssh.close()
+            out=str(okout,'utf-8')
+            print(out,end = '')
+            
+            #write out log to file
+            with open(outlog,'a') as file_object_ok:
+                file_object_ok.write(out)
+            print (out.count(confirmobj))
+            if out.count(confirmobj) == confirmobjcount:
+
+                print('\033[1;32m  Operation success\033[0m')
+            else:
+                print('\033[1;31m  Operation failed\033[0m')
+    else:
+        print ('\033[1;32m  Operation success\033[0m')
+    ssh.close()
