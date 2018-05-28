@@ -34,8 +34,7 @@ class Discovery():
         
         
         
-        
-        
+   
 class Loggger():
     """this is a class for logging part"""
     

@@ -53,3 +53,148 @@
 [2018-05-16 23:12:01,442]-[basic_class]-[WARNING]- warning
 [2018-05-16 23:12:01,442]-[basic_class]-[ERROR]- error
 [2018-05-16 23:12:01,442]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 14:43:10,257]-[basic_class]-[DEBUG]- debug
+[2018-05-28 14:43:10,265]-[basic_class]-[INFO]- info
+[2018-05-28 14:43:10,265]-[basic_class]-[WARNING]- warning
+[2018-05-28 14:43:10,265]-[basic_class]-[ERROR]- error
+[2018-05-28 14:43:10,265]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 14:43:10,336]-[basic_class]-[DEBUG]- debug
+[2018-05-28 14:43:10,337]-[basic_class]-[INFO]- info
+[2018-05-28 14:43:10,337]-[basic_class]-[WARNING]- warning
+[2018-05-28 14:43:10,337]-[basic_class]-[ERROR]- error
+[2018-05-28 14:43:10,337]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 15:22:04,132]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:22:04,132]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:23:15,609]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:23:15,610]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:24:04,261]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:24:04,261]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:24:04,261]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:24:04,261]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:24:04,261]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:24:04,262]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:24:04,262]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:24:04,262]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:24:04,262]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:24:04,262]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:24:04,262]-[basic_class]-[INFO]- step1:set keys
+[2018-05-28 15:34:38,551]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:34:38,551]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:34:38,551]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:34:38,551]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:34:38,551]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:34:38,551]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:34:38,551]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:34:38,552]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:34:38,552]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:34:38,552]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:35:19,718]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:35:19,719]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:35:19,719]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:35:57,227]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:35:57,227]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:35:57,228]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:36:23,701]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:36:23,701]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:36:23,701]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:36:23,701]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:36:23,701]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:36:23,701]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:36:23,702]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:36:23,702]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:36:23,702]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:36:23,702]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:37:10,177]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:37:10,177]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:37:10,177]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:37:41,213]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:37:41,213]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:37:41,213]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:37:41,213]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:37:41,214]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:38:29,173]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:38:29,173]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:38:29,174]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:38:29,195]-[basic_class]-[DEBUG]- debug
+[2018-05-28 15:38:29,195]-[basic_class]-[INFO]- info
+[2018-05-28 15:38:29,195]-[basic_class]-[WARNING]- warning
+[2018-05-28 15:38:29,195]-[basic_class]-[ERROR]- error
+[2018-05-28 15:38:29,195]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 15:39:23,884]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:39:23,884]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:39:23,885]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:39:23,906]-[basic_class]-[DEBUG]- debug
+[2018-05-28 15:39:23,906]-[basic_class]-[INFO]- info
+[2018-05-28 15:39:23,906]-[basic_class]-[WARNING]- warning
+[2018-05-28 15:39:23,906]-[basic_class]-[ERROR]- error
+[2018-05-28 15:39:23,906]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 15:39:39,546]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:39:39,546]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:39:39,546]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:39:39,567]-[basic_class]-[DEBUG]- debug
+[2018-05-28 15:39:39,568]-[basic_class]-[INFO]- info
+[2018-05-28 15:39:39,568]-[basic_class]-[WARNING]- warning
+[2018-05-28 15:39:39,568]-[basic_class]-[ERROR]- error
+[2018-05-28 15:39:39,568]-[basic_class]-[CRITICAL]- critical
+[2018-05-28 15:40:09,089]-[basic_class]-[INFO]- -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-28 15:40:09,089]-[basic_class]-[INFO]- Preparing... get some variables needed for tests
+[2018-05-28 15:40:09,089]-[basic_class]-[DEBUG]- 	imap1_host=mx1
+[2018-05-28 15:40:09,089]-[basic_class]-[DEBUG]- 	imap1_port=20143
+[2018-05-28 15:40:09,089]-[basic_class]-[DEBUG]- 	mx_account=imail
+[2018-05-28 15:40:09,090]-[basic_class]-[DEBUG]- 	mx1_host1=mx1
+[2018-05-28 15:40:09,090]-[basic_class]-[DEBUG]- 	root_account=root
+[2018-05-28 15:40:09,090]-[basic_class]-[DEBUG]- 	root_passwd=letmein
+[2018-05-28 15:40:09,090]-[basic_class]-[DEBUG]- 	test_account_base=testuser
+[2018-05-28 15:40:09,090]-[basic_class]-[DEBUG]- 	default_domain=openwave.com
+[2018-05-28 15:40:09,111]-[basic_class]-[DEBUG]- debug
+[2018-05-28 15:40:09,111]-[basic_class]-[INFO]- info
+[2018-05-28 15:40:09,111]-[basic_class]-[WARNING]- warning
+[2018-05-28 15:40:09,111]-[basic_class]-[ERROR]- error
+[2018-05-28 15:40:09,111]-[basic_class]-[CRITICAL]- critical

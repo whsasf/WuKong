@@ -1,0 +1,127 @@
+total 68172
+dr-xr-x---. 12 root    root        4096 May 24 21:18 .
+dr-xr-xr-x. 19 root    root        4096 Mar 20 06:02 ..
+drwx------.  4 root    root        4096 Jan 11 22:32 .ansible
+-rw-r--r--   1 root    root    25288081 May 24 21:18 apache-cassandra-2.1.17-bin.tar.gz
+-rw-------.  1 root    root       17512 May 28 01:02 .bash_history
+-rw-r--r--.  1 root    root          18 Dec 28  2013 .bash_logout
+-rw-r--r--.  1 root    root         176 Dec 28  2013 .bash_profile
+-rw-r--r--.  1 root    root         424 Feb  8 09:33 .bashrc
+drwxr-xr-x   3 root    root        4096 Mar 29 02:33 bld
+drwx------   3 root    root        4096 Mar 11 23:00 .cache
+drwxr-xr-x   2 root    root        4096 Feb 27 03:23 .cassandra
+-rw-r--r--   1 tcpdump tcpdump   186885 Apr 20 02:40 cassandra-1.pcap
+-rw-r--r--   1 tcpdump tcpdump   166153 Apr 20 03:25 cassandra-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   569880 Apr 26 04:42 cassandra-3.pcap
+-rw-r--r--   1 tcpdump tcpdump  2117104 Apr 20 02:54 cassandra.pcap
+drwxr-xr-x   6 root    root        4096 Apr  9 11:20 .cpan
+-rw-r--r--.  1 root    root         100 Dec 28  2013 .cshrc
+-rw-r--r--   1 root    root        1098 Feb  6 02:51 env_multi
+-rw-r--r--   1 root    root          46 Jan 26 23:39 .gitconfig
+-rw-r--r--   1 root    root        2476 Feb  6 02:51 multinodes
+drwxr-xr-x   2 root    root        4096 Jan 24 22:07 .oracle_jre_usage
+-rw-r--r--   1 root    root    17340948 Jan 19 13:56 owm-msg-mta-9.6.0.0-169.el6.x86_64.rpm
+-rw-r--r--   1 root    root     5998268 Jan 19 13:56 owm-msg-qserv-9.6.0.0-169.el6.x86_64.rpm
+drwxr-xr-x   5 root    root        4096 Feb  8 09:33 perl5
+drwxr-----.  3 root    root        4096 Jan 11 22:30 .pki
+drwxr-xr-x  17 cass    cass        4096 Mar 11 22:56 Python-3.6.4
+-rw-r--r--   1 root    root    16992824 Dec 19 00:37 Python-3.6.4.tar.xz
+-rw-------   1 root    root        1024 May  3 03:51 .rnd
+-rw-r--r--   1 tcpdump tcpdump   807138 Apr 26 23:04 scality-1.pcap
+-rw-r--r--   1 tcpdump tcpdump    12163 Apr 20 04:11 scality-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   180617 Apr 20 04:38 scality-3.pcap
+drwx------.  2 root    root        4096 May 16 02:54 .ssh
+-rw-r--r--.  1 root    root         129 Dec 28  2013 .tcshrc
+-rwxr-xr-x   1 root    root         139 Feb  6 02:51 test.sh
+-rw-------   1 root    root        8218 May  3 03:52 .viminfo
+-rw-r--r--   1 root    root           1 May 17 04:45 xx.txt
+total 68172
+dr-xr-x---. 12 root    root        4096 May 24 21:18 .
+dr-xr-xr-x. 19 root    root        4096 Mar 20 06:02 ..
+drwx------.  4 root    root        4096 Jan 11 22:32 .ansible
+-rw-r--r--   1 root    root    25288081 May 24 21:18 apache-cassandra-2.1.17-bin.tar.gz
+-rw-------.  1 root    root       17512 May 28 01:02 .bash_history
+-rw-r--r--.  1 root    root          18 Dec 28  2013 .bash_logout
+-rw-r--r--.  1 root    root         176 Dec 28  2013 .bash_profile
+-rw-r--r--.  1 root    root         424 Feb  8 09:33 .bashrc
+drwxr-xr-x   3 root    root        4096 Mar 29 02:33 bld
+drwx------   3 root    root        4096 Mar 11 23:00 .cache
+drwxr-xr-x   2 root    root        4096 Feb 27 03:23 .cassandra
+-rw-r--r--   1 tcpdump tcpdump   186885 Apr 20 02:40 cassandra-1.pcap
+-rw-r--r--   1 tcpdump tcpdump   166153 Apr 20 03:25 cassandra-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   569880 Apr 26 04:42 cassandra-3.pcap
+-rw-r--r--   1 tcpdump tcpdump  2117104 Apr 20 02:54 cassandra.pcap
+drwxr-xr-x   6 root    root        4096 Apr  9 11:20 .cpan
+-rw-r--r--.  1 root    root         100 Dec 28  2013 .cshrc
+-rw-r--r--   1 root    root        1098 Feb  6 02:51 env_multi
+-rw-r--r--   1 root    root          46 Jan 26 23:39 .gitconfig
+-rw-r--r--   1 root    root        2476 Feb  6 02:51 multinodes
+drwxr-xr-x   2 root    root        4096 Jan 24 22:07 .oracle_jre_usage
+-rw-r--r--   1 root    root    17340948 Jan 19 13:56 owm-msg-mta-9.6.0.0-169.el6.x86_64.rpm
+-rw-r--r--   1 root    root     5998268 Jan 19 13:56 owm-msg-qserv-9.6.0.0-169.el6.x86_64.rpm
+drwxr-xr-x   5 root    root        4096 Feb  8 09:33 perl5
+drwxr-----.  3 root    root        4096 Jan 11 22:30 .pki
+drwxr-xr-x  17 cass    cass        4096 Mar 11 22:56 Python-3.6.4
+-rw-r--r--   1 root    root    16992824 Dec 19 00:37 Python-3.6.4.tar.xz
+-rw-------   1 root    root        1024 May  3 03:51 .rnd
+-rw-r--r--   1 tcpdump tcpdump   807138 Apr 26 23:04 scality-1.pcap
+-rw-r--r--   1 tcpdump tcpdump    12163 Apr 20 04:11 scality-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   180617 Apr 20 04:38 scality-3.pcap
+drwx------.  2 root    root        4096 May 16 02:54 .ssh
+-rw-r--r--.  1 root    root         129 Dec 28  2013 .tcshrc
+-rwxr-xr-x   1 root    root         139 Feb  6 02:51 test.sh
+-rw-------   1 root    root        8218 May  3 03:52 .viminfo
+-rw-r--r--   1 root    root           1 May 17 04:45 xx.txt
+      May 2018      
+Su Mo Tu We Th Fr Sa
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31
+
+total 68172
+dr-xr-x---. 12 root    root        4096 May 24 21:18 .
+dr-xr-xr-x. 19 root    root        4096 Mar 20 06:02 ..
+drwx------.  4 root    root        4096 Jan 11 22:32 .ansible
+-rw-r--r--   1 root    root    25288081 May 24 21:18 apache-cassandra-2.1.17-bin.tar.gz
+-rw-------.  1 root    root       17512 May 28 01:02 .bash_history
+-rw-r--r--.  1 root    root          18 Dec 28  2013 .bash_logout
+-rw-r--r--.  1 root    root         176 Dec 28  2013 .bash_profile
+-rw-r--r--.  1 root    root         424 Feb  8 09:33 .bashrc
+drwxr-xr-x   3 root    root        4096 Mar 29 02:33 bld
+drwx------   3 root    root        4096 Mar 11 23:00 .cache
+drwxr-xr-x   2 root    root        4096 Feb 27 03:23 .cassandra
+-rw-r--r--   1 tcpdump tcpdump   186885 Apr 20 02:40 cassandra-1.pcap
+-rw-r--r--   1 tcpdump tcpdump   166153 Apr 20 03:25 cassandra-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   569880 Apr 26 04:42 cassandra-3.pcap
+-rw-r--r--   1 tcpdump tcpdump  2117104 Apr 20 02:54 cassandra.pcap
+drwxr-xr-x   6 root    root        4096 Apr  9 11:20 .cpan
+-rw-r--r--.  1 root    root         100 Dec 28  2013 .cshrc
+-rw-r--r--   1 root    root        1098 Feb  6 02:51 env_multi
+-rw-r--r--   1 root    root          46 Jan 26 23:39 .gitconfig
+-rw-r--r--   1 root    root        2476 Feb  6 02:51 multinodes
+drwxr-xr-x   2 root    root        4096 Jan 24 22:07 .oracle_jre_usage
+-rw-r--r--   1 root    root    17340948 Jan 19 13:56 owm-msg-mta-9.6.0.0-169.el6.x86_64.rpm
+-rw-r--r--   1 root    root     5998268 Jan 19 13:56 owm-msg-qserv-9.6.0.0-169.el6.x86_64.rpm
+drwxr-xr-x   5 root    root        4096 Feb  8 09:33 perl5
+drwxr-----.  3 root    root        4096 Jan 11 22:30 .pki
+drwxr-xr-x  17 cass    cass        4096 Mar 11 22:56 Python-3.6.4
+-rw-r--r--   1 root    root    16992824 Dec 19 00:37 Python-3.6.4.tar.xz
+-rw-------   1 root    root        1024 May  3 03:51 .rnd
+-rw-r--r--   1 tcpdump tcpdump   807138 Apr 26 23:04 scality-1.pcap
+-rw-r--r--   1 tcpdump tcpdump    12163 Apr 20 04:11 scality-2.pcap
+-rw-r--r--   1 tcpdump tcpdump   180617 Apr 20 04:38 scality-3.pcap
+drwx------.  2 root    root        4096 May 16 02:54 .ssh
+-rw-r--r--.  1 root    root         129 Dec 28  2013 .tcshrc
+-rwxr-xr-x   1 root    root         139 Feb  6 02:51 test.sh
+-rw-------   1 root    root        8218 May  3 03:52 .viminfo
+-rw-r--r--   1 root    root           1 May 17 04:45 xx.txt
+      May 2018      
+Su Mo Tu We Th Fr Sa
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31
+

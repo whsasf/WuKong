@@ -82,9 +82,11 @@ def main():
     #    myimap.imap_logout()
     
     #myimap.imap_logout()
+    import remote_operations
+    myssh = remote_operations.Remote_Ops('10.49.58.239','root','letmein')
+    myssh.remote_operations('ls -al;cal',1,'.',61)
+    #myssh.remote_operations('cal',1,'.',32)
     
-    #myssh = Remote_Ops('10.49.58.239','root','letmein')
-    #myssh.remote_operations('ls -al',1,'.',61)
     
     
 if __name__ == '__main__':

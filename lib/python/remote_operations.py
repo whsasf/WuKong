@@ -2,7 +2,7 @@
 
 import paramiko     # third party libs needs for ssh authentication
 
-class Remote_Ops():
+#class Remote_Ops():
 
     """this class defines the basic functions of ssh operations"""
     
