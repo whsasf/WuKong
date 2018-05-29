@@ -8,8 +8,8 @@ Created on 2018/05/16
 """
 
 initialpath = ''
-def setpath():   
-    """setpath function add lib folder to sys.path for modules search"""
+def setlibpath():   
+    """setlibpath function add lib folder to sys.path for modules search"""
     
     import os
     import sys
@@ -21,17 +21,21 @@ def setpath():
     sys.path.append(initialpath+'/lib/perl')   # append lib/perl  folder to sys.path
     sys.path.append(initialpath)   # 
     #print (sys.path)    
-setpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
-
-
-from basic_function import welcome
-welcome() #print welcome headers
+setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
 
 import global_variables
 global_variables._init()
 global_variables.set_value('initialpath',initialpath)
 global_variables.set_value('num',1)
-global_variables.import_variables_from_file([initialpath+'/etc/global.vars',initialpath+'/etc/user.vars'])
+global_variables.import_variables_from_file([initialpath+'/etc/global.vars',initialpath+'/etc/user.vars'])# read all pre-defined vars
+
+from basic_function import create_log_folders
+create_log_folders()
+
+from basic_function import welcome
+welcome() #print welcome headers
+
+
 
 #import imap_operations
 
@@ -50,7 +54,8 @@ def main():
     """main function to active logging,testcase running"""    
     
     import global_variables
-    
+
+        
     testcaselocation = global_variables.get_value('argvlist')
     chloglevel = global_variables.get_value('chloglevel')   
     tclocation = basic_function.parse_testcaselocation(testcaselocation) # format testcase location in a list for given formats
@@ -62,13 +67,13 @@ def main():
     #print('testcaselocation=',testcaselocation)
     basic_function.execute(tclocation,initialpath) #executing testcases 
     
-    #pprint.pprint(sys.modules)
-    #mylogger=basic_class.Loggger('WuKong',chloglevel)
-    basic_class.mylogger.debug('debug')
-    basic_class.mylogger.info('info')
-    basic_class.mylogger.warning('warning')
-    basic_class.mylogger.error('error')
-    basic_class.mylogger.critical('critical')
+     #pprint.pprint(sys.modules)
+     #mylogger=basic_class.Loggger('WuKong',chloglevel)
+#    basic_class.mylogger.debug('debug')
+#    basic_class.mylogger.info('info')
+#    basic_class.mylogger.warning('warning')
+#    basic_class.mylogger.error('error')
+#    basic_class.mylogger.critical('critical')
     
   
     #import need modules

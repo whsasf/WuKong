@@ -166,3 +166,65 @@ def execute(Paths,initialpath):
     for Path in Paths:         # traverse each Path in Paths
         os.chdir(initialpath)  # switch to initialpath ,initialze
         traverse(Path)         # execute testcases under Path
+
+
+def create_log_folders():
+    """this function will fetch mx version and create log and summary folders based on mx_version"""
+    import remote_operations
+    import global_variables
+    #import basic_class
+    import time
+    import os
+    
+    mx1_host1_ip = global_variables.get_value('mx1_host1_ip')
+    root_account = global_variables.get_value('root_account') # root by default
+    root_passwd = global_variables.get_value('root_passwd')   # 
+    sshport = global_variables.get_value('sshport')
+    
+    #owm_common_version = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'rpm -qa|grep owm|grep owm-common',1,'owm-common-',1)
+    import paramiko
+    ssh0 = paramiko.SSHClient()
+    ssh0.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh0.connect(hostname = mx1_host1_ip, port = sshport, username = root_account, password = root_passwd)
+    cmds = 'rpm -qa|grep owm|grep owm-common' 
+    stdin, stdout, stderr = ssh0.exec_command(cmds)
+    okout = stdout.read()
+    errout = stderr.read()    
+    ssh0.close()
+    if len(errout) == 0:  
+        out=str(okout,'utf-8')
+    else:
+        out=str(errout,'utf-8')
+        print("Some error seems happened:\n"+out)
+        exit(1)
+    
+    owm_version = out.split('owm-common-')[1].strip()
+    print('owm_version='+owm_version)
+    
+    initialpath = global_variables.get_value('initialpath')
+    currenttime = time.strftime("%Y\%m\%d-%H:%M")
+    foldername = owm_version+'-'+'{}'.format(currenttime)
+    if os.path.exists('logs/'+foldername):
+        try:
+            os.remove('logs/'+foldername+'/alltestcases.log')
+        except FileNotFoundError:
+            pass
+    else:
+        os.makedirs('logs/'+foldername)
+    if os.path.exists('summary/'+foldername):
+        try:
+            os.remove('summary/'+foldername+'/summary.log')
+        except FileNotFoundError:
+            pass
+    else:
+        os.makedirs('summary/'+foldername)
+    
+    global_variables.set_value('logpath',initialpath+'/logs/'+foldername)
+    global_variables.set_value('summarypath',initialpath+'/summary/'+foldername)
+    
+    
+    
+    
+
+
+    

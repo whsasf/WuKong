@@ -19,14 +19,8 @@ import remote_operations
 basic_class.mylogger.info('-->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->')
 basic_class.mylogger.info('Preparing... get some variables needed for tests')
 
-imap1_host = global_variables.get_value('imap1_host')
-imap1_port = global_variables.get_value('imap1_port')
-mx_account = global_variables.get_value('mx_account')     # imail by default
-mx1_host1_ip = global_variables.get_value('mx1_host1_ip')
-root_account = global_variables.get_value('root_account') # root by default
-root_passwd = global_variables.get_value('root_passwd')   # 
-test_account_base = global_variables.get_value('test_account_base')
-default_domain = global_variables.get_value('default_domain')
+imap1_host,imap1_port,mx_account,mx1_host1_ip,root_account,root_passwd,test_account_base,default_domain = \
+global_variables.get_values('imap1_host','imap1_port','mx_account','mx1_host1_ip','root_account','root_passwd','test_account_base','default_domain')
 
 basic_class.mylogger.debug(' imap1_host='+imap1_host)
 basic_class.mylogger.debug(' imap1_port='+imap1_port)

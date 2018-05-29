@@ -40,3 +40,17 @@ def get_value(key,defValue=None):
         return _global_dict[key]
     except KeyError:
         return defValue
+        
+        
+        
+def get_values(*keys,defValue=None):
+    """ get a variables ,retuen NONE if not exist """
+    tmp_vars = []
+    for key in keys:
+        try:
+            tmp_vars.append(_global_dict[key])
+        except KeyError:
+            tmp_vars.append(defValue)
+    return tmp_vars
+        
+    

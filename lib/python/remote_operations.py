@@ -13,6 +13,7 @@ def remote_operation(sshhost,username,passwd,cmds,\
     """This function will used to do remote operations through ssh"""
 
     import paramiko                   # third party libs needs for ssh authentication
+    import basic_class                # using log part
 
     sshhost = sshhost                 # ssh destination hosts,can be IP or resolvable hostnames
     username = username                       # account-name used to establish ssh connection
@@ -39,32 +40,22 @@ def remote_operation(sshhost,username,passwd,cmds,\
     errout = stderr.read()
     #print ('err:'+str(errout,'utf-8'))
     #print ('ok:'+str(okout,'utf-8'))
-    if confirmflag == 1:
-        if len(okout) == 0:  
-            out=str(errout,'utf-8')
-            print(out,end = '')
-            
-            #write error log to file
-            with open(errorlog,'a') as file_object_err:
-                file_object_err.write(out)
-            print (out.count(confirmobj))
-            if out.count(confirmobj) == confirmobjcount:
-                print('\033[1;32m  Operation success\033[0m')
+    if len(errout) == 0:  
+        sshout=str(okout,'utf-8')
+        if confirmflag == 1:
+            basic_class.mylogger.debug('confirmobj_count='+str(sshout.count(confirmobj)))
+            if sshout.count(confirmobj) == confirmobjcount:
+                basic_class.mylogger.info('ssh success and target match')
+                #print('\033[1;32mOperation success\033[0m')
             else:
-                print ('\033[1;31m  Operation failed,no need to continue,please check'+errorlog+'!\033[0m')
+                basic_class.mylogger.info('ssh success but target mismatch') 
+                #print ('\033[1;31mOperation failed\033[0m')
         else:
-            out=str(okout,'utf-8')
-            print(out,end = '')
-            
-            #write out log to file
-            with open(outlog,'a') as file_object_ok:
-                file_object_ok.write(out)
-            print (out.count(confirmobj))
-            if out.count(confirmobj) == confirmobjcount:
-
-                print('\033[1;32m  Operation success\033[0m')
-            else:
-                print('\033[1;31m  Operation failed\033[0m')
+            basic_class.mylogger.info('ssh success and no need check target') 
     else:
-        print ('\033[1;32m  Operation success\033[0m')
+        sshout=str(errout,'utf-8')
+        basic_class.mylogger.info('ssh operation fail')
+    basic_class.mylogger.debug("sshout=\n"+sshout)
+    return sshout   #in case of use 
+   
     ssh.close()

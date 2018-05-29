@@ -54,7 +54,9 @@ class Loggger():
         #self.ch.setLevel(logging.ERROR)        
         #initialpath = global_variables.get_value('initialpath')
         #print('initialpath='+initialpath)
-        self.fh = logging.FileHandler('logs/Alltestcases.log')
+        import global_variables
+        self.logpath = global_variables.get_value('logpath')
+        self.fh = logging.FileHandler(self.logpath+'/alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
         self.formatter = logging.Formatter('[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s')
         self.ch.setFormatter(self.formatter)
@@ -80,4 +82,4 @@ if True:
     from basic_function import parse_chloglevel
     
     chloglevel = parse_chloglevel() 
-    mylogger = Loggger('WuKong',chloglevel)   
+    mylogger = Loggger('WuKong',chloglevel)

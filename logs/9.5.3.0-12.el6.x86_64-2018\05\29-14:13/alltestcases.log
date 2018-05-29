@@ -1,0 +1,51 @@
+[2018-05-29 14:13:05,386] [basic_class] [INFO] -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-29 14:13:05,387] [basic_class] [INFO] Preparing... get some variables needed for tests
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  imap1_host=mx1
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  imap1_port=20143
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  mx_account=imail
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  mx1_host1_ip=10.49.58.239
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  root_account=root
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  root_passwd=letmein
+[2018-05-29 14:13:05,387] [basic_class] [DEBUG]  test_account_base=testuser
+[2018-05-29 14:13:05,388] [basic_class] [DEBUG]  default_domain=openwave.com
+[2018-05-29 14:13:13,521] [basic_class] [INFO] Operation success
+[2018-05-29 14:13:13,521] [basic_class] [DEBUG] sshout=
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+Reporting: capd:pabd on mx2 server did not report: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+Reporting: capd:pabd on mx2 server did not report: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+
+[2018-05-29 14:13:24,514] [basic_class] [DEBUG] confirmobj_count=2
+[2018-05-29 14:13:24,514] [basic_class] [INFO] ssh Operation success
+[2018-05-29 14:13:24,514] [basic_class] [DEBUG] sshout=
+Mailbox Created Successfully.
+MailboxId for testuser1@openwave.com is 5486067550365846245
+Mailbox Created Successfully.
+MailboxId for testuser2@openwave.com is 6191324686388406630
+
+[2018-05-29 14:13:27,467] [basic_class] [INFO] Operation success
+[2018-05-29 14:13:27,468] [basic_class] [DEBUG] sshout=
+
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  imap1_host=mx1
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  imap1_port=20143
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  mx_account=imail
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  mx1_host1_ip=10.49.58.239
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  root_account=root
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  root_passwd=letmein
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  test_account_base=testuser
+[2018-05-29 14:13:27,491] [basic_class] [DEBUG]  default_domain=openwave.com
+[2018-05-29 14:13:27,491] [basic_class] [INFO] step1:delete 250 accounts
+[2018-05-29 14:13:38,748] [basic_class] [DEBUG] confirmobj_count=2
+[2018-05-29 14:13:38,748] [basic_class] [INFO] ssh Operation success
+[2018-05-29 14:13:38,749] [basic_class] [DEBUG] sshout=
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+
