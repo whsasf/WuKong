@@ -25,7 +25,10 @@ class IMAP_Ops(IMAP4):
         """       
         self.loginuser = loginuser
         self.loginpass = loginpass
-        self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
+        try:
+            self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
+        except imaplib.IMAP4:
+            pass
         print('<imap login ',self.loginuser,self.loginpass,'>')
         [print(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
