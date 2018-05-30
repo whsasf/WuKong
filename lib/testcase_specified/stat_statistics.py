@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*- 
 
-def stat_statistic(content,cmp_obj1,cmp_obj2):
+def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     """this function will used to calculate the total statistics record times and check if they are correct """
     
     #import 
     content = content.strip('\n')
     cmp_obj1 = cmp_obj1
     cmp_obj2 = cmp_obj2
+    operation_times = operation_times # total attempts counts
     count_total = 0        # total operation attempts counts
     count_pass = 0         # passed operation attempts counts
     count_fail = 0         # failed operation attempts counts
@@ -30,7 +31,7 @@ def stat_statistic(content,cmp_obj1,cmp_obj2):
     print(count_pass)
     print(count_fail)
     print(max_time_lists)
-    if  count_total == count_pass + count_fail:
+    if  operation_times == count_total == count_pass + count_fail:
         if count_fail > 0:
             if max(max_time_lists) > int(cmp_obj1.strip('[').strip(']')):
                 result_list.append('count success')

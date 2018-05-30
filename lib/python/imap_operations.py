@@ -58,7 +58,7 @@ class IMAP_Ops(IMAP4):
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
         #print('<imap select ',self.mailbox,self.readonly,'>')
         #[print(line.decode('utf-8')) for line in self.logdata]
-        basic_class.mylogger.debug('<imap select '+self.mailbox,self.readonly+'>')
+        basic_class.mylogger.debug('<imap select '+self.mailbox+str(self.readonly)+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    

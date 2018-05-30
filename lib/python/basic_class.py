@@ -33,10 +33,24 @@ class Discovery():
         os.chdir('..')
         
         
+
+class Loggger_summary():
+    """this class is based on simple logging"""
+    
+    def __init__(self,loggername):
+        """init things"""
+        import global_variables
+        self.summarypath = global_variables.get_value('summarypath')
+        logging.basicConfig(filename= self.summarypath+'/summary.log',format='', level=logging.DEBUG)
         
+    def summary(self,infomessages='this is info message'):
+        """write test cases outcome to """
+        self.logging.info(infomessages)  
+                
+
    
-class Loggger():
-    """this is a class for logging part"""
+class Loggger_debug():
+    """this is a class for logging debug part"""
     
     def __init__(self,loggername,chloglevel):    	
         """ definition of some"""
@@ -82,4 +96,9 @@ if True:
     from basic_function import parse_chloglevel
     
     chloglevel = parse_chloglevel() 
-    mylogger = Loggger('WuKong',chloglevel)
+    mylogger = Loggger_debug('WuKong',chloglevel)
+
+
+
+         	
+    

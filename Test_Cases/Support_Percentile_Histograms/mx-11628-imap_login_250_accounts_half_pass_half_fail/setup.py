@@ -5,7 +5,9 @@
 # (1) set keys:
 #               /*/common/perfStatThresholds:[StatImapAuthCommand 200]
 #               /*/common/reportParamsInterval: [120]
-# (2) create 250 accounts:testuser1@openwave.com -test250@openwave.com
+#               /*/common/badPasswordDelay: [0] # nodelay ,default 1
+#               /*/common/maxBadPasswordDelay: [0] # no delay,default 90 
+# (2) create 20 accounts:testuser1@openwave.com -test20@openwave.com
 # (3) clear current imapserv.stat file
 
 import basic_function
@@ -32,10 +34,10 @@ basic_class.mylogger.debug(' test_account_base='+test_account_base)
 basic_class.mylogger.debug(' default_domain='+default_domain)
 
 basic_class.mylogger.info('step1:set keys')
-remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=StatImapAuthCommand 200\";imconfcontrol -install -key \"/*/common/reportParamsInterval=120\"\''.format(mx_account),0)
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=StatImapAuthCommand 200\";imconfcontrol -install -key \"/*/common/reportParamsInterval=120\";imconfcontrol -install -key \"/*/common/badPasswordDelay=0\";imconfcontrol -install -key \"/*/common/maxBadPasswordDelay=0\"\''.format(mx_account),0)
 
-basic_class.mylogger.info('step2:create 250 accounts')
-remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',2)
+basic_class.mylogger.info('step2:create 20 accounts')
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=20;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',20)
 
 basic_class.mylogger.info('step3: clear current imapserv.stat file')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
