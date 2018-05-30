@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-squares = {1: 1, 3: 9, 5: 25, 7: 49, 9: 81}
-for i in squares:
-    print (i)
-    print(squares[i])
+import basic_class
+
+basic_class.mylogger_summary.summary('zfxfdsfdsf')

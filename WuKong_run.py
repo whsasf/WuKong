@@ -66,8 +66,11 @@ def main():
     print('==> The initial path is:',initialpath),print()
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    basic_function.execute(tclocation,initialpath) #executing testcases 
+    #basic_function.execute(tclocation,initialpath) #executing testcases 
     
+    #basic_class.mylogger.info('11111111111111')
+    #basic_class.mylogger_summary.summary('zfxfdsfdsf')
+    basic_class.mylogger_title.title('hihihiih')
      #pprint.pprint(sys.modules)
      #mylogger=basic_class.Loggger('WuKong',chloglevel)
 #    basic_class.mylogger.debug('debug')
