@@ -5,6 +5,7 @@
 from imaplib import IMAP4
 import base64
 import time
+import basic_class
 
 class IMAP_Ops(IMAP4):
     """this class defines all imap related methods"""    
@@ -19,28 +20,35 @@ class IMAP_Ops(IMAP4):
         self.imap4 = IMAP4(host = self.imaphost,port = self.imapport)  # instance of IMAP class
         #self.imap4_ssl = IMAP4_SSL(host = self.imaphost,port = self.imapport)  # instance of IMAP class
         
+        
+        
     def imap_login(self,loginuser,loginpass):
         """method imap_login will perform imap login operation
            example: instance.imap_login('xx1','p')
         """       
         self.loginuser = loginuser
         self.loginpass = loginpass
-        try:
-            self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
-        except imaplib.IMAP4:
-            pass
-        print('<imap login ',self.loginuser,self.loginpass,'>')
-        [print(line.decode('utf-8')) for line in self.logdata]
+        self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
+        basic_class.mylogger.debug('<imap login '+self.loginuser+self.loginpass+'>')
+        #print('<imap login ',self.loginuser,self.loginpass,'>')
+        #[print(line.decode('utf-8')) for line in self.logdata]
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
+    
+    
     
     def imap_logout(self):
         """method imap_logout will perform imap logout operation
            example: instance.imap_logout()
         """
         self.outcome,self.logdata = self.imap4.logout()
-        print('<imap logout>')
-        [print(line.decode('utf-8')) for line in self.logdata]
-        
+        #print('<imap logout>')
+        #[print(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger.debug('<imap logout>')
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
+
+
+
     def imap_select(self,mailbox = 'INBOX',readonly = False):
         """method imap_select will perform imap select operation
            example: instance.imap_select() or instance.imap_select('SentMail',True) or instance.imap_select('SentMail')
@@ -48,8 +56,10 @@ class IMAP_Ops(IMAP4):
         self.mailbox = mailbox     # the folder that will be selected
         self.readonly = readonly   # If the readonly flag is set, modifications to the mailbox are not allowed
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
-        print('<imap select ',self.mailbox,self.readonly,'>')
-        [print(line.decode('utf-8')) for line in self.logdata]
+        #print('<imap select ',self.mailbox,self.readonly,'>')
+        #[print(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger.debug('<imap select '+self.mailbox,self.readonly+'>')
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    
     
@@ -62,9 +72,12 @@ class IMAP_Ops(IMAP4):
         self.message_parts = message_parts
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
         
-        print('<imap fetch ',self.message_set,self.message_parts,'>')
-        [print(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
-        [print(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO']
+        #print('<imap fetch ',self.message_set,self.message_parts,'>')
+        #[print(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
+        #[print(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO']
+        basic_class.mylogger.debug('<imap fetch '+self.message_set+' '+self.message_parts+'>')
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
         #self.imap4.logout()
         
     
@@ -79,8 +92,10 @@ class IMAP_Ops(IMAP4):
         #print(self.mechanism)
         #print(self.authobject)
         self.outcome,self.logdata = self.imap4.authenticate(self.mechanism,self.authobject)
-        print('<imap authenticate plain>')
-        [print(line.decode('utf-8')) for line in self.logdata]
+        #print('<imap authenticate plain>')
+        #[print(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger.debug('<imap authenticate plain>')
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
 
     def imap_auth_crammd5(self,loginuser,loginpass):
@@ -90,8 +105,10 @@ class IMAP_Ops(IMAP4):
         self.loginuser = loginuser
         self.loginpass = loginpass
         self.outcome,self.logdata = self.imap4.login_cram_md5(self.loginuser,self.loginpass)
-        print('<imap authenticate cram-md5>')
-        [print(line.decode('utf-8')) for line in self.logdata]
+        #print('<imap authenticate cram-md5>')
+        #[print(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger.debug('<imap authenticate cram-md5>')
+        [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
  
 

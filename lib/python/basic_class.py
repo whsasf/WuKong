@@ -41,16 +41,16 @@ class Loggger():
     def __init__(self,loggername,chloglevel):    	
         """ definition of some"""
         self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG)
+        self.logger.setLevel(logging.INFO)  #defaut 'INFO'
         self.chloglevel = chloglevel        
         self.ch = logging.StreamHandler()
         #get chloglevel from outside
         if 'WARNING' in self.chloglevel:
-            self.ch.setLevel(logging.WARNING)
+            self.ch.setLevel(logging.DEBUG)
         elif 'DEBUG' in self.chloglevel:
             self.ch.setLevel(logging.DEBUG)
         else:
-            self.ch.setLevel(logging.ERROR)
+            self.ch.setLevel(logging.INFO) #default 'INFO'
         #self.ch.setLevel(logging.ERROR)        
         #initialpath = global_variables.get_value('initialpath')
         #print('initialpath='+initialpath)

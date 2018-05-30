@@ -16,9 +16,10 @@ def setlibpath():
     global initialpath
     initialpath = os.getcwd()  #get initial path
     #print ('Current path is: ',cpath)
-    sys.path.append(initialpath+'/lib/python') # append lib/pthon folder to sys.path
-    sys.path.append(initialpath+'/lib/shell')  # append lib/shell folder to sys.path
-    sys.path.append(initialpath+'/lib/perl')   # append lib/perl  folder to sys.path
+    sys.path.append(initialpath+'/lib/python')                # append lib/pthon folder to sys.path
+    sys.path.append(initialpath+'/lib/shell')                 # append lib/shell folder to sys.path
+    sys.path.append(initialpath+'/lib/perl')                  # append lib/perl  folder to sys.path
+    sys.path.append(initialpath+'/lib/testcase_specified')   # append lib/perl  folder to sys.path
     sys.path.append(initialpath)   # 
     #print (sys.path)    
 setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
