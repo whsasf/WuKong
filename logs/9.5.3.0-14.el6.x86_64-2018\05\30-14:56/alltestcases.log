@@ -1,4 +1,0 @@
-[2018-05-30 14:56:21,725] [basic_class] [INFO] -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
-[2018-05-30 14:56:21,725] [basic_class] [INFO] step1:set keys
-[2018-05-30 14:56:27,006] [basic_class] [INFO] step2:create 250 accounts
-[2018-05-30 14:56:33,303] [basic_class] [INFO] step3: clear current imapserv.stat file
