@@ -1,0 +1,6 @@
+[2018-05-30 14:05:13,341] [basic_class] [INFO] -->Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail--->
+[2018-05-30 14:05:13,341] [basic_class] [INFO] step1:set keys
+[2018-05-30 14:05:16,878] [basic_class] [INFO] step2:create 250 accounts
+[2018-05-30 14:05:23,205] [basic_class] [INFO] step3: clear current imapserv.stat file
+[2018-05-30 14:05:26,165] [basic_class] [INFO] step1:imap login:125 account with correct passwd, the other 125 use wrong pssswd
+[2018-05-30 14:07:58,579] [basic_class] [INFO] step2:check and analyze imapserv.stat file ...

@@ -11,7 +11,7 @@ import imap_operations
 import global_variables
 import time
 import remote_operations
-#import stat_statistics
+import stat_statistics
 
 #step 1
 basic_class.mylogger.info('step1:imap login:125 account with correct passwd, the other 125 use wrong pssswd')
@@ -40,5 +40,6 @@ basic_class.mylogger.info('step2:check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatImapAuthCommand"'.format(mx_account),0)
 print(imapserv_stat_content)
 print(type(imapserv_stat_content))
-#stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatImapAuthCommand')
+haha = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatImapAuthCommand')
+print(haha)
 
