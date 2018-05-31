@@ -1,0 +1,114 @@
+[1;34m====================================================================[0m
+[1;34m=                         WuKong Test Suit                         =[0m
+[1;34m====================================================================[0m
+[2018-05-31 22:55:19,551] [INFO] The testcase located in:['test_cases']
+[2018-05-31 22:55:19,551] [INFO] The initial path is:/home/whsasf/workspace/WuKong
+[2018-05-31 22:55:19,570] [INFO] Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mPreparing... get some variables needed for tests[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mimap1_host = mx1[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mimap1_port = 20143[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mmx_account = imail[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mmx1_host1_ip = 10.49.58.239[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mroot_account = root[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mroot_passwd = letmein[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mtest_account_base = testuser[0m
+[2018-05-31 22:55:19,571] [DEBUG] [1;33mdefault_domain = openwave.com[0m
+[2018-05-31 22:55:19,571] [INFO] step1:set keys
+[2018-05-31 22:55:28,035] [DEBUG] [1;33mssh success and no need check target[0m
+[2018-05-31 22:55:28,036] [DEBUG] [1;33msshout=
+perfStatThresholds: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+perfStatThresholds: imconfserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdircacheserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdirserv on mx1 will be easily accommodated: 
+perfStatThresholds: imextserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx1 will be easily accommodated: 
+perfStatThresholds: imqueueserv on mx1 will be easily accommodated: 
+perfStatThresholds: mss.1 on mx1 will be easily accommodated: 
+perfStatThresholds: mta on mx1 will be easily accommodated: 
+perfStatThresholds: popserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx2 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+perfStatThresholds: mss.1 on mx2 will be easily accommodated: 
+Reporting: capd:pabd on mx3 server did not report: 
+perfStatThresholds: immgrserv on mx3 will be easily accommodated: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+reportParamsInterval: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+reportParamsInterval: imconfserv on mx1 will be easily accommodated: 
+reportParamsInterval: imdircacheserv on mx1 will be easily accommodated: 
+reportParamsInterval: imdirserv on mx1 will be easily accommodated: 
+reportParamsInterval: imextserv on mx1 will be easily accommodated: 
+reportParamsInterval: immgrserv on mx1 will be easily accommodated: 
+reportParamsInterval: imqueueserv on mx1 will be easily accommodated: 
+reportParamsInterval: mss.1 on mx1 will be easily accommodated: 
+reportParamsInterval: mta on mx1 will be easily accommodated: 
+reportParamsInterval: popserv on mx1 will be easily accommodated: 
+reportParamsInterval: immgrserv on mx2 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+reportParamsInterval: mss.1 on mx2 will be easily accommodated: 
+Reporting: capd:pabd on mx3 server did not report: 
+reportParamsInterval: immgrserv on mx3 will be easily accommodated: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+badPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+badPasswordDelay: imextserv on mx1 will be easily accommodated: 
+badPasswordDelay: mta on mx1 will be easily accommodated: 
+badPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+maxBadPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+maxBadPasswordDelay: imextserv on mx1 will be easily accommodated: 
+maxBadPasswordDelay: mta on mx1 will be easily accommodated: 
+maxBadPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+[0m
+[2018-05-31 22:55:28,036] [INFO] step2:create 20 accounts
+[2018-05-31 22:56:07,537] [DEBUG] [1;33mconfirmobj_count=20[0m
+[2018-05-31 22:56:07,538] [DEBUG] [1;33mssh success and target match[0m
+[2018-05-31 22:56:07,538] [DEBUG] [1;33msshout=
+Mailbox Created Successfully.
+MailboxId for testuser1@openwave.com is 8757233240057574516
+Mailbox Created Successfully.
+MailboxId for testuser2@openwave.com is 8538353478960167616
+Mailbox Created Successfully.
+MailboxId for testuser3@openwave.com is 7403732167472609739
+Mailbox Created Successfully.
+MailboxId for testuser4@openwave.com is 8800508312050155743
+Mailbox Created Successfully.
+MailboxId for testuser5@openwave.com is 8562112406458879382
+Mailbox Created Successfully.
+MailboxId for testuser6@openwave.com is 7695512275280232010
+Mailbox Created Successfully.
+MailboxId for testuser7@openwave.com is 9102032641668172841
+Mailbox Created Successfully.
+MailboxId for testuser8@openwave.com is 9136118239471913472
+Mailbox Created Successfully.
+MailboxId for testuser9@openwave.com is 9100342235139132762
+Mailbox Created Successfully.
+MailboxId for testuser10@openwave.com is 7570711050446934634
+Mailbox Created Successfully.
+MailboxId for testuser11@openwave.com is 6728730672405148790
+Mailbox Created Successfully.
+MailboxId for testuser12@openwave.com is 8399409924306526156
+Mailbox Created Successfully.
+MailboxId for testuser13@openwave.com is 6986335617655447505
+Mailbox Created Successfully.
+MailboxId for testuser14@openwave.com is 7580405403380935127
+Mailbox Created Successfully.
+MailboxId for testuser15@openwave.com is 8877690418306769769
+Mailbox Created Successfully.
+MailboxId for testuser16@openwave.com is 9015798263025933736
+Mailbox Created Successfully.
+MailboxId for testuser17@openwave.com is 7405188999859513018
+Mailbox Created Successfully.
+MailboxId for testuser18@openwave.com is 4754876131973507979
+Mailbox Created Successfully.
+MailboxId for testuser19@openwave.com is 6141926673960853065
+Mailbox Created Successfully.
+MailboxId for testuser20@openwave.com is 6450959408379969597
+[0m

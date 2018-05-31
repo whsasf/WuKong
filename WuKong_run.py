@@ -5,27 +5,11 @@
  # red   logging.error('\033[1;31msdfsdf\033[0m')    failed/warning/error/criticle
  # blue   logging.error('\033[1;34msdfsdf\033[0m')   title
  
-""" 
-This Python file is the main Python run script
-Created on 2018/05/16
-"""
+""" This Python file is the main Python run script.Created on 2018/05/16"""
 
 initialpath = ''
-def setlibpath():   
-    """setlibpath function add lib folder to sys.path for modules search"""
-    
-    import os
-    import sys
-    global initialpath
-    initialpath = os.getcwd()  #get initial path
-    #print ('Current path is: ',cpath)
-    sys.path.append(initialpath+'/lib/python')                # append lib/pthon folder to sys.path
-    sys.path.append(initialpath+'/lib/shell')                 # append lib/shell folder to sys.path
-    sys.path.append(initialpath+'/lib/perl')                  # append lib/perl  folder to sys.path
-    sys.path.append(initialpath+'/lib/testcase_specified')   # append lib/perl  folder to sys.path
-    sys.path.append(initialpath)   # 
-    #print (sys.path)    
-setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
+import setlibpath
+initialpath = setlibpath.setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
 
 import global_variables
 global_variables._init()
@@ -37,28 +21,18 @@ from basic_function import create_log_folders
 create_log_folders()
 
 from basic_function import welcome
-welcome() #print welcome headers
-
-
-
-#import imap_operations
-
-import os
-currentpath = os.getcwd()
+welcome()             #print welcome headers
 
 import sys
-import pprint
 import basic_class
 import basic_function
 
-
 #global_variables.get_dict()
-
+basic_function.print_mx_version()
 def main():
     """main function to active logging,testcase running"""    
     
     import global_variables
-
             
     testcaselocation = global_variables.get_value('argvlist')
     chloglevel = global_variables.get_value('chloglevel')   

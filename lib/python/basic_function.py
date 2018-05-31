@@ -12,6 +12,17 @@ def welcome():
  
 
 
+def print_mx_version():
+    """print mx_version get from basic_function.create_log_folders()"""
+    
+    import global_variables
+    import basic_class
+    
+    owm_version = global_variables.get_value('owm_version') 
+    basic_class.mylogger.info('owm_version = '+owm_version)
+    
+    
+    
 def parse_args():
     """this function used to parse the arguements providded,help determine the testcase location,logging levels,etc"""
      
@@ -203,8 +214,8 @@ def create_log_folders():
         exit(1)
     
     owm_version = out.split('owm-common-')[1].strip()
-    print('owm_version='+owm_version)
-    
+    global_variables.set_value('owm_version',owm_version)
+    #print("Some error seems happened:\n"+out)
     initialpath = global_variables.get_value('initialpath')
     currenttime = time.strftime("%Y\%m\%d~%H-%M")
     foldername = owm_version+'-'+'{}'.format(currenttime)
