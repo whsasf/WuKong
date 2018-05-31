@@ -45,10 +45,13 @@ def get_value(key,defValue=None):
         
 def get_values(*keys,defValue=None):
     """ get a variables ,retuen NONE if not exist """
+    
+    import basic_class
     tmp_vars = []
     for key in keys:
         try:
             tmp_vars.append(_global_dict[key])
+            basic_class.mylogger.debug(key+' = '+_global_dict[key])
         except KeyError:
             tmp_vars.append(defValue)
     return tmp_vars

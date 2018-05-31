@@ -1,0 +1,14 @@
+[1;34m======================================[0m
+[1;34m++          WuKong Test Suit          ++[0m
+[1;34m======================================[0m
+[2018-05-31 17:07:57,438] [INFO] Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mPreparing... get some variables needed for tests[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mimap1_host = mx1[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mimap1_port = 20143[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mmx_account = imail[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mmx1_host1_ip = 10.49.58.239[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mroot_account = root[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mroot_passwd = letmein[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mtest_account_base = testuser[0m
+[2018-05-31 17:07:57,438] [DEBUG] [1;33mdefault_domain = openwave.com[0m
+[2018-05-31 17:07:57,438] [INFO] step1:set keys

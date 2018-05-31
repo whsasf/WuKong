@@ -3,12 +3,13 @@
 
 
 def welcome():
-    """the welcome function used to print some welcome header when using this WuKOng test suits"""
+    """the welcome function used to print some welcome header when using this WuKong test suits"""
     
-    print('#'*100)
-    print('#'*13,end=''),print("{:^74}".format('This is WuKong test suit, welcome!'),end=''),print('#'*13)
-    print('#'*100,end='\n\n')
-    
+    import basic_class
+    basic_class.mylogger_title.title('='*68)
+    basic_class.mylogger_title.title('='+"{:^66}".format('WuKong Test Suit')+'=')
+    basic_class.mylogger_title.title('='*68)
+ 
 
 
 def parse_args():
@@ -29,10 +30,11 @@ def parse_chloglevel():
     
     parse_args()   # get all args            
     import global_variables
+    import basic_class
     
     argvlist = global_variables.get_value('argvlist')           # get argvlist of arguments
     if argvlist.count('-v') > 1 or argvlist.count('-vv') > 1:   # determine the chloglevel (displayed to screen)
-        print("multiple '-v' or '-vv' detected,please make sure only one entered!")
+        basic_class.mylogger.error("multiple '-v' or '-vv' detected,please make sure only one entered!")
         exit()
     elif argvlist.count('-v') == 1 or argvlist.count('-vv') == 1:
         if '-v' in argvlist:
@@ -71,12 +73,14 @@ def parse_testcaselocation(testcaselocation):
        (2)some (any) individual folders of some testcases
        (3)a file ,that contains the location of testcases"""       
     import os
+    import basic_class
+    
     # print(testcaselocation)   
     # print(len(testcaselocation))
     if len(testcaselocation) == 0 or  len(testcaselocation) == 1:
-        if testcaselocation == [] or (testcaselocation[0] == 'Test_Cases' and testcaselocation[-1] == 'Test_Cases'):
-            print("==> The testcase located in:\n",['Test_Cases']),print()            
-            return (['Test_Cases'])
+        if testcaselocation == [] or (testcaselocation[0] == 'test_cases' and testcaselocation[-1] == 'test_cases'):
+            basic_class.mylogger.info('The testcase located in:'+str(['test_cases']))
+            return (['test_cases'])
         elif os.path.isfile(testcaselocation[0]):
             with open(testcaselocation[0]) as file_obj:
                 lines = file_obj.read().splitlines()
@@ -202,7 +206,7 @@ def create_log_folders():
     print('owm_version='+owm_version)
     
     initialpath = global_variables.get_value('initialpath')
-    currenttime = time.strftime("%Y\%m\%d-%H:%M")
+    currenttime = time.strftime("%Y\%m\%d~%H-%M")
     foldername = owm_version+'-'+'{}'.format(currenttime)
     if os.path.exists('logs/'+foldername):
         try:

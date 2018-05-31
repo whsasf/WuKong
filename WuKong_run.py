@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-      
 
-
+ # green logging.error('\033[1;32msdfsdf\033[0m')    pass/
+ # red   logging.error('\033[1;31msdfsdf\033[0m')    failed/warning/error/criticle
+ # blue   logging.error('\033[1;34msdfsdf\033[0m')   title
+ 
 """ 
 This Python file is the main Python run script
 Created on 2018/05/16
@@ -56,20 +59,20 @@ def main():
     
     import global_variables
 
-        
+            
     testcaselocation = global_variables.get_value('argvlist')
     chloglevel = global_variables.get_value('chloglevel')   
     tclocation = basic_function.parse_testcaselocation(testcaselocation) # format testcase location in a list for given formats
     
     
     #initialpath = os.getcwd() #get initial path,will back here after each traverse
-    print('==> The initial path is:',initialpath),print()
+    basic_class.mylogger.info('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    #basic_function.execute(tclocation,initialpath) #executing testcases 
+    basic_function.execute(tclocation,initialpath) #executing testcases 
     
-    #basic_class.mylogger.info('11111111111111')
-    #basic_class.mylogger_summary.summary('zfxfdsfdsf')
+    basic_class.mylogger.info('11111111111111')
+    basic_class.mylogger_summary.summary('zfxfdsfdsf')
     basic_class.mylogger_title.title('hihihiih')
      #pprint.pprint(sys.modules)
      #mylogger=basic_class.Loggger('WuKong',chloglevel)

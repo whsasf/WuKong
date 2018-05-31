@@ -1,0 +1,311 @@
+[2018-05-31 16:19:11,824] [WK-debug] [INFO] Runing setup testcase:mx-11628-imap_login_250_accounts_half_pass_half_fail
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mPreparing... get some variables needed for tests[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mimap1_host = mx1[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mimap1_port = 20143[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mmx_account = imail[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mmx1_host1_ip = 10.49.58.239[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mroot_account = root[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mroot_passwd = letmein[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mtest_account_base = testuser[0m
+[2018-05-31 16:19:11,824] [WK-debug] [DEBUG] [1;33mdefault_domain = openwave.com[0m
+[2018-05-31 16:19:11,824] [WK-debug] [INFO] step1:set keys
+[2018-05-31 16:19:32,852] [WK-debug] [DEBUG] [1;33mssh success and no need check target[0m
+[2018-05-31 16:19:32,852] [WK-debug] [DEBUG] [1;33msshout=
+perfStatThresholds: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+perfStatThresholds: imconfserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdircacheserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdirserv on mx1 will be easily accommodated: 
+perfStatThresholds: imextserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx1 will be easily accommodated: 
+perfStatThresholds: imqueueserv on mx1 will be easily accommodated: 
+perfStatThresholds: mss.1 on mx1 will be easily accommodated: 
+perfStatThresholds: mta on mx1 will be easily accommodated: 
+perfStatThresholds: popserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx2 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+perfStatThresholds: mss.1 on mx2 will be easily accommodated: 
+Reporting: capd:pabd on mx3 server did not report: 
+perfStatThresholds: immgrserv on mx3 will be easily accommodated: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+badPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+badPasswordDelay: imextserv on mx1 will be easily accommodated: 
+badPasswordDelay: mta on mx1 will be easily accommodated: 
+badPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+maxBadPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+maxBadPasswordDelay: imextserv on mx1 will be easily accommodated: 
+maxBadPasswordDelay: mta on mx1 will be easily accommodated: 
+maxBadPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+[0m
+[2018-05-31 16:19:32,852] [WK-debug] [INFO] step2:create 20 accounts
+[2018-05-31 16:20:12,100] [WK-debug] [DEBUG] [1;33mconfirmobj_count=20[0m
+[2018-05-31 16:20:12,101] [WK-debug] [DEBUG] [1;33mssh success and target match[0m
+[2018-05-31 16:20:12,101] [WK-debug] [DEBUG] [1;33msshout=
+Mailbox Created Successfully.
+MailboxId for testuser1@openwave.com is 8598389613722975276
+Mailbox Created Successfully.
+MailboxId for testuser2@openwave.com is 6052147476904068161
+Mailbox Created Successfully.
+MailboxId for testuser3@openwave.com is 6362730676411029751
+Mailbox Created Successfully.
+MailboxId for testuser4@openwave.com is 8467652967487476894
+Mailbox Created Successfully.
+MailboxId for testuser5@openwave.com is 6477989243171236441
+Mailbox Created Successfully.
+MailboxId for testuser6@openwave.com is 8570954083770226836
+Mailbox Created Successfully.
+MailboxId for testuser7@openwave.com is 8284765535249516222
+Mailbox Created Successfully.
+MailboxId for testuser8@openwave.com is 8566620734959023930
+Mailbox Created Successfully.
+MailboxId for testuser9@openwave.com is 6821296977361382059
+Mailbox Created Successfully.
+MailboxId for testuser10@openwave.com is 7669852538311047789
+Mailbox Created Successfully.
+MailboxId for testuser11@openwave.com is 4673036126020198373
+Mailbox Created Successfully.
+MailboxId for testuser12@openwave.com is 8832260191892402038
+Mailbox Created Successfully.
+MailboxId for testuser13@openwave.com is 6740385587818890677
+Mailbox Created Successfully.
+MailboxId for testuser14@openwave.com is 4699432168328321452
+Mailbox Created Successfully.
+MailboxId for testuser15@openwave.com is 8416107462757133550
+Mailbox Created Successfully.
+MailboxId for testuser16@openwave.com is 5387248010657978163
+Mailbox Created Successfully.
+MailboxId for testuser17@openwave.com is 5580680918302849480
+Mailbox Created Successfully.
+MailboxId for testuser18@openwave.com is 5894444142965413494
+Mailbox Created Successfully.
+MailboxId for testuser19@openwave.com is 6191246402918839822
+Mailbox Created Successfully.
+MailboxId for testuser20@openwave.com is 9109182322939089693
+[0m
+[2018-05-31 16:20:12,102] [WK-debug] [INFO] step3: clear current imapserv.stat file
+[2018-05-31 16:20:19,871] [WK-debug] [DEBUG] [1;33mssh success and no need check target[0m
+[2018-05-31 16:20:19,871] [WK-debug] [DEBUG] [1;33msshout=
+[0m
+[2018-05-31 16:20:19,884] [WK-debug] [INFO] step1:imap login:10 account with correct passwd, the other 10 use wrong pssswd
+[2018-05-31 16:20:19,884] [WK-debug] [DEBUG] [1;33mimap1_host_ip = 10.49.58.239[0m
+[2018-05-31 16:20:19,884] [WK-debug] [DEBUG] [1;33mimap1_port = 20143[0m
+[2018-05-31 16:20:19,884] [WK-debug] [DEBUG] [1;33mmx_account = imail[0m
+[2018-05-31 16:20:19,884] [WK-debug] [DEBUG] [1;33mmx1_host1_ip = 10.49.58.239[0m
+[2018-05-31 16:20:19,884] [WK-debug] [DEBUG] [1;33mroot_account = root[0m
+[2018-05-31 16:20:19,885] [WK-debug] [DEBUG] [1;33mroot_passwd = letmein[0m
+[2018-05-31 16:20:19,885] [WK-debug] [DEBUG] [1;33mtest_account_base = testuser[0m
+[2018-05-31 16:20:19,885] [WK-debug] [DEBUG] [1;33mdefault_domain = openwave.com[0m
+[2018-05-31 16:20:20,824] [WK-debug] [DEBUG] [1;33m<imap login testuser1testuser1>[0m
+[2018-05-31 16:20:20,824] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:21,106] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:21,107] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:21,339] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:21,339] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:22,292] [WK-debug] [DEBUG] [1;33m<imap login testuser2testuser2>[0m
+[2018-05-31 16:20:22,293] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:22,573] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:22,574] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:22,807] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:22,807] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:23,758] [WK-debug] [DEBUG] [1;33m<imap login testuser3testuser3>[0m
+[2018-05-31 16:20:23,758] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:24,036] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:24,036] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:24,271] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:24,271] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:25,214] [WK-debug] [DEBUG] [1;33m<imap login testuser4testuser4>[0m
+[2018-05-31 16:20:25,215] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:25,496] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:25,496] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:25,728] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:25,728] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:26,668] [WK-debug] [DEBUG] [1;33m<imap login testuser5testuser5>[0m
+[2018-05-31 16:20:26,668] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:26,955] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:26,955] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:27,197] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:27,197] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:28,140] [WK-debug] [DEBUG] [1;33m<imap login testuser6testuser6>[0m
+[2018-05-31 16:20:28,140] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:28,422] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:28,422] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:28,655] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:28,655] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:29,599] [WK-debug] [DEBUG] [1;33m<imap login testuser7testuser7>[0m
+[2018-05-31 16:20:29,599] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:29,884] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:29,884] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:30,125] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:30,125] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:31,063] [WK-debug] [DEBUG] [1;33m<imap login testuser8testuser8>[0m
+[2018-05-31 16:20:31,063] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:31,348] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:31,348] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:31,582] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:31,582] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:32,532] [WK-debug] [DEBUG] [1;33m<imap login testuser9testuser9>[0m
+[2018-05-31 16:20:32,532] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:32,812] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:32,813] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:33,047] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:33,047] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:33,995] [WK-debug] [DEBUG] [1;33m<imap login testuser10testuser10>[0m
+[2018-05-31 16:20:33,996] [WK-debug] [DEBUG] [1;33mLOGIN completed[0m
+[2018-05-31 16:20:34,274] [WK-debug] [DEBUG] [1;33m<imap select INBOXFalse>[0m
+[2018-05-31 16:20:34,274] [WK-debug] [DEBUG] [1;33m1[0m
+[2018-05-31 16:20:34,507] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:34,507] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:35,427] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:35,656] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:35,656] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:36,583] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:36,812] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:36,812] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:37,736] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:37,964] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:37,964] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:38,891] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:39,120] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:39,121] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:40,047] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:40,276] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:40,276] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:41,201] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:41,430] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:41,430] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:42,362] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:42,591] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:42,591] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:43,511] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:43,741] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:43,741] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:44,672] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:44,908] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:44,908] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:45,836] [WK-debug] [ERROR] [1;31mlogin failed[0m
+[2018-05-31 16:20:46,065] [WK-debug] [DEBUG] [1;33m<imap logout>[0m
+[2018-05-31 16:20:46,065] [WK-debug] [DEBUG] [1;33mIMAP4 server terminating connection[0m
+[2018-05-31 16:20:46,065] [WK-debug] [INFO] fetching imapserv.stat ...
+[2018-05-31 16:21:46,102] [WK-debug] [INFO] step2:check and analyze imapserv.stat file ...
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33mssh success and no need check target[0m
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33msshout=
+20180531 041437467-0400 mx1 imapserv 26624;StatImapAuthCommand(77/706) 0/sec 16 ms [200] 20/20/0 325/6/35
+[0m
+[2018-05-31 16:21:49,344] [WK-debug] [INFO] Analyzing the stat file ...
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33mcontent_lists=[0m
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33m20180531 041437467-0400 mx1 imapserv 26624;StatImapAuthCommand(77/706) 0/sec 16 ms [200] 20/20/0 325/6/35[0m
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33moperation_times = 20[0m
+[2018-05-31 16:21:49,344] [WK-debug] [DEBUG] [1;33mcount_total = 20[0m
+[2018-05-31 16:21:49,345] [WK-debug] [DEBUG] [1;33mcount_pass = 20[0m
+[2018-05-31 16:21:49,345] [WK-debug] [DEBUG] [1;33mcount_fail = 0[0m
+[2018-05-31 16:21:49,345] [WK-debug] [DEBUG] [1;33mmax_time_lists = ['35'][0m
+[2018-05-31 16:21:49,345] [WK-debug] [DEBUG] [1;33mresult_lists=['threshold success', 'count success'][0m
+[2018-05-31 16:21:49,345] [WK-debug] [INFO] result_list = ['threshold success', 'count success']
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mimap1_host = mx1[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mimap1_port = 20143[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mmx_account = imail[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mmx1_host1_ip = 10.49.58.239[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mroot_account = root[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mroot_passwd = letmein[0m
+[2018-05-31 16:21:49,356] [WK-debug] [DEBUG] [1;33mtest_account_base = testuser[0m
+[2018-05-31 16:21:49,357] [WK-debug] [DEBUG] [1;33mdefault_domain = openwave.com[0m
+[2018-05-31 16:21:49,357] [WK-debug] [INFO] step1:delete 20 accounts
+[2018-05-31 16:22:26,661] [WK-debug] [DEBUG] [1;33mconfirmobj_count=20[0m
+[2018-05-31 16:22:26,661] [WK-debug] [DEBUG] [1;33mssh success and target match[0m
+[2018-05-31 16:22:26,661] [WK-debug] [DEBUG] [1;33msshout=
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+Mailbox Deleted Successfully. 
+
+[0m
+[2018-05-31 16:22:26,661] [WK-debug] [INFO] step2:restore config keys
+[2018-05-31 16:22:30,394] [WK-debug] [DEBUG] [1;33mssh success and no need check target[0m
+[2018-05-31 16:22:30,394] [WK-debug] [DEBUG] [1;33msshout=
+perfStatThresholds: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+perfStatThresholds: imconfserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdircacheserv on mx1 will be easily accommodated: 
+perfStatThresholds: imdirserv on mx1 will be easily accommodated: 
+perfStatThresholds: imextserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx1 will be easily accommodated: 
+perfStatThresholds: imqueueserv on mx1 will be easily accommodated: 
+perfStatThresholds: mss.1 on mx1 will be easily accommodated: 
+perfStatThresholds: mta on mx1 will be easily accommodated: 
+perfStatThresholds: popserv on mx1 will be easily accommodated: 
+perfStatThresholds: immgrserv on mx2 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+perfStatThresholds: mss.1 on mx2 will be easily accommodated: 
+Reporting: capd:pabd on mx3 server did not report: 
+perfStatThresholds: immgrserv on mx3 will be easily accommodated: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+badPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+badPasswordDelay: imextserv on mx1 will be easily accommodated: 
+badPasswordDelay: mta on mx1 will be easily accommodated: 
+badPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+maxBadPasswordDelay: imapserv on mx1 will be easily accommodated: 
+Reporting: imapserv:imconfserv:imdircacheserv:imdirserv:imextserv:immgrserv:imqueueserv:mss.1:mta:popserv on mx1 server reported: 
+maxBadPasswordDelay: imextserv on mx1 will be easily accommodated: 
+maxBadPasswordDelay: mta on mx1 will be easily accommodated: 
+maxBadPasswordDelay: popserv on mx1 will be easily accommodated: 
+Reporting: immgrserv:mss.1:mxos:qadminservice:qsearchservice:qservice on mx2 server reported: 
+Reporting: capd:pabd on mx3 server did not report: 
+Reporting: immgrserv:mxos:search on mx3 server reported: 
+[0m
+[2018-05-31 16:22:30,405] [WK-debug] [INFO] 11111111111111
+[1;34mhihihiih[0m

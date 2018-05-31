@@ -34,36 +34,28 @@ class Discovery():
         
         
 
-
-
-
 class Loggger_summary():
     """this class is based on simple logging"""
     
-    def __init__(self):    	
-        """ definition of some"""
-        self.loggerrr = logging.getLogger('WK-summary')
-        self.loggerrr.setLevel(logging.INFO)  #defaut 'INFO'        
+    def __init__(self,loggername):
+        """init things"""
         import global_variables
         self.summarypath = global_variables.get_value('summarypath')
-        self.fh = logging.FileHandler(self.summarypath+'/summary.log')
-        self.fh.setLevel(logging.DEBUG)
-        self.formatter = logging.Formatter('%(message)s')
-        self.fh.setFormatter(self.formatter)
-        self.loggerrr.addHandler(self.fh)
-
+        logging.basicConfig(filename= self.summarypath+'/summary.log',format='', level=logging.DEBUG)
         
-    def summary(self,summmessages='this is summary message'):
-        self.loggerrr.info(summmessages)
-                        
+    def summary(self,infomessages='this is info message'):
+        """write test cases outcome to """
+        logging.info(infomessages)  
+                
 
+   
 class Loggger_debug():
     """this is a class for logging debug part"""
     
-    def __init__(self,chloglevel):    	
+    def __init__(self,loggername,chloglevel):    	
         """ definition of some"""
-        self.logger = logging.getLogger('WK-debug')
-        self.logger.setLevel(logging.DEBUG)  #defaut 'DEBUG'
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)  #defaut 'INFO'
         self.chloglevel = chloglevel        
         self.ch = logging.StreamHandler()
         #get chloglevel from outside
@@ -80,35 +72,34 @@ class Loggger_debug():
         self.logpath = global_variables.get_value('logpath')
         self.fh = logging.FileHandler(self.logpath+'/alltestcases.log')
         self.fh.setLevel(logging.DEBUG)
-        self.formatter = logging.Formatter('[%(asctime)s] [%(levelname)s] %(message)s')
+        self.formatter = logging.Formatter('[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s')
         self.ch.setFormatter(self.formatter)
         self.fh.setFormatter(self.formatter)
         self.logger.addHandler(self.ch)
         self.logger.addHandler(self.fh)
         
     def debug(self,debugmessages='this is debug message'):   
-        self.logger.debug('\033[1;33m'+debugmessages+'\033[0m')
+        self.logger.debug(debugmessages)
         
     def info(self,infomessages='this is info message'):
         self.logger.info(infomessages)
 
     def warning(self,warnmessages='this is warn message'):
-        self.logger.warn('\033[1;31m'+warnmessages+'\033[0m')
+        self.logger.warn(warnmessages)
 
     def error(self,errormessages='this is error message'):    
-        self.logger.error('\033[1;31m'+errormessages+'\033[0m')
+        self.logger.error(errormessages)
 
     def critical(self,criticalmessages='this is critical message'):    
-        self.logger.critical('\033[1;31m'+criticalmessages+'\033[0m')
-
+        self.logger.critical(criticalmessages)
 
 
 class Loggger_title():
     """this alacc is inherited from Loggger_debug,is used to log title records in file and screen"""
     
-    def __init__(self):    	
+    def __init__(self,loggername):    	
         """ definition of some"""
-        self.loggerr = logging.getLogger('WK-title')
+        self.loggerr = logging.getLogger(__name__)
         self.loggerr.setLevel(logging.INFO)  #defaut 'INFO'
         self.chloglevel = chloglevel        
         self.ch = logging.StreamHandler()
@@ -127,7 +118,7 @@ class Loggger_title():
         self.loggerr.addHandler(self.fh)
         
     def title(self,titlemessages='this is title message'):
-        self.loggerr.info('\033[1;34m'+titlemessages+'\033[0m')
+        self.loggerr.info(titlemessages)
         
 
 
@@ -135,10 +126,8 @@ if True:
     from basic_function import parse_chloglevel
     
     chloglevel = parse_chloglevel() 
-    
-    mylogger_summary = Loggger_summary()             # example: basic_class.mylogger_summary.summary('zfxfdsfdsf')
-    mylogger         = Loggger_debug(chloglevel)     # example: asic_class.mylogger.info('step1')
-    mylogger_title   = Loggger_title()               # example: asic_class.mylogger_title.info('step1')
-
+    mylogger_summary = Loggger_summary('WuKong')             # example: basic_class.mylogger_summary.summary('zfxfdsfdsf')
+    mylogger         = Loggger_debug('WuKong',chloglevel)    # example: asic_class.mylogger.info('step1')
+    #mylogger_title   = Loggger_title('WuKong')               # example: asic_class.mylogger_title.info('step1')
  
 

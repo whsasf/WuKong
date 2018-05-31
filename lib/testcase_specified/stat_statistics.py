@@ -3,7 +3,9 @@
 def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     """this function will used to calculate the total statistics record times and check if they are correct """
     
-    #import 
+    import basic_class
+    
+    basic_class.mylogger.info('Analyzing the stat file ...')
     content = content.strip('\n')
     cmp_obj1 = cmp_obj1
     cmp_obj2 = cmp_obj2
@@ -12,36 +14,40 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     count_pass = 0         # passed operation attempts counts
     count_fail = 0         # failed operation attempts counts
     max_time_lists = []    # maximum
-    result_list = []       # will return thsi result at last
+    result_lists = []      # will return thsi result at last
     
     if content.count(cmp_obj1) == content.count(cmp_obj2):
-        result_list.append('threshold success')
+        result_lists.append('threshold success')
     else:
-        result_list.append('threshold fail')
+        result_lists.append('threshold fail')
     
     content_lists = content.split('\n')
-    print(content_lists)
+    basic_class.mylogger.debug('content_lists=')
+    [basic_class.mylogger.debug(content_list) for content_list in content_lists]
     for list in content_lists:
         list = ('/'.join(list.split(' ')[-2:])).split('/')
         count_total += int(list[0])
         count_pass += int(list[1])
         count_fail += int(list[2])
         max_time_lists.append(list[5])
-    print(count_total)
-    print(count_pass)
-    print(count_fail)
-    print(max_time_lists)
+    basic_class.mylogger.debug('operation_times = '+str(operation_times))
+    basic_class.mylogger.debug('count_total = '+str(count_total))
+    basic_class.mylogger.debug('count_pass = '+str(count_pass))
+    basic_class.mylogger.debug('count_fail = '+str(count_fail))
+    basic_class.mylogger.debug('max_time_lists = '+str(max_time_lists))
+
     if  operation_times == count_total == count_pass + count_fail:
         if count_fail > 0:
-            if max(max_time_lists) > int(cmp_obj1.strip('[').strip(']')):
-                result_list.append('count success')
+            if int(max(max_time_lists)) > int(cmp_obj1.strip('[').strip(']')):
+                result_lists.append('count success')
             else:
-                result_list.append('count fail')
+                result_lists.append('count fail')
         else:
-            result_list.append('count success')                
+            result_lists.append('count success')                
     else:
-        result_list.append('count fail')           
-    return result_list
+        result_lists.append('count fail') 
+    basic_class.mylogger.info('result_lists='+str(result_lists))
+    return result_lists
         
     
     
