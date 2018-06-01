@@ -87,7 +87,7 @@ class Loggger_debug():
         self.logger.addHandler(self.fh)
         
     def debug(self,debugmessages='this is debug message'):   
-        self.logger.debug('\033[1;33m'+debugmessages+'\033[0m')
+        self.logger.debug('\033[1;33m'+str(debugmessages)+'\033[0m')
         
     def info(self,infomessages='this is info message'):
         self.logger.info(infomessages)

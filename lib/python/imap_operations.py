@@ -29,9 +29,7 @@ class IMAP_Ops(IMAP4):
         self.loginuser = loginuser
         self.loginpass = loginpass
         self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
-        basic_class.mylogger.debug('<imap login '+self.loginuser+self.loginpass+'>')
-        #print('<imap login ',self.loginuser,self.loginpass,'>')
-        #[print(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger.info('<imap login '+self.loginuser+self.loginpass+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
     
@@ -42,9 +40,7 @@ class IMAP_Ops(IMAP4):
            example: instance.imap_logout()
         """
         self.outcome,self.logdata = self.imap4.logout()
-        #print('<imap logout>')
-        #[print(line.decode('utf-8')) for line in self.logdata]
-        basic_class.mylogger.debug('<imap logout>')
+        basic_class.mylogger.info('<imap logout>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
 
 
@@ -56,9 +52,7 @@ class IMAP_Ops(IMAP4):
         self.mailbox = mailbox     # the folder that will be selected
         self.readonly = readonly   # If the readonly flag is set, modifications to the mailbox are not allowed
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
-        #print('<imap select ',self.mailbox,self.readonly,'>')
-        #[print(line.decode('utf-8')) for line in self.logdata]
-        basic_class.mylogger.debug('<imap select '+self.mailbox+str(self.readonly)+'>')
+        basic_class.mylogger.info('<imap select '+self.mailbox+str(self.readonly)+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    
@@ -71,11 +65,7 @@ class IMAP_Ops(IMAP4):
         self.message_set = message_set
         self.message_parts = message_parts
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
-        
-        #print('<imap fetch ',self.message_set,self.message_parts,'>')
-        #[print(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
-        #[print(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO']
-        basic_class.mylogger.debug('<imap fetch '+self.message_set+' '+self.message_parts+'>')
+        basic_class.mylogger.info('<imap fetch '+self.message_set+' '+self.message_parts+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
         #self.imap4.logout()
@@ -89,12 +79,10 @@ class IMAP_Ops(IMAP4):
         self.loginpass = loginpass
         self.mechanism = mechanism
         self.authobject = lambda authobject:'\x00{0}\x00{1}'.format(self.loginuser,self.loginpass)
-        #print(self.mechanism)
-        #print(self.authobject)
+        basic_class.mylogger.debug('mechanism = '+str(self.mechanism))
+        basic_class.mylogger.debug('authobject = '+str(self.authobject))
         self.outcome,self.logdata = self.imap4.authenticate(self.mechanism,self.authobject)
-        #print('<imap authenticate plain>')
-        #[print(line.decode('utf-8')) for line in self.logdata]
-        basic_class.mylogger.debug('<imap authenticate plain>')
+        basic_class.mylogger.info('<imap authenticate plain>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
 
@@ -105,9 +93,7 @@ class IMAP_Ops(IMAP4):
         self.loginuser = loginuser
         self.loginpass = loginpass
         self.outcome,self.logdata = self.imap4.login_cram_md5(self.loginuser,self.loginpass)
-        #print('<imap authenticate cram-md5>')
-        #[print(line.decode('utf-8')) for line in self.logdata]
-        basic_class.mylogger.debug('<imap authenticate cram-md5>')
+        basic_class.mylogger.info('<imap authenticate cram-md5>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
  

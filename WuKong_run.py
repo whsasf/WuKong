@@ -43,7 +43,7 @@ def main():
     basic_class.mylogger.info('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    basic_function.execute(tclocation,initialpath) #executing testcases 
+    #basic_function.execute(tclocation,initialpath) #executing testcases 
     
     basic_class.mylogger.info('11111111111111')
     basic_class.mylogger_summary.summary('zfxfdsfdsf')
@@ -80,7 +80,18 @@ def main():
     #myssh.remote_operations('ls -al;cal',1,'.',61)
     #myssh.remote_operations('cal',1,'.',32)
     
-    
+    import pop_operations
+    from  pop_operations import POP_Ops
+
+    pop3 = POP_Ops('10.49.58.239',20110)
+    pop3.pop_set_debuglevel()
+    #pop3.pop_user('xx1')
+    #pop3.pop_pass('p')
+    pop3.pop_login('xx1','p')
+    pop3.pop_stat()
+    pop3.pop_list()
+    pop3.pop_retr(1)
+    pop3.pop_quit()
     
 if __name__ == '__main__':
     main()
