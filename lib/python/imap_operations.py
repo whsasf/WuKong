@@ -29,7 +29,7 @@ class IMAP_Ops(IMAP4):
         self.loginuser = loginuser
         self.loginpass = loginpass
         self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
-        basic_class.mylogger.info('<imap login '+self.loginuser+self.loginpass+'>')
+        basic_class.mylogger.info('<imap login '+self.loginuser+' '+self.loginpass+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
     
@@ -52,7 +52,7 @@ class IMAP_Ops(IMAP4):
         self.mailbox = mailbox     # the folder that will be selected
         self.readonly = readonly   # If the readonly flag is set, modifications to the mailbox are not allowed
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
-        basic_class.mylogger.info('<imap select '+self.mailbox+str(self.readonly)+'>')
+        basic_class.mylogger.info('<imap select '+self.mailbox+'>')
         [basic_class.mylogger.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    

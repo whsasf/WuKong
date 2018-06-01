@@ -82,15 +82,25 @@ def main():
     
     import pop_operations
     from  pop_operations import POP_Ops
-
+    
     pop3 = POP_Ops('10.49.58.239',20110)
     pop3.pop_set_debuglevel()
     #pop3.pop_user('xx1')
     #pop3.pop_pass('p')
-    pop3.pop_login('xx1','p')
+    #pop3.pop_login('xx1','p')
+    pop3.pop_apop('xx1','p')
     pop3.pop_stat()
+    pop3.pop_capa()
     pop3.pop_list()
-    pop3.pop_retr(1)
+    pop3.pop_retr(2)
+    pop3.pop_dele(1)  
+    pop3.pop_rset() 
+    pop3.pop_list()
+    pop3.pop_list(1)
+    pop3.pop_noop()  
+    pop3.pop_uidl(1) 
+    pop3.pop_uidl()  
+    pop3.pop_top(2,2)
     pop3.pop_quit()
     
 if __name__ == '__main__':
