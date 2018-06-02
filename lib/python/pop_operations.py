@@ -2,9 +2,10 @@
 # this module contains the IMAP operation related classes and functions
 
 # import need moduels
-from poplib import POP3,POP3_SSL
+from poplib_customized import POP3,POP3_SSL
 import global_variables
 import basic_class
+import base64
 
         
 class POP_Ops(POP3):
@@ -52,6 +53,22 @@ class POP_Ops(POP3):
             [basic_class.mylogger.debug(self.resp.decode())]
         #self.pop.quit()                
         
+    
+    def pop_auth_plain(self,username,passwd):
+        """send auth plain xxxx"""
+        
+        self.username = username
+        self.passwd = passwd
+        #authstring = 'AHh4MQBw'
+        authstring = (base64.b64encode(('{}'.format('\000'+self.username+'\000'+self.passwd)).encode())).decode()
+        basic_class.mylogger.info('<auth plain '+authstring+'>')        
+        try:
+            self.resp = self.pop3.auth_plain(authstring)
+        finally:    
+            [basic_class.mylogger.debug(self.resp)]
+        #self.pop.quit()      
+                  
+    
         
     def pop_login(self,username,passwd):
         """this function will run pop_user and pop_pass

@@ -1,0 +1,38 @@
+    def login_cram_md5(self, user, password):
+        """ Force use of CRAM-MD5 authentication.
+
+        (typ, [data]) = <instance>.login_cram_md5(user, password)
+        """
+        self.user, self.password = user, password
+        return self.authenticate('CRAM-MD5', self._CRAM_MD5_AUTH)
+        
+        
+
+    def authenticate(self, mechanism, authobject):
+        """Authenticate command - requires response processing.
+
+        'mechanism' specifies which authentication mechanism is to
+        be used - it must appear in <instance>.capabilities in the
+        form AUTH=<mechanism>.
+
+        'authobject' must be a callable object:
+
+                data = authobject(response)
+
+        It will be called to process server continuation responses; the
+        response argument it is passed will be a bytes.  It should return bytes
+        data that will be base64 encoded and sent to the server.  It should
+        return None if the client abort response '*' should be sent instead.
+        """
+        mech = mechanism.upper()
+        # XXX: shouldn't this code be removed, not commented out?
+        #cap = 'AUTH=%s' % mech
+        #if not cap in self.capabilities:       # Let the server decide!
+        #    raise self.error("Server doesn't allow %s authentication." % mech)
+        self.literal = _Authenticator(authobject).process
+        typ, dat = self._simple_command('AUTHENTICATE', mech)
+        if typ != 'OK':
+            raise self.error(dat[-1])
+        self.state = 'AUTH'
+        return typ, dat
+        
