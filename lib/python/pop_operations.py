@@ -2,7 +2,7 @@
 # this module contains the IMAP operation related classes and functions
 
 # import need moduels
-from poplib import POP3
+from poplib import POP3,POP3_SSL
 import global_variables
 import basic_class
 
@@ -10,18 +10,18 @@ import basic_class
 class POP_Ops(POP3):
     """this class defines all pop3 related methods"""  
       
-    def __init__(self,pophost,popport,resp = '',items = '',octets = '',pop3 = ''):
+    def __init__(self,pophost,popport,resp='',items='',octets='',pop3=''):
         """this init function will initiate target pop connection host and port
            example: instance = POP_Ops('10.49.58.239',20110)
         """        
+        
         self.pophost = pophost
         self.popport = popport
-        self.resp = resp    # outcome records the response code of each imap operation, like 200 means success
+        self.resp = resp    # outcome records the response code of each imap operation, 
         self.items = items    # logdata is the data we got after executing the imap operation,usually used to verify if the operation success 
-        self.octets = octets       
-        self.pop3 = POP3(host = self.pophost,port = self.popport)  # instance of IMAP class
-        #self.imap4_ssl = IMAP4_SSL(host = self.imaphost,port = self.imapport)  # instance of IMAP class
-
+        self.octets = octets   
+        basic_class.mylogger.info('<init POP3 instance:pop3 against >'+self.pophost+':'+self.popport)     
+        self.pop3 = POP3(host = self.pophost,port = self.popport)  # instance of POP3 class
 
         
     def pop_user(self,username):
@@ -78,7 +78,7 @@ class POP_Ops(POP3):
         
     
     def pop_capa(self):
-        """Query the servers capabilities as specified in RFC 2449. Returns a dictionary in the form {'name': ['param'...]}.
+        """Query the servers capabilities as specified in RFC 2449. Returns a dictionary in the form {'name': ['param'...]}.
            example: instance.pop_capa()
         """    
         
@@ -88,7 +88,7 @@ class POP_Ops(POP3):
         
         
     def pop_set_debuglevel(self):
-        """Set the instances debugging level. This controls the amount of debugging output printed. The default, 0
+        """Set the instance debugging level. This controls the amount of debugging output printed. The default, 0
            A value of 1 produces a moderate amount of debugging output, generally a single line per request. 
            A value of 2 or higher produces the maximum amount of debugging output, 
            logging each line sent and received on the control connection.
@@ -103,7 +103,9 @@ class POP_Ops(POP3):
         
     def pop_apop(self,username,passwd):
         """Use the more secure APOP authentication to log into the POP3 server.
-           example:instance.pop_apop('xx1','p')
+            note: /*/mxos/defaultPasswordStoreType: [clear]  must be set,this is need by apop mechanism
+           example:instance.pop_apop('xx1@openwave.com','p')
+           or instance.pop_apop('xx1','p')  , only when /*/mxos/trustedClient: [true]
         """
         
         self.username = username
@@ -126,7 +128,7 @@ class POP_Ops(POP3):
         #self.pop.quit()    
         
                 
-    def pop_list(self,which = None):
+    def pop_list(self,which=None):
         """Request message list, result is in the form (response, ['mesg_num octets', ...], octets). If which is set, it is the message to list
            example:instance.pop_list() or instance.pop_list(1) 
         """  
@@ -149,8 +151,11 @@ class POP_Ops(POP3):
         
         self.which = which
         basic_class.mylogger.info('<retr '+str(self.which)+'>')
-        self.resp,self.items,self.octets = self.pop3.retr(self.which)
-        [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+        try:
+            self.resp,self.items,self.octets = self.pop3.retr(self.which)
+            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+        except:
+            pass
         #self.pop.quit()    
         
         
@@ -199,12 +204,16 @@ class POP_Ops(POP3):
         self.which = which
         self.howmuch = howmuch
         basic_class.mylogger.info('<top >'+str(self.which)+' '+str(self.howmuch)+'>')        
-        self.resp,self.items,self.octets = self.pop3.top(self.which,self.howmuch)
-        [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+        
+        try:
+            self.resp,self.items,self.octets = self.pop3.top(self.which,self.howmuch)
+            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+        except:
+            pass
         #self.pop.quit() 
 
         
-    def pop_uidl(self,which = None):
+    def pop_uidl(self,which=None):
         """Return message digest (unique id) list. If which is specified, result contains the unique id for that message in the form 'response mesgnum uid, otherwise result is list (response, ['mesgnum uid', ...], octets).
             example:instance.pop_uidl()  or instance.pop_uidl(1) 
         """
@@ -221,12 +230,15 @@ class POP_Ops(POP3):
         
         
     def pop_stls(self,context=None):
-        """Start a TLS session on the active connection as specified in RFC 2595. This is only allowed before user authentication"""
+        """Start a TLS session on the active connection as specified in RFC 2595. This is only allowed before user authentication
+           note: /*/popserv/allowTLS: [true] must be enabled
+           example:instance.pop_stls()
+        """
         
         self.context = context
         basic_class.mylogger.info('<stls '+str(self.context)+'>')        
         self.resp = self.pop3.stls(self.context)
-        [basic_class.mylogger.debug(self.resp)]       
+        [basic_class.mylogger.debug(self.resp.decode())]       
         #self.pop.quit()     
                
 
@@ -240,4 +252,46 @@ class POP_Ops(POP3):
         self.resp = self.pop3.quit()
         [basic_class.mylogger.debug(self.resp.decode())]
 
+
+
+class POPSSL_Ops(POP_Ops):
+    """this class defines all pop3_ssl related methods,inheritted from class POP_Ops"""
+      
+    
+    def __init__(self,pophost,popsslport,resp='',items='',octets='',pop3='',keyfile=None, certfile=None,context=None):
+        """this init function will initiate target pop connection host and port
+           example: instance = POPSSL_Ops('10.49.58.239',20995)
+        """        
         
+        self.pophost = pophost
+        self.popport = popsslport
+        self.resp = resp    # outcome records the response code of each imap operation, 
+        self.items = items    # logdata is the data we got after executing the imap operation,usually used to verify if the operation success 
+        self.octets = octets   
+        self.keyfile =keyfile
+        self.certfile = certfile
+        self.context = context
+        
+        basic_class.mylogger.info('<init POP3 instance:pop3(ssl) against >'+self.pophost+':'+self.popport)     
+        self.pop3 = POP3_SSL(host = self.pophost,port = self.popport)  # instance of POP3 class
+            
+    
+    
+    #
+    #def __init__(self,pophost,popsslport, keyfile=None, certfile=None,context=None,pop3_ssl = ''):
+    #    """this init function will initiate target pop connection host and port
+    #       example: instance = POPSSL_Ops('10.49.58.239',20110)
+    #    """   
+    #
+    #    self.popsslport = popsslport
+    #    self.keyfile = keyfile
+    #    self.certfile = certfile
+    #    self.context = context
+    #    basic_class.mylogger.info('<init POP3_SSL instance:pop3(ssl) >'+self.pophost+':'+self.popport)  
+    #    self.pop3 = POP3_SSL(host = self.pophost,port = self.popsslport)  # instance of POP3 class
+    #    
+    #    super().__init__(pophost,popport,resp = '',items = '',octets = '')        
+        
+
+        
+      
