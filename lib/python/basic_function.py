@@ -19,7 +19,7 @@ def print_mx_version():
     import basic_class
     
     owm_version = global_variables.get_value('owm_version') 
-    basic_class.mylogger.info('owm_version = '+owm_version)
+    basic_class.mylogger_record.info('owm_version = '+owm_version)
     
     
     
@@ -45,7 +45,7 @@ def parse_chloglevel():
     
     argvlist = global_variables.get_value('argvlist')           # get argvlist of arguments
     if argvlist.count('-v') > 1 or argvlist.count('-vv') > 1:   # determine the chloglevel (displayed to screen)
-        basic_class.mylogger.error("multiple '-v' or '-vv' detected,please make sure only one entered!")
+        basic_class.mylogger_record.error("multiple '-v' or '-vv' detected,please make sure only one entered!")
         exit()
     elif argvlist.count('-v') == 1 or argvlist.count('-vv') == 1:
         if '-v' in argvlist:
@@ -90,7 +90,7 @@ def parse_testcaselocation(testcaselocation):
     # print(len(testcaselocation))
     if len(testcaselocation) == 0 or  len(testcaselocation) == 1:
         if testcaselocation == [] or (testcaselocation[0] == 'test_cases' and testcaselocation[-1] == 'test_cases'):
-            basic_class.mylogger.info('The testcase located in:'+str(['test_cases']))
+            basic_class.mylogger_record.info('The testcase located in:'+str(['test_cases']))
             return (['test_cases'])
         elif os.path.isfile(testcaselocation[0]):
             with open(testcaselocation[0]) as file_obj:
@@ -217,7 +217,7 @@ def create_log_folders():
     global_variables.set_value('owm_version',owm_version)
     #print("Some error seems happened:\n"+out)
     initialpath = global_variables.get_value('initialpath')
-    currenttime = time.strftime("%Y\%m\%d~%H-%M")
+    currenttime = time.strftime("%Y-%m-%d-%H-%M")
     foldername = owm_version+'-'+'{}'.format(currenttime)
     if os.path.exists('logs/'+foldername):
         try:

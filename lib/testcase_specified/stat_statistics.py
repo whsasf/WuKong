@@ -5,7 +5,7 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     
     import basic_class
     
-    basic_class.mylogger.info('Analyzing the stat file ...')
+    basic_class.mylogger_record.info('Analyzing the stat file ...')
     content = content.strip('\n')
     cmp_obj1 = cmp_obj1
     cmp_obj2 = cmp_obj2
@@ -22,19 +22,19 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
         result_lists.append('threshold fail')
     
     content_lists = content.split('\n')
-    basic_class.mylogger.debug('content_lists=')
-    [basic_class.mylogger.debug(content_list) for content_list in content_lists]
+    basic_class.mylogger_record.debug('content_lists=')
+    [basic_class.mylogger_recordct.debug(content_list) for content_list in content_lists]
     for list in content_lists:
         list = ('/'.join(list.split(' ')[-2:])).split('/')
         count_total += int(list[0])
         count_pass += int(list[1])
         count_fail += int(list[2])
         max_time_lists.append(list[5])
-    basic_class.mylogger.debug('operation_times = '+str(operation_times))
-    basic_class.mylogger.debug('count_total = '+str(count_total))
-    basic_class.mylogger.debug('count_pass = '+str(count_pass))
-    basic_class.mylogger.debug('count_fail = '+str(count_fail))
-    basic_class.mylogger.debug('max_time_lists = '+str(max_time_lists))
+    basic_class.mylogger_record.debug('operation_times = '+str(operation_times))
+    basic_class.mylogger_record.debug('count_total = '+str(count_total))
+    basic_class.mylogger_record.debug('count_pass = '+str(count_pass))
+    basic_class.mylogger_record.debug('count_fail = '+str(count_fail))
+    basic_class.mylogger_record.debug('max_time_lists = '+str(max_time_lists))
 
     if  operation_times == count_total == count_pass + count_fail:
         if count_fail > 0:
@@ -46,7 +46,7 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
             result_lists.append('count success')                
     else:
         result_lists.append('count fail') 
-    basic_class.mylogger.info('result_lists='+str(result_lists))
+    basic_class.mylogger_record.info('result_lists='+str(result_lists))
     return result_lists
         
     

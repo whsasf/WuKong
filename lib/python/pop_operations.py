@@ -21,7 +21,7 @@ class POP_Ops(POP3):
         self.resp = resp    # outcome records the response code of each imap operation, 
         self.items = items    # logdata is the data we got after executing the imap operation,usually used to verify if the operation success 
         self.octets = octets   
-        basic_class.mylogger.info('<init POP3 instance:pop3 against >'+self.pophost+':'+self.popport)     
+        basic_class.mylogger_record.info('<init POP3 instance:pop3 against >'+self.pophost+':'+self.popport)     
         self.pop3 = POP3(host = self.pophost,port = self.popport)  # instance of POP3 class
 
         
@@ -33,9 +33,9 @@ class POP_Ops(POP3):
         import basic_class
         
         self.username = username
-        basic_class.mylogger.info('<user '+self.username+'>')        
+        basic_class.mylogger_record.info('command:<user '+self.username+'>')        
         self.resp = self.pop3.user(self.username)
-        [basic_class.mylogger.debug(self.resp.decode())]
+        [basic_class.mylogger_record.debug(self.resp.decode())]
         
      
     def pop_pass(self,passwd):
@@ -46,11 +46,11 @@ class POP_Ops(POP3):
         import basic_class
         
         self.passwd = passwd
-        basic_class.mylogger.info('<pass '+self.passwd+'>')        
+        basic_class.mylogger_record.info('command:<pass '+self.passwd+'>')        
         try:
             self.resp = self.pop3.pass_(self.passwd)
         finally:    
-            [basic_class.mylogger.debug(self.resp.decode())]
+            [basic_class.mylogger_record.debug(self.resp.decode())]
         #self.pop.quit()                
         
     
@@ -61,11 +61,11 @@ class POP_Ops(POP3):
         self.passwd = passwd
         #authstring = 'AHh4MQBw'
         authstring = (base64.b64encode(('{}'.format('\000'+self.username+'\000'+self.passwd)).encode())).decode()
-        basic_class.mylogger.info('<auth plain '+authstring+'>')        
+        basic_class.mylogger_record.info('command:<auth plain '+authstring+'>')        
         try:
             self.resp = self.pop3.auth_plain(authstring)
         finally:    
-            [basic_class.mylogger.debug(self.resp)]
+            [basic_class.mylogger_record.debug(self.resp)]
         #self.pop.quit()      
                   
     
@@ -89,9 +89,9 @@ class POP_Ops(POP3):
            seems not implemented in current mx
         """    
         
-        basic_class.mylogger.info('<getwelcome>')        
+        basic_class.mylogger_record.info('command:<getwelcome>')        
         self.resp = self.pop3.pass_()
-        [basic_class.mylogger.debug(self.resp.decode())]
+        [basic_class.mylogger_record.debug(self.resp.decode())]
         
     
     def pop_capa(self):
@@ -99,9 +99,10 @@ class POP_Ops(POP3):
            example: instance.pop_capa()
         """    
         
-        basic_class.mylogger.info('<capa>')        
+        basic_class.mylogger_record.info('command:<capa>')        
         self.resp = self.pop3.capa()
-        [basic_class.mylogger.debug(single_resp) for single_resp in self.resp]
+        basic_class.mylogger_record.debug('the capa_rsp_data is:')        
+        [basic_class.mylogger_recordct.debug(single_resp) for single_resp in self.resp]
         
         
     def pop_set_debuglevel(self):
@@ -113,7 +114,7 @@ class POP_Ops(POP3):
         """
                               
         pop_debuglevel = global_variables.get_value('pop_debuglevel')
-        basic_class.mylogger.debug('<set_debuglevel '+str(pop_debuglevel)+'>') 
+        basic_class.mylogger_record.debug('command:<set_debuglevel '+str(pop_debuglevel)+'>') 
         self.pop3.set_debuglevel(int(pop_debuglevel))
         #self.pop.quit()
         
@@ -127,9 +128,9 @@ class POP_Ops(POP3):
         
         self.username = username
         self.passwd = passwd
-        basic_class.mylogger.info('<apop '+self.username+' xxxx>')        
-        self.resp = self.pop3.apop(self.username,self.passwd)
-        [basic_class.mylogger.debug(self.resp.decode())]       
+        basic_class.mylogger_record.info('command:<apop '+self.username+' xxxx>')        
+        self.resp = self.pop3.apop(self.username,self.passwd)       
+        [basic_class.mylogger_record.debug(self.resp.decode())]       
         #self.pop.quit()          
 
     
@@ -138,10 +139,10 @@ class POP_Ops(POP3):
            example:instance.pop_stat()
         """
         
-        basic_class.mylogger.info('<stat>')
+        basic_class.mylogger_record.info('command:<stat>')
         self.resp, self.items = self.pop3.stat()
-        [basic_class.mylogger.debug(self.resp)] 
-        [basic_class.mylogger.debug(self.items)]       
+        [basic_class.mylogger_record.debug(self.resp)] 
+        [basic_class.mylogger_record.debug(self.items)]       
         #self.pop.quit()    
         
                 
@@ -151,13 +152,14 @@ class POP_Ops(POP3):
         """  
         
         self.which = which
-        basic_class.mylogger.info('<list '+str(self.which)+'>')
+        basic_class.mylogger_record.info('command:<list '+str(self.which)+'>')
         if self.which:
-            self.resp = self.pop3.list(self.which)
-            [basic_class.mylogger.debug(self.resp.decode())]     
+            self.resp = self.pop3.list(self.which)           
+            [basic_class.mylogger_record.debug('the list rsp is: '+self.resp.decode())]     
         else:    
             self.resp,self.items,self.octets = self.pop3.list(self.which)
-            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+            basic_class.mylogger_record.debug('the list_rsp_data is: ')            
+            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
         #self.pop.quit()    
 
         
@@ -167,10 +169,11 @@ class POP_Ops(POP3):
         """
         
         self.which = which
-        basic_class.mylogger.info('<retr '+str(self.which)+'>')
+        basic_class.mylogger_record.info('command:<retr '+str(self.which)+'>')
         try:
             self.resp,self.items,self.octets = self.pop3.retr(self.which)
-            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+            basic_class.mylogger_record.debug('the retr_rsp_data is:')            
+            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
         except:
             pass
         #self.pop.quit()    
@@ -182,9 +185,9 @@ class POP_Ops(POP3):
         """    
         
         self.which = which
-        basic_class.mylogger.info('<dele '+str(self.which)+'>')        
+        basic_class.mylogger_record.info('command:<dele '+str(self.which)+'>')        
         self.resp = self.pop3.dele(self.which)
-        [basic_class.mylogger.debug(self.resp.decode())]       
+        [basic_class.mylogger_record.debug('dele rsp is: '+self.resp.decode())]       
         #self.pop.quit()   
         
     def pop_rset(self):
@@ -192,9 +195,9 @@ class POP_Ops(POP3):
            example:instance.pop_rset()
         """
         
-        basic_class.mylogger.info('<rset>') 
+        basic_class.mylogger_record.info('command:<rset>') 
         self.resp= self.pop3.rset()
-        [basic_class.mylogger.debug(self.resp.decode())]       
+        [basic_class.mylogger_record.debug('rset rsp is: '+self.resp.decode())]       
         #self.pop.quit() 
 
         
@@ -203,9 +206,9 @@ class POP_Ops(POP3):
            example:instance.pop_noop()
         """
 
-        basic_class.mylogger.info('<noop>')        
+        basic_class.mylogger_record.info('command:<noop>')        
         self.resp = self.pop3.noop()
-        [basic_class.mylogger.debug(self.resp.decode())]       
+        [basic_class.mylogger_record.debug(self.resp.decode())]       
         #self.pop.quit() 
 
                 
@@ -220,11 +223,12 @@ class POP_Ops(POP3):
         
         self.which = which
         self.howmuch = howmuch
-        basic_class.mylogger.info('<top >'+str(self.which)+' '+str(self.howmuch)+'>')        
+        basic_class.mylogger_record.info('command:<top >'+str(self.which)+' '+str(self.howmuch)+'>')        
         
         try:
             self.resp,self.items,self.octets = self.pop3.top(self.which,self.howmuch)
-            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+            basic_class.mylogger_record.debug('the top_rsp_data is:')            
+            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
         except:
             pass
         #self.pop.quit() 
@@ -236,13 +240,15 @@ class POP_Ops(POP3):
         """
         
         self.which = which
-        basic_class.mylogger.info('<uidl '+str(self.which)+'>')   
+        basic_class.mylogger_record.info('command:<uidl '+str(self.which)+'>')   
         if self.which:
             self.resp = self.pop3.uidl(self.which)
-            [basic_class.mylogger.debug(self.resp.decode())]             
+            basic_class.mylogger_record.debug('the top_rsp_data is: ')
+            [basic_class.mylogger_record.debug(self.resp.decode())]             
         else:   
             self.resp,self.items,self.octets = self.pop3.uidl(self.which)
-            [basic_class.mylogger.debug(item.decode()) for item in self.items]       
+            basic_class.mylogger_record.debug('the top_rsp_data is: ')
+            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
         #self.pop.quit()         
         
         
@@ -253,9 +259,9 @@ class POP_Ops(POP3):
         """
         
         self.context = context
-        basic_class.mylogger.info('<stls '+str(self.context)+'>')        
+        basic_class.mylogger_record.info('command:<stls '+str(self.context)+'>')        
         self.resp = self.pop3.stls(self.context)
-        [basic_class.mylogger.debug(self.resp.decode())]       
+        [basic_class.mylogger_record.debug(self.resp.decode())]       
         #self.pop.quit()     
                
 
@@ -265,9 +271,9 @@ class POP_Ops(POP3):
            example:instance.pop_quit()
         """
         
-        basic_class.mylogger.info('<quit>')
+        basic_class.mylogger_record.info('command:<quit>')
         self.resp = self.pop3.quit()
-        [basic_class.mylogger.debug(self.resp.decode())]
+        [basic_class.mylogger_record.debug(self.resp.decode())]
 
 
 
@@ -289,7 +295,7 @@ class POPSSL_Ops(POP_Ops):
         self.certfile = certfile
         self.context = context
         
-        basic_class.mylogger.info('<init POP3 instance:pop3(ssl) against >'+self.pophost+':'+self.popport)     
+        basic_class.mylogger_record.info('<init POP3 instance:pop3(ssl) against >'+self.pophost+':'+self.popport)     
         self.pop3 = POP3_SSL(host = self.pophost,port = self.popport)  # instance of POP3 class
             
     
@@ -304,7 +310,7 @@ class POPSSL_Ops(POP_Ops):
     #    self.keyfile = keyfile
     #    self.certfile = certfile
     #    self.context = context
-    #    basic_class.mylogger.info('<init POP3_SSL instance:pop3(ssl) >'+self.pophost+':'+self.popport)  
+    #    basic_class.mylogger_record.info('<init POP3_SSL instance:pop3(ssl) >'+self.pophost+':'+self.popport)  
     #    self.pop3 = POP3_SSL(host = self.pophost,port = self.popsslport)  # instance of POP3 class
     #    
     #    super().__init__(pophost,popport,resp = '',items = '',octets = '')        

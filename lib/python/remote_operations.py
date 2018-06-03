@@ -43,19 +43,19 @@ def remote_operation(sshhost,username,passwd,cmds,\
     if len(errout) == 0:  
         sshout=str(okout,'utf-8')
         if confirmflag == 1:
-            basic_class.mylogger.debug('confirmobj_count='+str(sshout.count(confirmobj)))
+            basic_class.mylogger_record.debug('confirmobj_count='+str(sshout.count(confirmobj)))
             if sshout.count(confirmobj) == confirmobjcount:
-                basic_class.mylogger.debug('ssh success and target match')
+                basic_class.mylogger_record.debug('ssh success and target match')
                 #print('\033[1;32mOperation success\033[0m')
             else:
-                basic_class.mylogger.debug('ssh success but target mismatch') 
+                basic_class.mylogger_record.debug('ssh success but target mismatch') 
                 #print ('\033[1;31mOperation failed\033[0m')
         else:
-            basic_class.mylogger.debug('ssh success and no need check target') 
+            basic_class.mylogger_record.debug('ssh success and no need check target') 
     else:
         sshout=str(errout,'utf-8')
-        basic_class.mylogger.debug('ssh operation fail')
-    basic_class.mylogger.debug("sshout=\n"+sshout)
+        basic_class.mylogger_record.debug('ssh operation fail')
+    basic_class.mylogger_recordct.debug("sshout=\n"+sshout)
     return sshout   #in case of use 
    
     ssh.close()

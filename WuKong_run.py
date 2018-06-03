@@ -9,7 +9,8 @@
 
 initialpath = ''
 import setlibpath
-initialpath = setlibpath.setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location
+initialpath = setlibpath.setlibpath() #all the other modules import should after this function call,otherwise can not find correct customized lib location  
+#print(initialpath)
 
 import global_variables
 global_variables._init()
@@ -40,21 +41,22 @@ def main():
     
     
     #initialpath = os.getcwd() #get initial path,will back here after each traverse
-    basic_class.mylogger.info('The initial path is:'+initialpath)
+    basic_class.mylogger_record.info('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
     #basic_function.execute(tclocation,initialpath) #executing testcases 
     
-    basic_class.mylogger.info('11111111111111')
+    basic_class.mylogger_record.info('11111111111111')   
+    basic_class.mylogger_recordct.info('11111111111111')
     basic_class.mylogger_summary.summary('zfxfdsfdsf')
     basic_class.mylogger_title.title('hihihiih')
      #pprint.pprint(sys.modules)
      #mylogger=basic_class.Loggger('WuKong',chloglevel)
-#    basic_class.mylogger.debug('debug')
-#    basic_class.mylogger.info('info')
-#    basic_class.mylogger.warning('warning')
-#    basic_class.mylogger.error('error')
-#    basic_class.mylogger.critical('critical')
+#    basic_class.mylogger_record.debug('debug')
+#    basic_class.mylogger_record.info('info')
+#    basic_class.mylogger_record.warning('warning')
+#    basic_class.mylogger_record.error('error')
+#    basic_class.mylogger_record.critical('critical')
     
   
     #import need modules
@@ -79,12 +81,13 @@ def main():
     #myssh = remote_operations.Remote_Ops('10.49.58.239','root','letmein')
     #myssh.remote_operations('ls -al;cal',1,'.',61)
     #myssh.remote_operations('cal',1,'.',32)
-    pop1_host_ip = global_variables.get_value('pop1_host_ip')
-    pop1_port = global_variables.get_value('pop1_port')
-    pop1_sslport = global_variables.get_value('pop1_sslport')
     
-    import pop_operations
-    from  pop_operations import POP_Ops , POPSSL_Ops
+    #pop1_host_ip = global_variables.get_value('pop1_host_ip')
+    #pop1_port = global_variables.get_value('pop1_port')
+    #pop1_sslport = global_variables.get_value('pop1_sslport')
+    
+    #import pop_operations
+    #from  pop_operations import POP_Ops , POPSSL_Ops
     
    #pop3 = POP_Ops(pop1_host_ip,pop1_port)
    ##pop3.pop_stls()
@@ -109,27 +112,27 @@ def main():
    #pop3.pop_quit()
     
     
-    pop3ssl = POPSSL_Ops(pop1_host_ip,pop1_sslport)
+    #pop3ssl = POPSSL_Ops(pop1_host_ip,pop1_sslport)
     #pop3.pop_stls()
-    pop3ssl.pop_set_debuglevel()
+    #pop3ssl.pop_set_debuglevel()
     #pop3.pop_user('xx1')
     #pop3.pop_pass('p')
     #pop3.pop_login('xx1','p')
     #pop3ssl.pop_apop('xx1','p')
-    pop3ssl.pop_auth_plain('xx1','p')
-    pop3ssl.pop_stat()
-    pop3ssl.pop_capa()
-    pop3ssl.pop_list()
-    pop3ssl.pop_retr(2)
-    pop3ssl.pop_dele(1)  
-    pop3ssl.pop_rset() 
-    pop3ssl.pop_list()
-    pop3ssl.pop_list(1)
-    pop3ssl.pop_noop()  
-    pop3ssl.pop_uidl(1) 
-    pop3ssl.pop_uidl()  
-    pop3ssl.pop_top(2,2)
-    pop3ssl.pop_quit()
+    #pop3ssl.pop_auth_plain('xx1','p')
+    #pop3ssl.pop_stat()
+    #pop3ssl.pop_capa()
+    #pop3ssl.pop_list()
+    #pop3ssl.pop_retr(2)
+    #pop3ssl.pop_dele(1)  
+    #pop3ssl.pop_rset() 
+    #pop3ssl.pop_list()
+    #pop3ssl.pop_list(1)
+    #pop3ssl.pop_noop()  
+    #pop3ssl.pop_uidl(1) 
+    #pop3ssl.pop_uidl()  
+    #pop3ssl.pop_top(2,2)
+    #pop3ssl.pop_quit()
     
 if __name__ == '__main__':
     main()
