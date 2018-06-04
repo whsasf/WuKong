@@ -15,7 +15,7 @@ import stat_statistics
 
 
 #step 1
-basic_class.mylogger.info('step1:imap login:10 account with correct passwd, the other 10 use wrong pssswd')
+basic_class.mylogger_record.info('step1:imap login:10 account with correct passwd, the other 10 use wrong pssswd')
 
 imap1_host_ip,imap1_port,mx_account,mx1_host1_ip,root_account,root_passwd,test_account_base,default_domain = \
 global_variables.get_values('imap1_host_ip','imap1_port','mx_account','mx1_host1_ip','root_account','root_passwd','test_account_base','default_domain')
@@ -24,25 +24,25 @@ global_variables.get_values('imap1_host_ip','imap1_port','mx_account','mx1_host1
 for i in range(1,11): 
     mximap1 = imap_operations.IMAP_Ops(imap1_host_ip,imap1_port)
     try:
-        mximap1.imap_login(test_account_base+str(i),test_account_base+str(i)) # using correct passwd
-        basic_class.mylogger.info('login success')
+        mximap1.imap_auth_crammd5('u'+str(i)+'@'+default_domain,test_account_base+str(i)) # using correct passwd
+        basic_class.mylogger_record.info('imap alias crammd5 auth success')
     except:
-        basic_class.mylogger.error('login fail')
+        basic_class.mylogger_record.error('imap alias crammd5 auth fail')
     mximap1.imap_select()
     mximap1.imap_logout()
 
 for i in range(11,21): 
     mximap2 = imap_operations.IMAP_Ops(imap1_host_ip,imap1_port)
     try:
-        mximap2.imap_login(test_account_base+str(i),'password') # using wrong passwd :password here
+        mximap2.imap_auth_crammd5('u'+str(i)+'@'+default_domain,'password') # using wrong passwd :password here
     except:
-        basic_class.mylogger.error('login fail')
+        basic_class.mylogger_record.error('imap alias crammd5 auth fail')
     mximap2.imap_logout()
     
 #step 2
-basic_class.mylogger.info('fetching imapserv.stat ...')
+basic_class.mylogger_record.info('fetching imapserv.stat ...')
 time.sleep (50)
-basic_class.mylogger.info('step2:check and analyze imapserv.stat file ...')
+basic_class.mylogger_record.info('step2:check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatImapAuthCommand"'.format(mx_account),0)
-result_list = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatImapAuthCommand',20)
+result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatImapAuthCommand',20)
 

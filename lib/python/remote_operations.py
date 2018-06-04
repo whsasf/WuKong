@@ -55,7 +55,8 @@ def remote_operation(sshhost,username,passwd,cmds,\
     else:
         sshout=str(errout,'utf-8')
         basic_class.mylogger_record.debug('ssh operation fail')
-    basic_class.mylogger_recordct.debug("sshout=\n"+sshout)
+    basic_class.mylogger_record.debug("sshout=")
+    basic_class.mylogger_recordct.debug(sshout)
     return sshout   #in case of use 
    
     ssh.close()

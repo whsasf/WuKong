@@ -28,10 +28,10 @@ class IMAP_Ops(IMAP4):
         """       
         self.loginuser = loginuser
         self.loginpass = loginpass
+        basic_class.mylogger_record.info('command:<imap login '+self.loginuser+' '+self.loginpass+'>')        
         self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
-        basic_class.mylogger_record.info('command:<imap login '+self.loginuser+' '+self.loginpass+'>')
-        basic_class.mylogger_record.debug('the login_rsp_data is:')
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger_record.debug(self.logdata[0].decode())
+        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
     
     
@@ -40,10 +40,11 @@ class IMAP_Ops(IMAP4):
         """method imap_logout will perform imap logout operation
            example: instance.imap_logout()
         """
+        
+        basic_class.mylogger_record.info('command:<imap logout>')        
         self.outcome,self.logdata = self.imap4.logout()
-        basic_class.mylogger_record.info('command:<imap logout>')
-        basic_class.mylogger_record.debug('the logout_rsp_data is:')        
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger_record.debug(self.logdata[0].decode())        
+        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
 
 
 
@@ -53,10 +54,10 @@ class IMAP_Ops(IMAP4):
         """
         self.mailbox = mailbox     # the folder that will be selected
         self.readonly = readonly   # If the readonly flag is set, modifications to the mailbox are not allowed
+        basic_class.mylogger_record.info('command:<imap select '+self.mailbox+'>')        
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
-        basic_class.mylogger_record.info('command:<imap select '+self.mailbox+'>')
-        basic_class.mylogger_record.debug('the select_rsp_data is:')        
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger_record.debug(self.logdata[0].decode())
+        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    
     
@@ -67,8 +68,8 @@ class IMAP_Ops(IMAP4):
     
         self.message_set = message_set
         self.message_parts = message_parts
+        basic_class.mylogger_record.info('command:<imap fetch '+self.message_set+' '+self.message_parts+'>')        
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
-        basic_class.mylogger_record.info('command:<imap fetch '+self.message_set+' '+self.message_parts+'>')
         basic_class.mylogger_record.debug('the fetch_rsp_data is:')
         [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
         [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
@@ -79,16 +80,17 @@ class IMAP_Ops(IMAP4):
         """method imap_authenticate will perform imap authenticate operation,commonly used for imap plain authentication
            example: instance.imap_authenticate('xx1','p')
         """
+        
         self.loginuser = loginuser
         self.loginpass = loginpass
         self.mechanism = mechanism
+        basic_class.mylogger_record.info('command:<imap authenticate plain>')        
         self.authobject = lambda authobject:'\x00{0}\x00{1}'.format(self.loginuser,self.loginpass)
         basic_class.mylogger_record.debug('mechanism = '+str(self.mechanism))
         basic_class.mylogger_record.debug('authobject = '+str(self.authobject))
         self.outcome,self.logdata = self.imap4.authenticate(self.mechanism,self.authobject)
-        basic_class.mylogger_record.info('command:<imap authenticate plain>')
-        basic_class.mylogger_record.debug('the auth_rsp_data is:')        
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger_record.debug(self.logdata[0].decode())
+        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
 
     def imap_auth_crammd5(self,loginuser,loginpass):
@@ -97,10 +99,10 @@ class IMAP_Ops(IMAP4):
         """
         self.loginuser = loginuser
         self.loginpass = loginpass
+        basic_class.mylogger_record.info('command:<imap authenticate cram-md5>')        
         self.outcome,self.logdata = self.imap4.login_cram_md5(self.loginuser,self.loginpass)
-        basic_class.mylogger_record.info('command:<imap authenticate cram-md5>')
-        basic_class.mylogger_record.debug('the auth-crammd5_rsp_data is:')        
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        basic_class.mylogger_record.debug(self.logdata[0].decode())
+        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
  
 

@@ -95,18 +95,19 @@ def parse_testcaselocation(testcaselocation):
         elif os.path.isfile(testcaselocation[0]):
             with open(testcaselocation[0]) as file_obj:
                 lines = file_obj.read().splitlines()
-            print('==> The testcase located in:'),print()  
+            basic_class.mylogger_record.info('The testcase located in:') 
             for line in lines:
-                print('    '+line.strip())
+                basic_class.mylogger_title.title(line.strip())
             return lines
         else:
-            print("==> The testcase located in:\n",'    '+testcaselocation[0]),print()  
+            basic_class.mylogger_record.info('The testcase located in:') 
+            basic_class.mylogger_title.title(testcaselocation[0])  
             testcaselocation
             return testcaselocation
     else:
-        print('==> The testcase located in:')
+        basic_class.mylogger_record.info('The testcase located in:') 
         for testcase in testcaselocation:
-            print('    '+testcase)
+            basic_class.mylogger_title.title(testcase)  
         return testcaselocation
         
 
@@ -237,7 +238,29 @@ def create_log_folders():
     global_variables.set_value('logpath',initialpath+'/logs/'+foldername)
     global_variables.set_value('summarypath',initialpath+'/summary/'+foldername)
     
+
+
+def summary(result_lists):
+    """this function will analyze the test outcome,determin if tests successfully or not,and record results to summary.log"""
     
+    import basic_class
+    
+    success_flag = 0                   # use to accumulate the 'success' number,from 0
+    target = len(result_lists)         # for result_lists=['threshold success', 'count success'] ,target wil be 2 (success)
+                                       # if  result_lists=['threshold success', 'count faile'],target still be 2, but will failed
+    for result in result_lists:
+        if 'success' in result.lower():
+            success_flag += 1
+    
+    if success_flag == target:
+        basic_class.mylogger_record.info('all test steps passed.') 
+        basic_class.mylogger_summary.summary('tesecase         .......... pass') 
+    else:
+        basic_class.mylogger_record.info('not all test steps passed.') 
+        basic_class.mylogger_summary.summary('tesecase         .......... pass')       
+            
+        	
+              
     
     
 

@@ -65,7 +65,7 @@ class POP_Ops(POP3):
         try:
             self.resp = self.pop3.auth_plain(authstring)
         finally:    
-            [basic_class.mylogger_record.debug(self.resp)]
+            [basic_class.mylogger_record.debug(self.resp.decode())]
         #self.pop.quit()      
                   
     
@@ -141,8 +141,8 @@ class POP_Ops(POP3):
         
         basic_class.mylogger_record.info('command:<stat>')
         self.resp, self.items = self.pop3.stat()
-        [basic_class.mylogger_record.debug(self.resp)] 
-        [basic_class.mylogger_record.debug(self.items)]       
+        [basic_class.mylogger_record.debug(str(self.resp)+' '+str(self.items))] 
+        #[basic_class.mylogger_record.debug(self.items)]       
         #self.pop.quit()    
         
                 

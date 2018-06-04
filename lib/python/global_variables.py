@@ -48,10 +48,10 @@ def get_values(*keys,defValue=None):
     
     import basic_class
     tmp_vars = []
+    basic_class.mylogger_record.debug('items in _global_dict are:')
     for key in keys:
         try:
             tmp_vars.append(_global_dict[key])
-            basic_class.mylogger_record.debug('keys =')
             basic_class.mylogger_recordct.debug(key+' = '+_global_dict[key])
         except KeyError:
             tmp_vars.append(defValue)
