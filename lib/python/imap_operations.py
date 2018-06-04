@@ -31,7 +31,7 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap login '+self.loginuser+' '+self.loginpass+'>')        
         self.outcome,self.logdata = self.imap4.login(self.loginuser,self.loginpass)
         basic_class.mylogger_record.debug(self.logdata[0].decode())
-        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
     
     
@@ -44,7 +44,7 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap logout>')        
         self.outcome,self.logdata = self.imap4.logout()
         basic_class.mylogger_record.debug(self.logdata[0].decode())        
-        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
 
 
 
@@ -57,7 +57,7 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap select '+self.mailbox+'>')        
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
         basic_class.mylogger_record.debug(self.logdata[0].decode())
-        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
    
     
@@ -71,8 +71,8 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap fetch '+self.message_set+' '+self.message_parts+'>')        
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
         basic_class.mylogger_record.debug('the fetch_rsp_data is:')
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
-        [basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
+        [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
+        [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
         #self.imap4.logout()
         
     
@@ -90,7 +90,7 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.debug('authobject = '+str(self.authobject))
         self.outcome,self.logdata = self.imap4.authenticate(self.mechanism,self.authobject)
         basic_class.mylogger_record.debug(self.logdata[0].decode())
-        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
 
     def imap_auth_crammd5(self,loginuser,loginpass):
@@ -102,7 +102,7 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap authenticate cram-md5>')        
         self.outcome,self.logdata = self.imap4.login_cram_md5(self.loginuser,self.loginpass)
         basic_class.mylogger_record.debug(self.logdata[0].decode())
-        #[basic_class.mylogger_recordct.debug(line.decode('utf-8')) for line in self.logdata]
+        #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
         #self.imap4.logout()
  
 

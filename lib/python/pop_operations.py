@@ -102,7 +102,7 @@ class POP_Ops(POP3):
         basic_class.mylogger_record.info('command:<capa>')        
         self.resp = self.pop3.capa()
         basic_class.mylogger_record.debug('the capa_rsp_data is:')        
-        [basic_class.mylogger_recordct.debug(single_resp) for single_resp in self.resp]
+        [basic_class.mylogger_recordnf.debug(single_resp) for single_resp in self.resp]
         
         
     def pop_set_debuglevel(self):
@@ -159,7 +159,7 @@ class POP_Ops(POP3):
         else:    
             self.resp,self.items,self.octets = self.pop3.list(self.which)
             basic_class.mylogger_record.debug('the list_rsp_data is: ')            
-            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
+            [basic_class.mylogger_recordnf.debug(item.decode()) for item in self.items]       
         #self.pop.quit()    
 
         
@@ -173,7 +173,7 @@ class POP_Ops(POP3):
         try:
             self.resp,self.items,self.octets = self.pop3.retr(self.which)
             basic_class.mylogger_record.debug('the retr_rsp_data is:')            
-            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
+            [basic_class.mylogger_recordnf.debug(item.decode()) for item in self.items]       
         except:
             pass
         #self.pop.quit()    
@@ -228,7 +228,7 @@ class POP_Ops(POP3):
         try:
             self.resp,self.items,self.octets = self.pop3.top(self.which,self.howmuch)
             basic_class.mylogger_record.debug('the top_rsp_data is:')            
-            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
+            [basic_class.mylogger_recordnf.debug(item.decode()) for item in self.items]       
         except:
             pass
         #self.pop.quit() 
@@ -248,7 +248,7 @@ class POP_Ops(POP3):
         else:   
             self.resp,self.items,self.octets = self.pop3.uidl(self.which)
             basic_class.mylogger_record.debug('the top_rsp_data is: ')
-            [basic_class.mylogger_recordct.debug(item.decode()) for item in self.items]       
+            [basic_class.mylogger_recordnf.debug(item.decode()) for item in self.items]       
         #self.pop.quit()         
         
         

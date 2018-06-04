@@ -23,7 +23,7 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     
     content_lists = content.split('\n')
     basic_class.mylogger_record.debug('content_lists=')
-    [basic_class.mylogger_recordct.debug(content_list) for content_list in content_lists]
+    [basic_class.mylogger_recordnf.debug(content_list) for content_list in content_lists]
     for list in content_lists:
         list = ('/'.join(list.split(' ')[-2:])).split('/')   # example : ['9', '9', '0', '403', '38', '54']
         count_total += int(list[0])
@@ -42,7 +42,6 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
 
     if  operation_times == count_total and count_total == count_pass_fail:
         if count_fail > 0:
-            print(int(max(max_time_lists)))
             if int(max(max_time_lists)) > int(cmp_obj1.strip('[').strip(']')):
                 result_lists.append('count success')
             else:

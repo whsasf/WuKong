@@ -35,8 +35,8 @@ class Discovery():
         
 
 
-class Loggger_summary():
-    """this class only log info messages in logs"""
+class Loggger_summary():  
+    """this class only only write to summary file  without format"""
     
     def __init__(self):    	
         """ definition of some"""
@@ -50,13 +50,18 @@ class Loggger_summary():
         self.fh.setFormatter(self.formatter)
         self.loggerrr.addHandler(self.fh)
 
-        
-    def summary(self,summmessages='this is summary message'):
+
+    def yes(self,summmessages='this test case passed'):
         self.loggerrr.info(summmessages)
+
+    def no(self,summmessages='this test case failed'):
+        self.loggerrr.info(summmessages)
+                
+            
                         
 
-class Loggger_record():
-    """this is a class for logging debug part"""
+class Loggger_record():     
+    """this is a class for logging any records to screen and log files with format"""
     
     def __init__(self,chloglevel):    	
         """ definition of some"""
@@ -99,9 +104,15 @@ class Loggger_record():
     def critical(self,criticalmessages='this is critical message'):    
         self.logger.critical('\033[1;31m'+criticalmessages+'\033[0m')
 
+    def yes(self,yesmessages='this is yes message'):
+        self.logger.info('\033[1;32m'+yesmessages+'\033[0m')
 
-class Loggger_record_content():
-    """this is a class for logging debug large content part"""
+    def no(self,nomessages='this is no message'):
+        self.logger.info('\033[1;31m'+nomessages+'\033[0m')        
+        
+
+class Loggger_record_noformat():
+    """this is a class for logging any records to screen and log files without format"""
     
     def __init__(self,chloglevel):    	
         """ definition of some"""
@@ -144,45 +155,45 @@ class Loggger_record_content():
     def critical(self,criticalmessages='this is critical message'):    
         self.logger.critical('\033[1;31m'+criticalmessages+'\033[0m')
         
-        
-        
-class Loggger_title():
-    """this class only log the into to screen and logs"""
-    
-    def __init__(self):    	
-        """ definition of some"""
-        self.loggerr = logging.getLogger('WK-title')
-        self.loggerr.setLevel(logging.INFO)  #defaut 'INFO'
-        self.chloglevel = chloglevel        
-        self.ch = logging.StreamHandler()
-        self.ch.setLevel(logging.INFO) #default 'INFO'
-        #self.ch.setLevel(logging.ERROR)        
-        #initialpath = global_variables.get_value('initialpath')
-        #print('initialpath='+initialpath)
-        import global_variables
-        self.logpath = global_variables.get_value('logpath')
-        self.fh = logging.FileHandler(self.logpath+'/alltestcases.log')
-        self.fh.setLevel(logging.INFO)
-        self.formatter = logging.Formatter('%(message)s')
-        self.ch.setFormatter(self.formatter)
-        self.fh.setFormatter(self.formatter)
-        self.loggerr.addHandler(self.ch)
-        self.loggerr.addHandler(self.fh)
-        
     def title(self,titlemessages='this is title message'):
-        self.loggerr.info('\033[1;34m'+titlemessages+'\033[0m')
+        self.logger.info('\033[1;34m'+titlemessages+'\033[0m')        
         
-
+#class Loggger_title():
+#    """this class only log the into to screen and logs"""
+    
+#    def __init__(self):    	
+#        """ definition of some"""
+#        self.loggerr = logging.getLogger('WK-title')
+#        self.loggerr.setLevel(logging.INFO)  #defaut 'INFO'
+#        self.chloglevel = chloglevel        
+#        self.ch = logging.StreamHandler()
+#        self.ch.setLevel(logging.INFO) #default 'INFO'
+#        #self.ch.setLevel(logging.ERROR)        
+#        #initialpath = global_variables.get_value('initialpath')
+#        #print('initialpath='+initialpath)
+#        import global_variables
+#        self.logpath = global_variables.get_value('logpath')
+#        self.fh = logging.FileHandler(self.logpath+'/alltestcases.log')
+#        self.fh.setLevel(logging.INFO)
+#        self.formatter = logging.Formatter('%(message)s')
+#        self.ch.setFormatter(self.formatter)
+#        self.fh.setFormatter(self.formatter)
+#        self.loggerr.addHandler(self.ch)
+#        self.loggerr.addHandler(self.fh)
+#        
+#    def title(self,titlemessages='this is title message'):
+#        self.loggerr.info('\033[1;34m'+titlemessages+'\033[0m')
+        
 
 if True:
     from basic_function import parse_chloglevel
     
     chloglevel = parse_chloglevel() 
     
-    mylogger_summary  = Loggger_summary()                   # example: basic_class.mylogger_summary.summary('zfxfdsfdsf')
-    mylogger_title    = Loggger_title()                     # example: basic_class.mylogger_title.info('step1')    
-    mylogger_record   = Loggger_record(chloglevel)          # example: basic_class.mylogger_record.info('step1')
-    mylogger_recordct = Loggger_record_content(chloglevel)  # example: basic_class.mylogger_recordct..info('step1')
+    mylogger_summary  = Loggger_summary()                    # example: basic_class.mylogger_summary.yes('yes')
+#   mylogger_title    = Loggger_title()                      # example: basic_class.mylogger_title.info('step1')    
+    mylogger_record   = Loggger_record(chloglevel)           # example: basic_class.mylogger_record.info('step1')
+    mylogger_recordnf = Loggger_record_noformat(chloglevel)  # example: basic_class.mylogger_recordcf.info('step1')
 
 
  

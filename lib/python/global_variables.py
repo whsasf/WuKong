@@ -52,7 +52,7 @@ def get_values(*keys,defValue=None):
     for key in keys:
         try:
             tmp_vars.append(_global_dict[key])
-            basic_class.mylogger_recordct.debug(key+' = '+_global_dict[key])
+            basic_class.mylogger_recordnf.debug(key+' = '+_global_dict[key])
         except KeyError:
             tmp_vars.append(defValue)
     return tmp_vars

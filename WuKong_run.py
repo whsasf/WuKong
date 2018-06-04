@@ -47,9 +47,10 @@ def main():
     basic_function.execute(tclocation,initialpath) #executing testcases 
     
     basic_class.mylogger_record.info('11111111111111')   
-    basic_class.mylogger_recordct.info('11111111111111')
-    basic_class.mylogger_summary.summary('zfxfdsfdsf')
-    basic_class.mylogger_title.title('hihihiih')
+    basic_class.mylogger_recordnf.info('11111111111111')
+    basic_class.mylogger_summary.yes('yesyesyesyesyes')  
+    basic_class.mylogger_summary.no('nonononono')
+    basic_class.mylogger_recordnf.title('hihihiih')
      #pprint.pprint(sys.modules)
      #mylogger=basic_class.Loggger('WuKong',chloglevel)
 #    basic_class.mylogger_record.debug('debug')

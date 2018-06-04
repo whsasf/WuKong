@@ -46,3 +46,4 @@ basic_class.mylogger_record.info('step2:check and analyze imapserv.stat file ...
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatImapAuthCommand"'.format(mx_account),0)
 result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatImapAuthCommand',20)
 
+basic_function.summary(result_lists)

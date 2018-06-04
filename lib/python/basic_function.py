@@ -6,9 +6,9 @@ def welcome():
     """the welcome function used to print some welcome header when using this WuKong test suits"""
     
     import basic_class
-    basic_class.mylogger_title.title('='*68)
-    basic_class.mylogger_title.title('='+"{:^66}".format('WuKong Test Suit')+'=')
-    basic_class.mylogger_title.title('='*68)
+    basic_class.mylogger_recordnf.title('='*68)
+    basic_class.mylogger_recordnf.title('='+"{:^66}".format('WuKong Test Suit')+'=')
+    basic_class.mylogger_recordnf.title('='*68)
  
 
 
@@ -97,17 +97,17 @@ def parse_testcaselocation(testcaselocation):
                 lines = file_obj.read().splitlines()
             basic_class.mylogger_record.info('The testcase located in:') 
             for line in lines:
-                basic_class.mylogger_title.title(line.strip())
+                basic_class.mylogger_recordnf.title(line.strip())
             return lines
         else:
             basic_class.mylogger_record.info('The testcase located in:') 
-            basic_class.mylogger_title.title(testcaselocation[0])  
+            basic_class.mylogger_recordnf.title(testcaselocation[0])  
             testcaselocation
             return testcaselocation
     else:
         basic_class.mylogger_record.info('The testcase located in:') 
         for testcase in testcaselocation:
-            basic_class.mylogger_title.title(testcase)  
+            basic_class.mylogger_recordnf.title(testcase)  
         return testcaselocation
         
 
@@ -251,18 +251,11 @@ def summary(result_lists):
     for result in result_lists:
         if 'success' in result.lower():
             success_flag += 1
-    
+        
     if success_flag == target:
-        basic_class.mylogger_record.info('all test steps passed.') 
-        basic_class.mylogger_summary.summary('tesecase         .......... pass') 
+        basic_class.mylogger_record.yes('all test steps passed.') 
+        basic_class.mylogger_summary.yes('tesecase         .......... [PASS]') 
     else:
-        basic_class.mylogger_record.info('not all test steps passed.') 
-        basic_class.mylogger_summary.summary('tesecase         .......... pass')       
-            
+        basic_class.mylogger_record.no('not all test steps passed.') 
+        basic_class.mylogger_summary.no('tesecase         .......... [FAIL]')       
         	
-              
-    
-    
-
-
-    
