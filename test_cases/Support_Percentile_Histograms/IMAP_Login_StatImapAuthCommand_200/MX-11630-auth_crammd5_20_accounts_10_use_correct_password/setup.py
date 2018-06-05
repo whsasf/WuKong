@@ -9,7 +9,8 @@
 #               /*/common/maxBadPasswordDelay: [0]    # no delay,default 90 
 #               /*/imapserv/allowCRAMMD5: [true]      # enable cram-md5
 # (2) create 20 accounts:testuser1@openwave.com -test20@openwave.com
-# (3) clear current imapserv.stat file
+# (3) calculate and set hmac value for each account
+# (4) clear current imapserv.stat file
 
 import basic_function
 import basic_class
@@ -33,8 +34,12 @@ remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {
 basic_class.mylogger_record.info('step2:create 20 accounts')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=20;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',20)
 
+basic_class.mylogger_record.info('step3: set hmac for each account')
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=20;i++));do hmac_value=$(imgenhmac {1}$i);echo $hmac_value; imdbcontrol sac {1}$i {2} mailpasswordhmac $hmac_value;done\''.format(mx_account,test_account_base,default_domain),0)
+
+
 time.sleep(30) # to avoid last operations not expires
-basic_class.mylogger_record.info('step3: clear current imapserv.stat file')
+basic_class.mylogger_record.info('step4: clear current imapserv.stat file')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
 
 

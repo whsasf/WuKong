@@ -11,7 +11,8 @@
 #               /*/imapserv/allowCRAMMD5: [true]        # enable cram-md5
 # (2) create 20 accounts:testuser1@openwave.com -test20@openwave.com
 # (3) create a alias name for each account testuser1 --> u1
-# (4) clear current imapserv.stat file
+# (4) calculate and set hamc value for each account
+# (5) clear current imapserv.stat file
 
 import basic_function
 import basic_class
@@ -38,8 +39,11 @@ remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {
 basic_class.mylogger_record.info('step3:create alias names for 20 accounts')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=20;i++));do imdbcontrol CreateAlias {1}$i u$i {2};done\''.format(mx_account,test_account_base,default_domain),0)
 
+basic_class.mylogger_record.info('step4: set hmac for each account')
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=20;i++));do hmac_value=$(imgenhmac {1}$i);echo $hmac_value; imdbcontrol sac {1}$i {2} mailpasswordhmac $hmac_value;done\''.format(mx_account,test_account_base,default_domain),0)
+
 time.sleep(30) # to avoid last operations not expires
-basic_class.mylogger_record.info('step3: clear current imapserv.stat file')
+basic_class.mylogger_record.info('step5: clear current imapserv.stat file')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
 
 

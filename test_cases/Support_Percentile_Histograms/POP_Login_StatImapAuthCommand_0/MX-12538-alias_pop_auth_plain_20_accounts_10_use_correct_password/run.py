@@ -3,7 +3,7 @@
 
 ##steps:
 # (1) imap login 10 accounts with correct credentials, the other 10 use wrong credentials
-# (2) check and analyze imapserv.stat file .make sure the total attempts are 20 ,and half passed ,half failed
+# (2) check and analyze popserv.stat file .make sure the total attempts are 20 ,and half passed ,half failed
 
 import basic_function
 import basic_class
@@ -42,8 +42,8 @@ for i in range(11,21):
 #step 2
 basic_class.mylogger_record.info('fetching popserv.stat ...')
 time.sleep (50)
-basic_class.mylogger_record.info('step2:check and analyze imapserv.stat file ...')
-imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/popserv.stat|grep StatPopPassCommand"'.format(mx_account),0)
-result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[0]','StatPopPassCommand',20)
+basic_class.mylogger_record.info('step2:check and analyze popserv.stat file ...')
+popserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/popserv.stat|grep StatPopPassCommand"'.format(mx_account),0)
+result_lists = stat_statistics.stat_statistic(popserv_stat_content,'[0]','StatPopPassCommand',20)
 
 basic_function.summary(result_lists)
