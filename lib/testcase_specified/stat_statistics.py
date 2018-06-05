@@ -22,8 +22,8 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
         result_lists.append('threshold fail')
     
     content_lists = content.split('\n')
-    basic_class.mylogger_record.debug('content_lists=')
-    [basic_class.mylogger_recordnf.debug(content_list) for content_list in content_lists]
+    #basic_class.mylogger_record.debug('content_lists=')
+    #[basic_class.mylogger_recordnf.debug(content_list) for content_list in content_lists]
     for list in content_lists:
         list = ('/'.join(list.split(' ')[-2:])).split('/')   # example : ['9', '9', '0', '403', '38', '54']
         count_total += int(list[0])

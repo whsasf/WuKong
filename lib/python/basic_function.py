@@ -3,15 +3,41 @@
 
 
 def welcome():
-    """the welcome function used to print some welcome header when using this WuKong test suits"""
+    """the welcome function used to print some welcome header when using this WuKong test suits
+       also print headers in summary.log
+    """
     
     import basic_class
+    import global_variables
+    
     basic_class.mylogger_recordnf.title('='*68)
     basic_class.mylogger_recordnf.title('='+"{:^66}".format('WuKong Test Suit')+'=')
     basic_class.mylogger_recordnf.title('='*68)
- 
-
-
+    
+    summary_print_length = 100
+    global_variables.set_value('summary_print_length',summary_print_length)
+    
+    owm_version = global_variables.get_value('owm_version')
+    summary_title = ' MX TestCases Summary for '+owm_version+' '
+    
+    if len(summary_title) % 2 == 0:    #make sure summary_title has even length
+        pass
+    else:
+        summary_title += ' '
+    
+    dummy_length1 = int((summary_print_length - len(summary_title)) /2)
+    basic_class.mylogger_summary.yes('='*dummy_length1+summary_title+'='*dummy_length1+'\n')
+    
+    # below 3 variables will be used in summaryfunction and statistics function later to generate a summary
+    total_testcases_num = 0
+    passed_testcases_num = 0
+    failed_testcases_num = 0
+    
+    global_variables.set_value('total_testcases_num',total_testcases_num)
+    global_variables.set_value('passed_testcases_num',passed_testcases_num)
+    global_variables.set_value('failed_testcases_num',failed_testcases_num)
+    
+    
 def print_mx_version():
     """print mx_version get from basic_function.create_log_folders()"""
     
@@ -59,23 +85,6 @@ def parse_chloglevel():
     global_variables.set_value('chloglevel',chloglevel) # store chloglevel into dict
     return chloglevel
 
-
-    
-#def log_all_args():
-#    """This function used to log all arguments"""
-#    
-#    import basic_class
-#    import global_variables
-#    global_variables.get_value('argvlist',argvlist)
-#    basic_class.mylogger.info('The testcase location paramaters are:'+str(argvlist))
-#    basic_class.mylogger.info('The chloglevel is:'+str(argvlist))
-    
-#    print ("==> The testcase location paramaters are:\n",'    '+str(argvlist)), print()
-#    print ("==> The chloglevel paramater is:\n",'    '+chloglevel), print()
-#    return argvlist,chloglevel
-    
-    
-
             
 def parse_testcaselocation(testcaselocation):
     """this function will chelk if the testcaselocation is:
@@ -119,11 +128,24 @@ def traverse_judge(casename,currentlists):
     import sys
     import global_variables
     import time
-
+    import basic_class
+    
     num = global_variables.get_value('num') 
     oldcasename = casename+'.py'
     
     if  oldcasename in currentlists:
+    	  
+    	  # print part test case names :setup or run or teardown 
+        if 'setup' in casename.lower():
+            basic_class.mylogger_recordnf.title('[-->Executing setup.py ...]') 
+        elif 'run' in casename.lower():
+            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]')     
+        elif 'teardown' in casename.lower():
+            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]')    
+        else:
+            basic_class.mylogger_record.warning('Please make sure testcases names are among:setup,run,teardowm!')
+            exit (1)
+
         newcase = casename+str(num)
         newcasename = newcase+'.py'
         os.rename(oldcasename,newcasename)
@@ -149,7 +171,9 @@ def traverse(Path):
     
     import os
     import sys
-
+    import basic_class
+    import global_variables 
+    
     os.chdir(Path)                 # switch to current Path
     
     currentlists = os.listdir('.') # get current folder and file names in current path
@@ -159,9 +183,22 @@ def traverse(Path):
     for list in currentlists:      # delete the '__pycache__/' folderss
         if '__pycache__' in list:
             currentlists.remove(list)
+    
+    # print test case title if this is a final testcase folder ,means no sub folders
+    bottom_flag = [os.path.isfile(list) for list in currentlists]
+    if bottom_flag.count(True) == len(bottom_flag):    # has no sub folders,is a testcase folder 
+        testcase_name = os.getcwd().split('/')[-1]
+        #basic_class.mylogger_recordnf.title('\n'+'-'*(17+len(testcase_name)))
+        basic_class.mylogger_recordnf.title('\n---Testcase: '+testcase_name+' ---')
+        #basic_class.mylogger_recordnf.title('-'*(17+len(testcase_name)))
+        global_variables.set_value('testcase_name',testcase_name)
+    else: 
+        folder_name = os.getcwd().split('/')[-1]                                             # has sub folders ,is a test suits folder
+        #basic_class.mylogger_recordnf.title('\n'+'='*(17+len(folder_name)))
+        basic_class.mylogger_recordnf.title('\n===Testsuit: '+folder_name+' ===') 
+        #basic_class.mylogger_recordnf.title('='*(17+len(folder_name))) 
             
     #print('currentlists:',currentlists)
-    
     traverse_judge('setup',currentlists)      # run setup if exists
     traverse_judge('run',currentlists)        # run run if exists                
     for list in currentlists:
@@ -179,6 +216,13 @@ def execute(Paths,initialpath):
     """this function is used to traverse all folders and files under target path,and run specific scripts"""
     
     import os 
+    import basic_class
+    
+    # print title to indicate begin running all testcases
+    basic_class.mylogger_recordnf.title('###################################################################')
+    basic_class.mylogger_recordnf.title('+               Executing all testcases as required               +')
+    basic_class.mylogger_recordnf.title('###################################################################')
+    
     for Path in Paths:         # traverse each Path in Paths
         os.chdir(initialpath)  # switch to initialpath ,initialze
         traverse(Path)         # execute testcases under Path
@@ -240,22 +284,60 @@ def create_log_folders():
     
 
 
-def summary(result_lists):
+def summary(result_lists,tc_name = ''):
     """this function will analyze the test outcome,determin if tests successfully or not,and record results to summary.log"""
     
     import basic_class
+    import global_variables
+    
+    total_testcases_num = global_variables.get_value('total_testcases_num')
+    passed_testcases_num = global_variables.get_value('passed_testcases_num')
+    failed_testcases_num = global_variables.get_value('failed_testcases_num')
     
     success_flag = 0                   # use to accumulate the 'success' number,from 0
     target = len(result_lists)         # for result_lists=['threshold success', 'count success'] ,target wil be 2 (success)
                                        # if  result_lists=['threshold success', 'count faile'],target still be 2, but will failed
+    if tc_name != '':                  # will use customer input testcase name to print 
+        testcase_name = tc_name
+    else:                              # will use default testcase name got from 'os.getcwd().split('/')[-1]'
+        testcase_name = global_variables.get_value('testcase_name')           	
+    
+    summary_print_length = int(global_variables.get_value('summary_print_length'))
     for result in result_lists:
         if 'success' in result.lower():
             success_flag += 1
-        
+    
+    dummy_length2 = int(summary_print_length - len(testcase_name) -7)
     if success_flag == target:
-        basic_class.mylogger_record.yes('all test steps passed.') 
-        basic_class.mylogger_summary.yes('tesecase         .......... [PASS]') 
+        basic_class.mylogger_record.yes('All test steps passed.') 
+        basic_class.mylogger_summary.yes(testcase_name+' '+'.'*dummy_length2+' [PASS]') 
+        passed_testcases_num += 1
+        global_variables.set_value('passed_testcases_num',passed_testcases_num)   # update passed_testcases_num
     else:
-        basic_class.mylogger_record.no('not all test steps passed.') 
-        basic_class.mylogger_summary.no('tesecase         .......... [FAIL]')       
-        	
+        basic_class.mylogger_record.no('Not all test steps passed.') 
+        basic_class.mylogger_summary.no(testcase_name+' '+'.'*dummy_length2+' [FAIL]') 
+        failed_testcases_num += 1
+        global_variables.set_value('failed_testcases_num',failed_testcases_num)   # update total_testcases_num
+        
+    total_testcases_num += 1
+    global_variables.set_value('total_testcases_num',total_testcases_num)         # update total_testcases_num
+
+
+
+def statistics():
+    """thid function used to statistic total tetscases numbers ,and passed numbers ,and failed numbers"""
+    
+    import basic_class
+    import global_variables
+
+    total_testcases_num = global_variables.get_value('total_testcases_num')
+    passed_testcases_num = global_variables.get_value('passed_testcases_num')
+    failed_testcases_num = global_variables.get_value('failed_testcases_num')
+        
+    basic_class.mylogger_summary.yes('Total number of Test Cases: '+str(total_testcases_num))
+    basic_class.mylogger_summary.yes('PASS:                       '+str(passed_testcases_num))
+    basic_class.mylogger_summary.yes('FAIL:                       '+str(failed_testcases_num))
+    
+    
+     
+            	

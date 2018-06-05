@@ -51,11 +51,11 @@ class Loggger_summary():
         self.loggerrr.addHandler(self.fh)
 
 
-    def yes(self,summmessages='this test case passed'):
-        self.loggerrr.info(summmessages)
+    def yes(self,yesmessages='this test case passed'):
+        self.loggerrr.info(yesmessages)
 
-    def no(self,summmessages='this test case failed'):
-        self.loggerrr.info(summmessages)
+    def no(self,nomessages='this test case failed'):
+        self.loggerrr.info(nomessages)
                 
             
                         
@@ -156,35 +156,8 @@ class Loggger_record_noformat():
         self.logger.critical('\033[1;31m'+criticalmessages+'\033[0m')
         
     def title(self,titlemessages='this is title message'):
-        self.logger.info('\033[1;34m'+titlemessages+'\033[0m')        
+        self.logger.info('\033[1;36m'+titlemessages+'\033[0m')        
         
-#class Loggger_title():
-#    """this class only log the into to screen and logs"""
-    
-#    def __init__(self):    	
-#        """ definition of some"""
-#        self.loggerr = logging.getLogger('WK-title')
-#        self.loggerr.setLevel(logging.INFO)  #defaut 'INFO'
-#        self.chloglevel = chloglevel        
-#        self.ch = logging.StreamHandler()
-#        self.ch.setLevel(logging.INFO) #default 'INFO'
-#        #self.ch.setLevel(logging.ERROR)        
-#        #initialpath = global_variables.get_value('initialpath')
-#        #print('initialpath='+initialpath)
-#        import global_variables
-#        self.logpath = global_variables.get_value('logpath')
-#        self.fh = logging.FileHandler(self.logpath+'/alltestcases.log')
-#        self.fh.setLevel(logging.INFO)
-#        self.formatter = logging.Formatter('%(message)s')
-#        self.ch.setFormatter(self.formatter)
-#        self.fh.setFormatter(self.formatter)
-#        self.loggerr.addHandler(self.ch)
-#        self.loggerr.addHandler(self.fh)
-#        
-#    def title(self,titlemessages='this is title message'):
-#        self.loggerr.info('\033[1;34m'+titlemessages+'\033[0m')
-        
-
 if True:
     from basic_function import parse_chloglevel
     

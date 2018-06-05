@@ -3,7 +3,7 @@
 
  # green logging.error('\033[1;32msdfsdf\033[0m')    pass/
  # red   logging.error('\033[1;31msdfsdf\033[0m')    failed/warning/error/criticle
- # blue   logging.error('\033[1;34msdfsdf\033[0m')   title
+ # blue  logging.error('\033[1;34msdfsdf\033[0m')   title
  
 """ This Python file is the main Python run script.Created on 2018/05/16"""
 
@@ -21,15 +21,20 @@ global_variables.import_variables_from_file([initialpath+'/etc/global.vars',init
 from basic_function import create_log_folders
 create_log_folders()
 
-from basic_function import welcome
-welcome()             #print welcome headers
+
+
 
 import sys
 import basic_class
 import basic_function
 
 #global_variables.get_dict()
-basic_function.print_mx_version()
+basic_function.print_mx_version()  
+
+from basic_function import welcome           
+welcome()             #print welcome headers 
+
+
 def main():
     """main function to active logging,testcase running"""    
     
@@ -44,8 +49,9 @@ def main():
     basic_class.mylogger_record.debug('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    basic_function.execute(tclocation,initialpath) #executing testcases 
+    #basic_function.execute(tclocation,initialpath) #executing testcases 
     
+    basic_function.statistics()
     basic_class.mylogger_record.info('11111111111111')   
     basic_class.mylogger_recordnf.info('11111111111111')
     basic_class.mylogger_summary.yes('yesyesyesyesyes')  
@@ -65,15 +71,29 @@ def main():
     #traverse
     
     #for i in range(1,3):
-    #    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-        #myimap.imap_login('xx1','pp')
+    import imap_operations
+    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+    myimap.imap_login('xx1','p')
+    myimap.imap_select()
+    myimap.imap_fetch('1:*','rfc822')
+    myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='Trash')
+    myimap.imap_create('haha2')
+    myimap.imap_create('haha2/haha3')
+    myimap.imap_create('haha2/haha3/haha4')
+    myimap.imap_list(pattern='%')
+    myimap.imap_list(directory='haha2')
+    myimap.imap_select('Trash')
+    myimap.imap_copy('1,2','haha2')
+    myimap.imap_logout()
+    
+    
     #    try:
     #        myimap.imap_authenticate('xx1','pp')
     #    except:
     #        print('some error happened, butwill pass')
     #        pass
         #myimap.imap_login('xx1','pp')
-        #myimap.imap_select()
+    
         #myimap.imap_fetch('1:6','rfc822')
     #    myimap.imap_logout()
     
