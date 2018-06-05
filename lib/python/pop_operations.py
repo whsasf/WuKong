@@ -60,10 +60,10 @@ class POP_Ops(POP3):
         self.username = username
         self.passwd = passwd
         #authstring = 'AHh4MQBw'
-        authstring = (base64.b64encode(('{}'.format('\000'+self.username+'\000'+self.passwd)).encode())).decode()
-        basic_class.mylogger_record.info('command:<auth plain '+authstring+'>')        
+        #authstring = (base64.b64encode(('{}'.format('\000'+self.username+'\000'+self.passwd)).encode())).decode()
+        basic_class.mylogger_record.info('command:<auth plain '+self.username+self.passwd+'>')        
         try:
-            self.resp = self.pop3.auth_plain(authstring)
+            self.resp = self.pop3.auth_plain(self.username,self.passwd)
         finally:    
             [basic_class.mylogger_record.debug(self.resp.decode())]
         #self.pop.quit()      

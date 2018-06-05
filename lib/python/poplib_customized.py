@@ -4,7 +4,7 @@ Based on the J. Myers POP3 draft, Jan. 96
 
 --new: This customized ppplib(poplib_customized.py) obtain a auth_plain function that added for mx testing ,based on official poplib.
 
---new: plesae enjoy Ram -June.2018
+--new: plesae enjoy -June.2018  Ram
 
 """
 
@@ -77,7 +77,8 @@ class POP3:
             CAPA                    capa()
             STLS                    stls()
             UTF8                    utf8()
-
+            AUTH PLAIN digest       auth plain (digest)
+          
     Raises one exception: 'error_proto'.
 
     Instantiate with:
@@ -217,10 +218,6 @@ class POP3:
         """
         return self._shortcmd('PASS %s' % pswd)
 
-    def auth_plain(self,authstring):
-        """send auth plain xxxx """
-        
-        return self._shortcmd('AUTH PLAIN %s' % authstring) 
     
     def stat(self):
         """Get mailbox status.
@@ -308,6 +305,18 @@ class POP3:
 
 
     # optional commands:
+    
+    def auth_plain(self,user,pswd):
+        """Authorisation
+        - only possible if server supports auth plain mode.
+        Args:          
+                user     - mailbox user;
+                password - mailbox password. 
+        """
+        import base64
+        digest = (base64.b64encode(('{}'.format('\000'+user+'\000'+pswd)).encode())).decode()
+        return self._shortcmd('AUTH PLAIN %s' % digest) 
+
 
     def rpop(self, user):
         """Not sure what this does."""

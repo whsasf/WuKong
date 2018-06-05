@@ -49,7 +49,7 @@ def main():
     basic_class.mylogger_record.debug('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    #basic_function.execute(tclocation,initialpath) #executing testcases 
+    basic_function.execute(tclocation,initialpath) #executing testcases 
     
     basic_function.statistics()
     basic_class.mylogger_record.info('11111111111111')   
@@ -71,20 +71,27 @@ def main():
     #traverse
     
     #for i in range(1,3):
-    import imap_operations
-    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-    myimap.imap_login('xx1','p')
-    myimap.imap_select()
-    myimap.imap_fetch('1:*','rfc822')
-    myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='Trash')
-    myimap.imap_create('haha2')
-    myimap.imap_create('haha2/haha3')
-    myimap.imap_create('haha2/haha3/haha4')
-    myimap.imap_list(pattern='%')
-    myimap.imap_list(directory='haha2')
-    myimap.imap_select('Trash')
-    myimap.imap_copy('1,2','haha2')
-    myimap.imap_logout()
+    #import imap_operations
+    #myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+    #myimap.imap_login('xx1','p')
+    #myimap.imap_select()
+    ##myimap.imap_fetch('1:*','rfc822')
+    #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
+    #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
+    #myimap.imap_select()
+    #myimap.imap_create('haha2')
+    #myimap.imap_create('haha2/haha3')
+    #myimap.imap_create('haha2/haha3/haha4')
+    ##myimap.imap_list(pattern='%')
+    ##myimap.imap_list(directory='haha2')
+    ##myimap.imap_select('Trash')
+    #myimap.imap_copy('1,2','haha2')
+    ##myimap.imap_copy('1,2','INBOX')
+    ##myimap.imap_select()
+    #myimap.imap_move('1,2','haha2/haha3/haha4')
+    #myimap.imap_select()
+    #myimap.imap_select('haha2/haha3/haha4')
+    #myimap.imap_logout()
     
     
     #    try:

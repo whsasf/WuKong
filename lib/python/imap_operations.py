@@ -2,7 +2,7 @@
 # this module contains the IMAP operation related classes and functions
 
 # import need moduels
-from imaplib import IMAP4,Time2Internaldate
+from imaplib_customized import IMAP4,Time2Internaldate
 import base64
 import time
 import basic_class
@@ -22,8 +22,7 @@ class IMAP_Ops(IMAP4):
         self.imap4 = IMAP4(host = self.imaphost,port = self.imapport)           # instance of IMAP class
         #self.imap4_ssl = IMAP4_SSL(host = self.imaphost,port = self.imapport)  # instance of IMAP class
         
-        
-        
+               
     def imap_login(self,loginuser,loginpass):
         """method imap_login will perform imap login operation
            example: instance.imap_login('xx1','p')
@@ -120,6 +119,19 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap copy '+self.message_set+' '+self.new_mailbox+'>')        
         self.outcome,self.logdata = self.imap4.copy(self.message_set,self.new_mailbox)
         basic_class.mylogger_record.debug(self.logdata[0].decode())    
+        #self.imap4.logout() 
+        
+
+    def imap_move(self,message_set,new_mailbox):
+        """Move message_set messages onto end of new_mailbox from current folder
+           example: instance.imap_move('1,2','haha2')
+        """
+        
+        self.message_set = message_set
+        self.new_mailbox = new_mailbox
+        basic_class.mylogger_record.info('command:<imap move '+self.message_set+' '+self.new_mailbox+'>')        
+        self.outcome,self.logdata = self.imap4.move(self.message_set,self.new_mailbox)
+        basic_class.mylogger_record.debug(self.logdata[0].decode())
         #self.imap4.logout() 
         
             
