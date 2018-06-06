@@ -19,7 +19,7 @@ import time
 
 #print (global_variables.get_value('initialpath'))
 
-basic_class.mylogger_record.info('Runing setup testcase:mx-12534-pop_login_20_accounts_half_pass_half_fail')
+#basic_class.mylogger_record.info('Runing setup testcase:mx-12534-pop_login_20_accounts_half_pass_half_fail')
 basic_class.mylogger_record.debug('Preparing... get some variables needed for tests')
 
 pop1_host,pop1_port,mx_account,mx1_host1_ip,root_account,root_passwd,test_account_base,default_domain = \
