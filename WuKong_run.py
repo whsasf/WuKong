@@ -49,7 +49,7 @@ def main():
     basic_class.mylogger_record.debug('The initial path is:'+initialpath)
     global_variables.set_value('initialpath',initialpath)
     #print('testcaselocation=',testcaselocation)
-    basic_function.execute(tclocation,initialpath) #executing testcases 
+    #basic_function.execute(tclocation,initialpath) #executing testcases 
     
     basic_function.statistics()
     #basic_class.mylogger_record.info('11111111111111')   
@@ -71,15 +71,15 @@ def main():
     #traverse
     
     #for i in range(1,3):
-    #import imap_operations
-    #myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-    #myimap.imap_login('xx2','p')
-    #a = myimap.imap_select()
+    import imap_operations
+    myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
+    myimap.imap_login('xx2','p')
+    a = myimap.imap_select()
     #print(a)
     #print(type(a))
     #if int(a) == 2:
     #    print('hi')
-    #myimap.imap_fetch('1:*','rfc822')
+    myimap.imap_fetch('1:2','rfc822')
     #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
     #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
     #myimap.imap_select()

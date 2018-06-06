@@ -140,16 +140,18 @@ class IMAP_Ops(IMAP4):
         """method imap_fetch will perform imap fetch operation
            example: instance.imap_fetch(1,'RFC822') or instance.imap_fetch(1:*,'body[text]')   
         """
-    
+        import email
         self.message_set = message_set
         self.message_parts = message_parts
         basic_class.mylogger_record.info('command:<imap fetch '+self.message_set+' '+self.message_parts+'>')        
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
-        basic_class.mylogger_record.debug('the fetch_rsp_data is:')
-        #print (self.outcome)
-        #print(self.logdata)
-        [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
-        [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
+        basic_class.mylogger_record.debug('outcome= '+self.outcome)
+        basic_class.mylogger_record.debug('the fetch_rsp_data is:')        
+        print(self.logdata)
+        [print(type(line)) for line in self.logdata]
+        #[line.decode('utf-8') if '']
+        #[basic_class.mylogger_recordnf.debug()]    
+        [basic_class.mylogger_recordnf.debug(data.decode('utf-8')) for data in self.logdata if type(data) != 'int' and type(data) != 'tuple' ]
         #self.imap4.logout()
         
     
