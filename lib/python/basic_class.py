@@ -157,7 +157,12 @@ class Loggger_record_noformat():
         
     def title(self,titlemessages='this is title message'):
         self.logger.info('\033[1;36m'+titlemessages+'\033[0m')        
-        
+
+    def yes(self,yesmessages='this is yes message'):
+        self.logger.info('\033[1;32m'+yesmessages+'\033[0m')
+
+    def no(self,nomessages='this is no message'):
+        self.logger.info('\033[1;31m'+nomessages+'\033[0m')          
 if True:
     from basic_function import parse_chloglevel
     
