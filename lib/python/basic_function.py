@@ -309,12 +309,12 @@ def summary(result_lists,tc_name = ''):
     
     dummy_length2 = int(summary_print_length - len(testcase_name) -7)
     if success_flag == target:
-        basic_class.mylogger_record.yes('All test steps passed.') 
+        basic_class.mylogger_record.yes(testcase_name+' passed.') 
         basic_class.mylogger_summary.yes(testcase_name+' '+'.'*dummy_length2+' [PASS]') 
         passed_testcases_num += 1
         global_variables.set_value('passed_testcases_num',passed_testcases_num)   # update passed_testcases_num
     else:
-        basic_class.mylogger_record.no('Not all test steps passed.') 
+        basic_class.mylogger_record.no(testcase_name+' failed.') 
         basic_class.mylogger_summary.no(testcase_name+' '+'.'*dummy_length2+' [FAIL]') 
         failed_testcases_num += 1
         global_variables.set_value('failed_testcases_num',failed_testcases_num)   # update total_testcases_num
