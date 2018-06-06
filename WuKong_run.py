@@ -52,11 +52,11 @@ def main():
     basic_function.execute(tclocation,initialpath) #executing testcases 
     
     basic_function.statistics()
-    basic_class.mylogger_record.info('11111111111111')   
-    basic_class.mylogger_recordnf.info('11111111111111')
-    basic_class.mylogger_summary.yes('yesyesyesyesyes')  
-    basic_class.mylogger_summary.no('nonononono')
-    basic_class.mylogger_recordnf.title('hihihiih')
+    #basic_class.mylogger_record.info('11111111111111')   
+    #basic_class.mylogger_recordnf.info('11111111111111')
+    #basic_class.mylogger_summary.yes('yesyesyesyesyes')  
+    #basic_class.mylogger_summary.no('nonononono')
+    #basic_class.mylogger_recordnf.title('hihihiih')
      #pprint.pprint(sys.modules)
      #mylogger=basic_class.Loggger('WuKong',chloglevel)
 #    basic_class.mylogger_record.debug('debug')
@@ -73,9 +73,13 @@ def main():
     #for i in range(1,3):
     #import imap_operations
     #myimap = imap_operations.IMAP_Ops('10.49.58.239',20143)
-    #myimap.imap_login('xx1','p')
-    #myimap.imap_select()
-    ##myimap.imap_fetch('1:*','rfc822')
+    #myimap.imap_login('xx2','p')
+    #a = myimap.imap_select()
+    #print(a)
+    #print(type(a))
+    #if int(a) == 2:
+    #    print('hi')
+    #myimap.imap_fetch('1:*','rfc822')
     #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
     #myimap.imap_append(message=b"From:tom\nTo:lucy\nSubject:haha\n\nffffffffffffffffffff",mailbox='INBOX')
     #myimap.imap_select()

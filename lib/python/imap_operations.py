@@ -59,6 +59,7 @@ class IMAP_Ops(IMAP4):
         self.outcome,self.logdata = self.imap4.select(mailbox = self.mailbox,readonly = self.readonly)
         basic_class.mylogger_record.debug(self.logdata[0].decode())
         #[basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata]
+        return self.logdata[0].decode()
         #self.imap4.logout()
    
 
@@ -145,6 +146,8 @@ class IMAP_Ops(IMAP4):
         basic_class.mylogger_record.info('command:<imap fetch '+self.message_set+' '+self.message_parts+'>')        
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
         basic_class.mylogger_record.debug('the fetch_rsp_data is:')
+        #print (self.outcome)
+        #print(self.logdata)
         [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata[0] if self.outcome == 'OK']
         [basic_class.mylogger_recordnf.debug(line.decode('utf-8')) for line in self.logdata if self.outcome == 'NO' ]
         #self.imap4.logout()
