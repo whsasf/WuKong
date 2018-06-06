@@ -53,7 +53,7 @@ def remote_operation(sshhost,username,passwd,cmds,\
         else:
             basic_class.mylogger_record.debug('ssh success and no need check target') 
     else:
-        sshout=str(errout,'utf-8')
+        sshout=str(okout,'utf-8')+str(errout,'utf-8')
         basic_class.mylogger_record.debug('ssh operation fail')
     basic_class.mylogger_record.debug("sshout=")
     basic_class.mylogger_recordnf.debug(sshout)
