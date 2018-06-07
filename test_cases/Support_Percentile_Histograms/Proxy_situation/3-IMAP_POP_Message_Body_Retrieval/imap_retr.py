@@ -292,7 +292,7 @@ time.sleep(50)
 #11#########################################################################################################################
 basic_class.mylogger_recordnf.title('running testcase:MX-12595:statMSSRetrMsg_0_imap_fetch_INBOX_1:5_body')
 basic_class.mylogger_record.info('clear current imapserv.stat file')
-remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
+remote_operations.remote_operation(mx2_host1_ip,root_account,root_passwd,'su - {0} -c "> log/imapserv.stat"'.format(mx_account),0)
 
 for i in range(1,6):
     myimap = imap_operations.IMAP_Ops(mx1_imap1_host_ip,mx1_imap1_port)
