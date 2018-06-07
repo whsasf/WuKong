@@ -147,11 +147,17 @@ class IMAP_Ops(IMAP4):
         self.outcome,self.logdata = self.imap4.fetch(self.message_set, self.message_parts)
         basic_class.mylogger_record.debug('outcome= '+self.outcome)
         basic_class.mylogger_record.debug('the fetch_rsp_data is:')        
-        print(self.logdata)
-        [print(type(line)) for line in self.logdata]
-        #[line.decode('utf-8') if '']
-        #[basic_class.mylogger_recordnf.debug()]    
-        [basic_class.mylogger_recordnf.debug(data.decode('utf-8')) for data in self.logdata if type(data) != 'int' and type(data) != 'tuple' ]
+
+        if self.outcome == 'OK':
+            for line in self.logdata:
+                if 'tuple' in str(type(line)):
+                    for tup in line:
+                        basic_class.mylogger_recordnf.debug(tup.decode('utf-8'))
+                else:
+                    basic_class.mylogger_recordnf.debug(line.decode('utf-8'))    
+        else:
+            for line in self.logdata:
+                basic_class.mylogger_recordnf.debug(line.decode('utf-8'))
         #self.imap4.logout()
         
     
