@@ -129,9 +129,8 @@ def traverse_judge(casename,currentlists):
     import global_variables
     import time
     import basic_class
-    import imp
     
-    num = global_variables.get_value('num')
+    num = global_variables.get_value('num') 
     oldcasename = casename+'.py'
     
     if  oldcasename in currentlists:
@@ -147,23 +146,22 @@ def traverse_judge(casename,currentlists):
             basic_class.mylogger_record.warning('Please make sure testcases names are among:setup,run,teardowm!')
             exit (1)
 
-        #newcase = casename+str(num)
-        #newcasename = newcase+'.py'
-        #os.rename(oldcasename,newcasename)
+        newcase = casename+str(num)
+        newcasename = newcase+'.py'
+        os.rename(oldcasename,newcasename)
         path = os.getcwd()
         #print(path)
         sys.path.append(path)
         
         try:
-            __import__ (casename)
+            __import__ (newcase)
             num += 1
             global_variables.set_value('num',num)
             time.sleep(0.01) #without this sleep, next "os.rename" command may failed
 
         finally:
-            #os.rename(newcasename,oldcasename) # must reverse name change anyway 
-            #del sys.modules[newcase]
-            imp.reload(casename)
+            os.rename(newcasename,oldcasename) # must reverse name change anyway 
+            del sys.modules[newcase]
         #os.remove(newcasename) 
 
 

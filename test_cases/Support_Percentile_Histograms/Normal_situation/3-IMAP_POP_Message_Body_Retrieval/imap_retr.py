@@ -84,7 +84,7 @@ basic_class.mylogger_record.info('fetching imapserv.stat ...')
 time.sleep (50)
 basic_class.mylogger_record.info('check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatMSSRetrMsg"'.format(mx_account),0)
-result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatMSSRetrMsg',15)
+result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatMSSRetrMsg',5)
 basic_function.summary(result_lists,'MX-12447:statMSSRetrMsg_200_imap_fetch_INBOX_2_body')
 
 
@@ -216,7 +216,7 @@ basic_class.mylogger_record.info('fetching imapserv.stat ...')
 time.sleep (50)
 basic_class.mylogger_record.info('check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatMSSRetrMsg"'.format(mx_account),0)
-result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatMSSRetrMsg',15)
+result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[200]','StatMSSRetrMsg',5)
 basic_function.summary(result_lists,'MX-12589:statMSSRetrMsg_200_imap_fetch_test_2_body')
 
 
@@ -351,7 +351,7 @@ basic_class.mylogger_record.info('fetching imapserv.stat ...')
 time.sleep (50)
 basic_class.mylogger_record.info('check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatMSSRetrMsg"'.format(mx_account),0)
-result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[0]','StatMSSRetrMsg',15)
+result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[0]','StatMSSRetrMsg',5)
 basic_function.summary(result_lists,'MX-12597:statMSSRetrMsg_0_imap_fetch_INBOX_2_body')
 
 
@@ -483,7 +483,7 @@ basic_class.mylogger_record.info('fetching imapserv.stat ...')
 time.sleep (50)
 basic_class.mylogger_record.info('check and analyze imapserv.stat file ...')
 imapserv_stat_content = remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c "cat log/imapserv.stat|grep StatMSSRetrMsg"'.format(mx_account),0)
-result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[0]','StatMSSRetrMsg',15)
+result_lists = stat_statistics.stat_statistic(imapserv_stat_content,'[0]','StatMSSRetrMsg',5)
 basic_function.summary(result_lists,'MX-12602:statMSSRetrMsg_0_imap_fetch_test_2_body')
 
 
