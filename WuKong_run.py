@@ -16,6 +16,10 @@ import global_variables
 global_variables._init()
 global_variables.set_value('initialpath',initialpath)
 global_variables.set_value('num',1)
+global_variables.set_value('setup_num',1)     # used to count setup scripts numbers in function traverse_judge
+global_variables.set_value('run_num',1)       # used to count run scripts numbers in function traverse_judge
+global_variables.set_value('teardowm_num',1)  # used to count teardown scripts numbers in function traverse_judge
+
 global_variables.import_variables_from_file([initialpath+'/etc/global.vars',initialpath+'/etc/user.vars'])# read all pre-defined vars
 
 from basic_function import create_log_folders

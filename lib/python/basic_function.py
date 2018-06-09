@@ -129,42 +129,49 @@ def traverse_judge(casename,currentlists):
     import global_variables
     import time
     import basic_class
-    import imp
+    import importlib
+    import shutil
     
-    num = global_variables.get_value('num')
-    oldcasename = casename+'.py'
-    
-    if  oldcasename in currentlists:
-    	  
+    num = int(global_variables.get_value('num'))
+    testcasename = casename+'.py'
+    newcase = casename+str(num)
+    newtestcasename = newcase+'.py'
+    initialpath = global_variables.get_value('initialpath')
+    temppath = initialpath+'/lib/temp'
+     
+
+
+    if  testcasename in currentlists:
     	  # print part test case names :setup or run or teardown 
+        shutil.copyfile (testcasename,temppath+'/'+newtestcasename)
+    	  sys.path[temppath
+    	  
         if 'setup' in casename.lower():
             basic_class.mylogger_recordnf.title('[-->Executing setup.py ...]') 
-        elif 'run' in casename.lower():
-            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]')     
-        elif 'teardown' in casename.lower():
-            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]')    
-        else:
+            print('11111111111111111111')
+            importlib.import_module (newcase)
+            num += 1
+            global_variables.set_value('num',num)
+            
+        if 'run' in casename.lower():
+            print('3333333333333333333333')
+            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]')   
+            importlib.import_module ('run')
+            importlib.reload ('run')
+                  
+        if 'teardown' in casename.lower():
+            print('555555555555555555')
+            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]')  
+            importlib.import_module ('teardown')
+            importlib.reload ('teardown')
+                            
+        if 'setup' not in casename.lower() and 'run' in casename.lower() and 'teardown' not in casename.lower():
             basic_class.mylogger_record.warning('Please make sure testcases names are among:setup,run,teardowm!')
             exit (1)
 
         #newcase = casename+str(num)
         #newcasename = newcase+'.py'
-        #os.rename(oldcasename,newcasename)
-        path = os.getcwd()
-        #print(path)
-        sys.path.append(path)
-        
-        try:
-            __import__ (casename)
-            num += 1
-            global_variables.set_value('num',num)
-            time.sleep(0.01) #without this sleep, next "os.rename" command may failed
-
-        finally:
-            #os.rename(newcasename,oldcasename) # must reverse name change anyway 
-            #del sys.modules[newcase]
-            imp.reload(casename)
-        #os.remove(newcasename) 
+        #os.rename(oldcasename,newcasename) 
 
 
                           
