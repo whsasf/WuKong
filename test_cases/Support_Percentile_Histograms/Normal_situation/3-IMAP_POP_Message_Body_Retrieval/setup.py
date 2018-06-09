@@ -45,7 +45,11 @@ from sendmails import send_mail
 import global_variables 
 import remote_operations
 import time
+import os
+import sys
              
+currentpath = os.getcwd()
+sys.path.append(currentpath)
 
 basic_class.mylogger_record.debug('Preparing... get some variables needed for tests')                                                               
                                                                                                                                                     

@@ -10,10 +10,6 @@ def welcome():
     import basic_class
     import global_variables
     
-    basic_class.mylogger_recordnf.title('='*68)
-    basic_class.mylogger_recordnf.title('='+"{:^66}".format('WuKong Test Suit')+'=')
-    basic_class.mylogger_recordnf.title('='*68)
-    
     summary_print_length = 100
     global_variables.set_value('summary_print_length',summary_print_length)
     
@@ -27,7 +23,7 @@ def welcome():
     
     dummy_length1 = int((summary_print_length - len(summary_title)) /2)
     basic_class.mylogger_summary.yes('='*dummy_length1+summary_title+'='*dummy_length1+'\n')
-    
+
     # below 3 variables will be used in summaryfunction and statistics function later to generate a summary
     total_testcases_num = 0
     passed_testcases_num = 0
@@ -47,7 +43,20 @@ def print_mx_version():
     owm_version = global_variables.get_value('owm_version') 
     basic_class.mylogger_record.info('owm_version = '+owm_version)
     
-    
+
+def variables_prepare(initialpath):
+    """ this function is used to get some predefined variables """    
+
+    import global_variables         
+    global_variables._init()
+    global_variables.set_value('initialpath',initialpath)
+    global_variables.set_value('temppath',initialpath+'/lib/temp')
+    #global_variables.set_value('num',1)
+    global_variables.set_value('setup_num',1)     # used to count setup scripts numbers in function traverse_judge
+    global_variables.set_value('run_num',1)       # used to count run scripts numbers in function traverse_judge
+    global_variables.set_value('teardowm_num',1)  # used to count teardown scripts numbers in function traverse_judge
+    global_variables.import_variables_from_file([initialpath+'/etc/global.vars',initialpath+'/etc/user.vars'])# read all pre-defined vars
+
     
 def parse_args():
     """this function used to parse the arguements providded,help determine the testcase location,logging levels,etc"""
@@ -99,28 +108,27 @@ def parse_testcaselocation(testcaselocation):
     # print(len(testcaselocation))
     if len(testcaselocation) == 0 or  len(testcaselocation) == 1:
         if testcaselocation == [] or (testcaselocation[0] == 'test_cases' and testcaselocation[-1] == 'test_cases'):
-            basic_class.mylogger_record.info('The testcase located in:'+str(['test_cases']))
+            basic_class.mylogger_record.debug('The testcase located in:'+str(['test_cases']))
             return (['test_cases'])
         elif os.path.isfile(testcaselocation[0]):
             with open(testcaselocation[0]) as file_obj:
                 lines = file_obj.read().splitlines()
-            basic_class.mylogger_record.info('The testcase located in:') 
+            basic_class.mylogger_record.debug('The testcase located in:') 
             for line in lines:
-                basic_class.mylogger_recordnf.title(line.strip())
+                basic_class.mylogger_record.debug(line.strip())
             return lines
         else:
-            basic_class.mylogger_record.info('The testcase located in:') 
-            basic_class.mylogger_recordnf.title(testcaselocation[0])  
+            basic_class.mylogger_record.debug('The testcase located in:') 
+            basic_class.mylogger_record.debug(testcaselocation[0])  
             testcaselocation
             return testcaselocation
     else:
-        basic_class.mylogger_record.info('The testcase located in:') 
+        basic_class.mylogger_record.debug('The testcase located in:') 
         for testcase in testcaselocation:
-            basic_class.mylogger_recordnf.title(testcase)  
+            basic_class.mylogger_record.debug(testcase)  
         return testcaselocation
-        
-
-
+       
+                                
 def traverse_judge(casename,currentlists):
     """decide import or reload testcase file"""
     
@@ -131,47 +139,54 @@ def traverse_judge(casename,currentlists):
     import basic_class
     import importlib
     import shutil
-    
-    num = int(global_variables.get_value('num'))
+
     testcasename = casename+'.py'
-    newcase = casename+str(num)
-    newtestcasename = newcase+'.py'
-    initialpath = global_variables.get_value('initialpath')
-    temppath = initialpath+'/lib/temp'
-     
-
-
+    setup_num = int(global_variables.get_value('setup_num'))
+    run_num = int(global_variables.get_value('run_num'))
+    teardowm_num = int(global_variables.get_value('teardowm_num'))
+    temppath = global_variables.get_value('temppath')
+    
     if  testcasename in currentlists:
     	  # print part test case names :setup or run or teardown 
-        shutil.copyfile (testcasename,temppath+'/'+newtestcasename)
-    	  sys.path[temppath
-    	  
+        shutil.copyfile (testcasename,temppath+'/'+testcasename)
+        try:
+            shutil.rmtree(temppath+'/__pycache__') 
+            time.sleep(0.01)
+        except FileNotFoundError:
+            basic_class.mylogger_record.debug('__pycache__ not exists')
+            
         if 'setup' in casename.lower():
             basic_class.mylogger_recordnf.title('[-->Executing setup.py ...]') 
-            print('11111111111111111111')
-            importlib.import_module (newcase)
-            num += 1
-            global_variables.set_value('num',num)
-            
+            if setup_num == 1:
+                tmp_module_setup = importlib.import_module ('setup')
+                global_variables.set_value('tmp_module_setup',tmp_module_setup)
+                setup_num += 1
+                global_variables.set_value('setup_num',setup_num)
+            else:
+                tmp_module_setup = global_variables.get_value('tmp_module_setup')
+                importlib.reload(tmp_module_setup)
+        
         if 'run' in casename.lower():
-            print('3333333333333333333333')
-            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]')   
-            importlib.import_module ('run')
-            importlib.reload ('run')
-                  
-        if 'teardown' in casename.lower():
-            print('555555555555555555')
-            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]')  
-            importlib.import_module ('teardown')
-            importlib.reload ('teardown')
+            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]') 
+            if run_num == 1:
+                tmp_module_run = importlib.import_module ('run')
+                global_variables.set_value('tmp_module_run',tmp_module_run)
+                run_num += 1
+                global_variables.set_value('run_num',run_num)
+            else:
+                tmp_module_run = global_variables.get_value('tmp_module_run')
+                importlib.reload(tmp_module_run)
                             
-        if 'setup' not in casename.lower() and 'run' in casename.lower() and 'teardown' not in casename.lower():
-            basic_class.mylogger_record.warning('Please make sure testcases names are among:setup,run,teardowm!')
-            exit (1)
-
-        #newcase = casename+str(num)
-        #newcasename = newcase+'.py'
-        #os.rename(oldcasename,newcasename) 
+        if 'teardown' in casename.lower():
+            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]') 
+            if teardowm_num == 1:
+                tmp_module_teardown = importlib.import_module ('teardown')
+                global_variables.set_value('tmp_module_teardown',tmp_module_teardown)
+                teardowm_num += 1
+                global_variables.set_value('teardowm_num',teardowm_num)
+            else:           	
+                tmp_module_teardown = global_variables.get_value('tmp_module_teardown')
+                importlib.reload(tmp_module_teardown)
 
 
                           
@@ -182,6 +197,7 @@ def traverse(Path):
     import sys
     import basic_class
     import global_variables 
+    import datetime
     
     os.chdir(Path)                 # switch to current Path
     
@@ -198,16 +214,22 @@ def traverse(Path):
     if bottom_flag.count(True) == len(bottom_flag):    # has no sub folders,is a testcase folder 
         testcase_name = os.getcwd().split('/')[-1]
         #basic_class.mylogger_recordnf.title('\n'+'-'*(17+len(testcase_name)))
-        basic_class.mylogger_recordnf.title('\n---Testcase: '+testcase_name+' ---')
+        basic_class.mylogger_recordnf.title('\n<---Testcase: '+testcase_name+' --->')
+
+        testcase_starttime = datetime.datetime.now() # record testcase start time
+        basic_class.mylogger_record.debug('testcase_starttime= '+str(testcase_starttime)) 
+        global_variables.set_value('testcase_starttime',testcase_starttime)
+            
         #basic_class.mylogger_recordnf.title('-'*(17+len(testcase_name)))
         global_variables.set_value('testcase_name',testcase_name)
     else: 
         folder_name = os.getcwd().split('/')[-1]                                             # has sub folders ,is a test suits folder
         #basic_class.mylogger_recordnf.title('\n'+'='*(17+len(folder_name)))
-        basic_class.mylogger_recordnf.title('\n===Testsuit: '+folder_name+' ===') 
+        basic_class.mylogger_recordnf.title('\n<<===Testsuit: '+folder_name+' ===>>') 
         #basic_class.mylogger_recordnf.title('='*(17+len(folder_name))) 
             
     #print('currentlists:',currentlists)
+    
     traverse_judge('setup',currentlists)      # run setup if exists
     traverse_judge('run',currentlists)        # run run if exists                
     for list in currentlists:
@@ -215,7 +237,10 @@ def traverse(Path):
             traverse(list)
             #os.chdir(list)
             #print (os.getcwd())        
-    traverse_judge('teardown',currentlists)   # run teardown if exists 
+    traverse_judge('teardown',currentlists)   # run teardown if exists     
+    testcase_stoptime = datetime.datetime.now() # record testcase stop time
+    global_variables.set_value('testcase_stoptime',testcase_stoptime) 
+    basic_class.mylogger_record.debug('testcase_stoptime= '+str(testcase_stoptime))    
     #os.system('chmod +x setup.py;./setup.py')      
     os.chdir('..')        
 
@@ -226,11 +251,15 @@ def execute(Paths,initialpath):
     
     import os 
     import basic_class
+    import datetime
+    import global_variables
     
     # print title to indicate begin running all testcases
-    basic_class.mylogger_recordnf.title('###################################################################')
-    basic_class.mylogger_recordnf.title('+               Executing all testcases as required               +')
-    basic_class.mylogger_recordnf.title('###################################################################')
+    basic_class.mylogger_recordnf.title('\n[[Section2: Executing all testcases as required  ... ]]')
+    
+    test_starttime = datetime.datetime.now()
+    basic_class.mylogger_record.debug('tests start at: '+str(test_starttime))
+    global_variables.set_value('test_starttime',test_starttime)
     
     for Path in Paths:         # traverse each Path in Paths
         os.chdir(initialpath)  # switch to initialpath ,initialze
@@ -302,7 +331,7 @@ def summary(result_lists,tc_name = ''):
     total_testcases_num = global_variables.get_value('total_testcases_num')
     passed_testcases_num = global_variables.get_value('passed_testcases_num')
     failed_testcases_num = global_variables.get_value('failed_testcases_num')
-    
+        
     success_flag = 0                   # use to accumulate the 'success' number,from 0
     target = len(result_lists)         # for result_lists=['threshold success', 'count success'] ,target wil be 2 (success)
                                        # if  result_lists=['threshold success', 'count faile'],target still be 2, but will failed
@@ -338,15 +367,47 @@ def statistics():
     
     import basic_class
     import global_variables
+    import datetime
+    
+    test_starttime = global_variables.get_value('test_starttime')
+    test_endtime = datetime.datetime.now()
+    basic_class.mylogger_record.debug('tests end at: '+str(test_endtime))
+    time_costs = (test_endtime - test_starttime).seconds/60
 
     total_testcases_num = global_variables.get_value('total_testcases_num')
     passed_testcases_num = global_variables.get_value('passed_testcases_num')
     failed_testcases_num = global_variables.get_value('failed_testcases_num')
-        
+    
+    # print statistics to summary.log       
     basic_class.mylogger_summary.yes('\nTotal number of Test Cases: '+str(total_testcases_num))
     basic_class.mylogger_summary.yes('PASS:                       '+str(passed_testcases_num))
     basic_class.mylogger_summary.yes('FAIL:                       '+str(failed_testcases_num))
+        
+    # print time info to summary.log
+    basic_class.mylogger_summary.yes('\n\n=============================================')
+    basic_class.mylogger_summary.yes('Test started at: '+str(test_starttime))
+    basic_class.mylogger_summary.yes('Test endded  at: '+str(test_endtime))
+    basic_class.mylogger_summary.yes('Total  time  is: {:.2} minutes'.format(time_costs))
+    basic_class.mylogger_summary.yes('=============================================')
+        
+    # print time info to screen and log 
+    basic_class.mylogger_record.info('Test started at: '+str(test_starttime))
+    basic_class.mylogger_record.info('Test endded  at: '+str(test_endtime))
+    basic_class.mylogger_record.info('Total  time  is: {:.2} minutes'.format(time_costs))
+
+
+
+def add_run_time():
+    """add testcase costs time for each testcase"""
     
+    import global_variables
+    import datetime
     
-     
-            	
+    testcase_stoptime = global_variables.get_value('testcase_stoptime')
+    testcase_starttime = global_variables.get_value('testcase_starttime')
+    print('testcase_starttime= '+str(testcase_starttime))
+    print('testcase_stoptime= '+str(testcase_stoptime))
+    testcases_cost_time = (testcase_stoptime - testcase_starttime).seconds  
+    print('testcases_cost_time='+str(testcases_cost_time))
+    
+              	

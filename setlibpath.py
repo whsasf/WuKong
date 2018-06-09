@@ -7,7 +7,15 @@ def setlibpath():
     import os
     import sys
     #import pprint
-    
+
+    print('\n\n')
+    print('\033[1;36m=\033[0m'*68)
+    print('\033[1;36m='+"{:^66}".format('WuKong Test Suit')+'=\033[0m')
+    print('\033[1;36m=\033[0m'*68)
+        
+    # print title to indicate begin running all testcases
+    print('\033[1;36m\n[[Section 1: Prepare all prerequisite ... ]]\033[0m')
+        
     global initialpath
     initialpath = os.getcwd()              # get initial path and return at last
     initial_libpath = initialpath+'/lib'
