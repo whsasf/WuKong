@@ -79,16 +79,23 @@ def parse_chloglevel():
     import basic_class
     
     argvlist = global_variables.get_value('argvlist')           # get argvlist of arguments
-    if argvlist.count('-v') > 1 or argvlist.count('-vv') > 1:   # determine the chloglevel (displayed to screen)
+    if argvlist.count('-v') > 1 or argvlist.count('-vv') > 1 or argvlist.count('-V') > 1 or argvlist.count('-VV') > 1:   # determine the chloglevel (displayed to screen)
         basic_class.mylogger_record.error("multiple '-v' or '-vv' detected,please make sure only one entered!")
         exit()
-    elif argvlist.count('-v') == 1 or argvlist.count('-vv') == 1:
+    elif argvlist.count('-v') == 1 or argvlist.count('-V') == 1 or argvlist.count('-vv') == 1 or  argvlist.count('-VV') == 1:
         if '-v' in argvlist:
             chloglevel = 'WARNING'
             argvlist.remove('-v')
-        else:
+        elif '-V' in argvlist:
+            chloglevel = 'WARNING'
+            argvlist.remove('-V')
+        elif '-vv' in argvlist:
             chloglevel = 'DEBUG'
             argvlist.remove('-vv')
+        else:
+            chloglevel = 'DEBUG'
+            argvlist.remove('-VV')
+                    
     else:
         chloglevel = 'ERROR'
     global_variables.set_value('chloglevel',chloglevel) # store chloglevel into dict

@@ -39,17 +39,32 @@ def stat_statistic(content,cmp_obj1,cmp_obj2,operation_times):
     basic_class.mylogger_record.debug('count_pass_fail = '+str(count_pass_fail))
     basic_class.mylogger_record.debug('max_time_lists = '+str(max_time_lists))
     
-
-    if  operation_times == count_total and count_total == count_pass_fail:
-        if count_fail > 0:
-            if int(max(max_time_lists)) > int(cmp_obj1.strip('[').strip(']')):
-                result_lists.append('count success')
+    if cmp_obj1 == '[0]':
+        if count_pass == 0:
+            if  operation_times == count_total and count_total == count_pass_fail:
+                if count_fail > 0:
+                    if int(max(max_time_lists)) > int(cmp_obj1.strip('[').strip(']')):
+                        result_lists.append('count success')
+                    else:
+                        result_lists.append('1count fail')
+                else:
+                    result_lists.append('count success')                                
             else:
-                result_lists.append('1count fail')
+                result_lists.append('2count fail') 
         else:
-            result_lists.append('count success')                
+            result_lists.append('3count fail') 
     else:
-        result_lists.append('2count fail') 
+        if  operation_times == count_total and count_total == count_pass_fail:    
+            if count_fail > 0:                                                    
+                if int(max(max_time_lists)) > int(cmp_obj1.strip('[').strip(']')):
+                    result_lists.append('count success')                          
+                else:                                                             
+                    result_lists.append('4count fail')                            
+            else:                                                                 
+                result_lists.append('count success')                                                                                                        
+        else:    
+            result_lists.append('5count fail')                                                                  
+    
     basic_class.mylogger_record.info('result_lists='+str(result_lists))
     return result_lists
         
