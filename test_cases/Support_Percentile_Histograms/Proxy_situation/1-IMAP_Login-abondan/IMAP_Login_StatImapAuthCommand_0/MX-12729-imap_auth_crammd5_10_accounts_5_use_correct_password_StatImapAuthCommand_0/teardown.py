@@ -5,9 +5,11 @@
 # (1) delete accounts :testuser1@openwave.com - testuser10@openwave.com
 # (2) restore the config keys:
 #               /*/common/perfStatThresholds:[]
-#               /*/common/reportParamsInterval: [60]   # default 60
-#               /*/common/badPasswordDelay: [1]        # nodelay ,default 1
-#               /*/common/maxBadPasswordDelay: [90]    # no delay,default 90 
+#               /*/common/reportParamsInterval: [60]     # default 60
+#               /*/common/badPasswordDelay: [1]          # nodelay ,default 1
+#               /*/common/maxBadPasswordDelay: [90]      # no delay,default 90 
+#               /*/imapserv/allowCRAMMD5: [false]        # enable cram-md5
+#               /*/mxos/defaultPasswordStoreType:[sha512]# default is sha512
 
 import basic_function
 import basic_class
@@ -25,7 +27,6 @@ remote_operations.remote_operation(mx2_host1_ip,root_account,root_passwd,'su - {
 
 
 basic_class.mylogger_record.info('step2:restore config keys')
-remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=\";imconfcontrol -install -key \"/*/common/reportParamsInterval=60\";imconfcontrol -install -key \"/*/common/badPasswordDelay=1\";imconfcontrol -install -key \"/*/common/maxBadPasswordDelay=90\";imconfcontrol -install -key \"/*/imapserv/imapProxyHost\";imconfcontrol -install -key \"/*/imapserv/imapProxyPort\"\''.format(mx_account),0)
-remote_operations.remote_operation(mx2_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=\";imconfcontrol -install -key \"/*/common/reportParamsInterval=60\";imconfcontrol -install -key \"/*/common/badPasswordDelay=1\";imconfcontrol -install -key \"/*/common/maxBadPasswordDelay=90\"\''.format(mx_account),0)
 
-
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=\";imconfcontrol -install -key \"/*/common/reportParamsInterval=60\";imconfcontrol -install -key \"/*/common/badPasswordDelay=1\";imconfcontrol -install -key \"/*/common/maxBadPasswordDelay=90\";imconfcontrol -install -key \"/*/imapserv/imapProxyHost\";imconfcontrol -install -key \"/*/imapserv/imapProxyPort\";imconfcontrol -install -key \"/*/imapserv/allowCRAMMD5=false\";imconfcontrol -install -key \"/*/mxos/defaultPasswordStoreType=sha512\"\''.format(mx_account),0)
+remote_operations.remote_operation(mx2_host1_ip,root_account,root_passwd,'su - {0} -c \'imconfcontrol -install -key \"/*/common/perfStatThresholds=\";imconfcontrol -install -key \"/*/common/reportParamsInterval=60\";imconfcontrol -install -key \"/*/common/badPasswordDelay=1\";imconfcontrol -install -key \"/*/common/maxBadPasswordDelay=90\";imconfcontrol -install -key \"/*/imapserv/allowCRAMMD5=false\";imconfcontrol -install -key \"/*/mxos/defaultPasswordStoreType=sha512\"\''.format(mx_account),0)
