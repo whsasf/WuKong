@@ -5,10 +5,12 @@ import cassandra
 from cassandra.cluster import Cluster
 from cassandra.query import dict_factory
 from cassandra.policies import RoundRobinPolicy
+from cassandra import ConsistencyLevel 
 
-cluster = Cluster(['10.49.58.240'],port=9043,connect_timeout=30)
+cluster = Cluster(['10.49.58.240'],port=9043,connect_timeout=60)
 session = cluster.connect('KeyspaceBlobStore')
 #session.row_factory = dict_factory
+session.default_consistency_level  = ConsistencyLevel.LOCAL_QUORUM
 
 for i in range(0,20):
     target = 'select * from "CF_Message_{}" where key=0x787906706edf11e88486d3af9849e23b and column1 >=101;'.format(i)
@@ -16,7 +18,7 @@ for i in range(0,20):
     #print(target)
     rows = session.execute(target,timeout=6000)   
     if rows:
-        print(list(rows))
+        #print(list(rows))
         print('------------------------------------------------------------------------------')  
         for row in rows:
             tmp = row[2].decode('utf-8','ignore')

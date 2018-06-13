@@ -130,7 +130,23 @@ class SMTP_OPs(SMTP):
         self.rspcode,self.rspdata = self.smtp.login(self.user,self.password,initial_response_ok=self.initial_response_ok)
         [basic_class.mylogger_record.debug(self.rspcode)]
         [basic_class.mylogger_record.debug(self.rspdata.decode())] 
-                
+
+
+
+    def smtp_sendmail(self,from_addr, to_addrs, msg, mail_options=[], rcpt_options=[]):
+        """Send mail"""             
+        
+        self.from_addr = from_addr
+        self.to_addrs = to_addrs
+        self.msg = msg
+        self.mail_options = mail_options
+        self.rcpt_options = rcpt_options
+        
+        basic_class.mylogger_record.info('command:sendmail from:'+self.from_addr+' to:'+self.to_addrs)
+        self.rspcode,self.rspdata = self.smtp.sendmail(self.from_addr,self.to_addrs,self.msg,self.mail_options,self.rcpt_options)
+        [basic_class.mylogger_record.debug(self.rspcode)]
+        [basic_class.mylogger_record.debug(self.rspdata.decode())]        
+
             
     def smtp_quit(self):
         """Terminate the SMTP session and close the connection"""
