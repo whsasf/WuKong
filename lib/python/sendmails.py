@@ -15,7 +15,7 @@ def send_mail (mtahost,mtaport,fromuser,tousers,\
     recievers = tousers
     #body = str(cc)+ body
     filename = 'attach.txt'  #create a attachment file
-    attdata = str(base64.b64encode('world peace.are u OK?'.encode('utf-8')),'utf-8')
+    attdata = str(base64.b64encode('world peace.are u OK?hahahahahaha'.encode('utf-8')),'utf-8')
      #with open(filename, 'rw') as file_object:
      #    file_object.write(attdata)
     

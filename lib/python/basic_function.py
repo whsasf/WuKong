@@ -50,7 +50,7 @@ def variables_prepare(initialpath):
     import global_variables         
     global_variables._init()
     global_variables.set_value('initialpath',initialpath)
-    global_variables.set_value('temppath',initialpath+'/lib/temp')
+    #global_variables.set_value('temppath',initialpath+'/lib/temp')
     #global_variables.set_value('num',1)
     global_variables.set_value('setup_num',1)     # used to count setup scripts numbers in function traverse_judge
     global_variables.set_value('run_num',1)       # used to count run scripts numbers in function traverse_judge
@@ -134,7 +134,27 @@ def parse_testcaselocation(testcaselocation):
         for testcase in testcaselocation:
             basic_class.mylogger_record.debug(testcase)  
         return testcaselocation
-       
+
+
+def decide_import_or_reload(case_name,count_type,tmp_type):
+    """this function used to deteimine import or repoad the testcases scripts,only the first time use import"""       
+    
+    import basic_class
+    import global_variables
+    import importlib
+    import time
+    
+    basic_class.mylogger_recordnf.title('[-->Executing '+case_name+'.py ...]') 
+    count_num = int(global_variables.get_value('{}'.format(count_type)))
+    if count_num == 1:
+        tm_type = importlib.import_module (case_name)
+        global_variables.set_value('{}'.format(tmp_type),tm_type)
+        count_num += 1
+        global_variables.set_value('{}'.format(count_type),count_num)
+    else:
+        tm_type = global_variables.get_value(tmp_type)
+        importlib.reload(tm_type)
+    
                                 
 def traverse_judge(casename,currentlists):
     """decide import or reload testcase file"""
@@ -144,58 +164,33 @@ def traverse_judge(casename,currentlists):
     import global_variables
     import time
     import basic_class
-    import importlib
-    import shutil
 
     testcasename = casename+'.py'
-    setup_num = int(global_variables.get_value('setup_num'))
-    run_num = int(global_variables.get_value('run_num'))
-    teardowm_num = int(global_variables.get_value('teardowm_num'))
-    temppath = global_variables.get_value('temppath')
     
     if  testcasename in currentlists:
-    	  # print part test case names :setup or run or teardown 
-        shutil.copyfile (testcasename,temppath+'/'+testcasename)
-        try:
-            shutil.rmtree(temppath+'/__pycache__') 
-            time.sleep(0.01)
-        except FileNotFoundError:
-            basic_class.mylogger_record.debug('__pycache__ not exists')
-            
+        
+        path = os.getcwd()        
+        sys.path.append(path)    
+        
         if 'setup' in casename.lower():
-            basic_class.mylogger_recordnf.title('[-->Executing setup.py ...]') 
-            if setup_num == 1:
-                tmp_module_setup = importlib.import_module ('setup')
-                global_variables.set_value('tmp_module_setup',tmp_module_setup)
-                setup_num += 1
-                global_variables.set_value('setup_num',setup_num)
-            else:
-                tmp_module_setup = global_variables.get_value('tmp_module_setup')
-                importlib.reload(tmp_module_setup)
+            decide_import_or_reload('setup','setup_num','tmp_module_setup')            
+        else:
+            basic_class.mylogger_record.debug('No setup.py found') 
+            pass        
         
         if 'run' in casename.lower():
-            basic_class.mylogger_recordnf.title('[-->Executing run.py ...]') 
-            if run_num == 1:
-                tmp_module_run = importlib.import_module ('run')
-                global_variables.set_value('tmp_module_run',tmp_module_run)
-                run_num += 1
-                global_variables.set_value('run_num',run_num)
-            else:
-                tmp_module_run = global_variables.get_value('tmp_module_run')
-                importlib.reload(tmp_module_run)
+            decide_import_or_reload('run','run_num','tmp_module_run')            
+        else:
+            basic_class.mylogger_record.debug('No run.py found') 
+            pass 
                             
         if 'teardown' in casename.lower():
-            basic_class.mylogger_recordnf.title('[-->Executing teardown.py ...]') 
-            if teardowm_num == 1:
-                tmp_module_teardown = importlib.import_module ('teardown')
-                global_variables.set_value('tmp_module_teardown',tmp_module_teardown)
-                teardowm_num += 1
-                global_variables.set_value('teardowm_num',teardowm_num)
-            else:           	
-                tmp_module_teardown = global_variables.get_value('tmp_module_teardown')
-                importlib.reload(tmp_module_teardown)
+            decide_import_or_reload('teardown','teardowm_num','tmp_module_teardown')            
+        else:
+            basic_class.mylogger_record.debug('No teardown.py found') 
+            pass 
 
-
+        sys.path.remove(path)    # remove the path just added,will add a new path for next testcase
                           
 def traverse(Path):
     """traverse testcases under give Path,normal first execute setup,then run,last teardown for each testcase"""

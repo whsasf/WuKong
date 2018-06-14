@@ -17,7 +17,6 @@ import imap_operations
 import smtp_operations
 import global_variables
 import remote_operations
-from sendmails import send_mail
 import time
 
 basic_class.mylogger_record.debug('Preparing... get some variables needed for tests')
@@ -39,5 +38,5 @@ remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {
 
 basic_class.mylogger_record.info('step3:deliever 1 message from testuser2 to testuser1')
 	
-send_mail(mx1_mta1_host_ip,mx1_mta1_port,'testuser2',[test_account_base+'1'])
+smtp_operations.fast_send_mail(mx1_mta1_host_ip,mx1_mta1_port,'testuser2',[test_account_base+'1'])
 

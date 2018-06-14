@@ -52,8 +52,8 @@ import time
 import os
 import sys
              
-currentpath = os.getcwd()
-sys.path.append(currentpath)
+#currentpath = os.getcwd()
+#sys.path.append(currentpath)
 
 basic_class.mylogger_record.debug('Preparing... get some variables needed for tests')                                                               
                                                                                                                                                     
