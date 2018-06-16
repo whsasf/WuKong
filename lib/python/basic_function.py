@@ -144,7 +144,7 @@ def decide_import_or_reload(case_name,count_type,tmp_type):
     import importlib
     import time
     
-    basic_class.mylogger_recordnf.title('[-->Executing '+case_name+'.py ...]') 
+    basic_class.mylogger_recordnf.title('\n[-->Executing '+case_name+'.py ...]') 
     count_num = int(global_variables.get_value('{}'.format(count_type)))
     if count_num == 1:
         tm_type = importlib.import_module (case_name)
@@ -174,22 +174,14 @@ def traverse_judge(casename,currentlists):
         
         if 'setup' in casename.lower():
             decide_import_or_reload('setup','setup_num','tmp_module_setup')            
+        elif 'run' in casename.lower():
+            decide_import_or_reload('run','run_num','tmp_module_run')    
+        elif 'teardown' in casename.lower():
+            decide_import_or_reload('teardown','teardowm_num','tmp_module_teardown')
         else:
-            basic_class.mylogger_record.debug('No setup.py found') 
-            pass        
-        
-        if 'run' in casename.lower():
-            decide_import_or_reload('run','run_num','tmp_module_run')            
-        else:
-            basic_class.mylogger_record.debug('No run.py found') 
-            pass 
-                            
-        if 'teardown' in casename.lower():
-            decide_import_or_reload('teardown','teardowm_num','tmp_module_teardown')            
-        else:
-            basic_class.mylogger_record.debug('No teardown.py found') 
-            pass 
-
+            basic_class.mylogger_record.warn('please make sure all test scripys name in "setup.py","run.py" or "teardown.py"!!')    
+            exit (1)
+            
         sys.path.remove(path)    # remove the path just added,will add a new path for next testcase
                           
 def traverse(Path):
