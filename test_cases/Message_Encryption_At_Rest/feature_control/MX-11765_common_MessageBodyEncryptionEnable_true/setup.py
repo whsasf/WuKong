@@ -48,6 +48,7 @@ mxos_operations_MessageBodyEncryption.create_passphrase(mx1_mxos1_host_ip,mx1_mx
 
 basic_class.mylogger_record.info('step2:create 2 accounts')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',2)
+remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do immsgdelete {1}$i@{2}   -all;done\''.format(mx_account,test_account_base,default_domain),0)
 
 basic_class.mylogger_record.info('step3:deliever 1 message from testuser2 to testuser1')
 smtp_operations.fast_send_mail(mx1_mta1_host_ip,mx1_mta1_port,'testuser2',[test_account_base+'1'])

@@ -1,0 +1,93 @@
+1 set passphrase:
+
+ram@bigchina ~/workspace/WuKong $ curl -s -X GET http://10.49.58.240:8081/mxos/encryption/v2/messageBodyEncryption|jq .{
+  "currentKey": {
+    "uid": "1001",
+    "cipherName": "aes-128-cbc",
+    "encryptionKey": "6666666666666666"
+  },
+  "keys": {
+    "version": [
+      {
+        "uid": "1001",
+        "cipherName": "aes-128-cbc",
+        "encryptionKey": "6666666666666666"
+      }
+    ]
+  }
+}
+
+
+2 mta send message:
+
+3 check cassandra:
+
+ 0x9e912f2871ea11e8bdb2dbde6b3b8b95 |     101 | 0x4f70bee441b945e70703b88fc078b28fa71ce80ee8254ba6cfe67304e7586fb38a94bb4282278e774176ac2f35167cd3c56fe8c7e8c376bd42087f9c495bcfe964f85557555f5abc91e9123a4dd4a925b2cc8dadfe6fb438c3cc2782c1a73d2596ea0a6d60d23a13895d3c7d7845318d17070f2813cf3328bd93577f932b38d04a027c585b2b1cd3a59b60a09d7d5e571a872969acd7463da302d9abc7f88ff270bb721323e5d6b18472fd2bc3664a98736994dc243a72b4a80cb44431de8c96f2e698540e96df1f678a9fb50d7427637ef1d38ed0649430e43f9cd8b3db5ed80d8670e4b5a139706338a6154b1037095a2d7f80d9a728ba89d8e7c140aa57a5bda4dc6c26d18b7c2190b868b1377676a278158d68328c06f9f9669854b5c95a73d86fd01463164f4ddbcb060ac489859e513af6a93931bbb1b4bd51e478e8075dc743096f518845d7dff1cc5971f1e802860a046ed64fa450db61989d54ed177cf1df703f830d58b5851518a539b0bc2ced17ce18f9700a02fe84b2e128adccbfa326739d21c419aae7a1cb1cc57eaccd59a9433b0109558b8112addd1bfd071164316b28cb007b156a7335ecbf38a9d22a5fc40b97c595f657fe2e607137e688c98bd3a4760917f93ed7913e9fefb495f26fce4950a3868ce3dcfeff182a9a437845a4f67c720decb0292ac254c54f124dec3e4249c8201c19ecba89326d9ac14a7e0ef9688b90a7b97e53a9c1e42a8d5760d29d5d7c8ff7ce63a4303130518e533e4f5258f7234aa5d00156f1a05978b628291a46894c322d7ffaeab8c207700b5aafed87953ffc1e1e3924fe55612cb7e19c1d3e5dc28f695852b62d15ae6f92018facad08c4c1c725cb3e6b72de710d8cf8d702a5467b187108e51f074ec4be823cd038bbc69fc56593ae6ce692e333bf734f23f65a783803a86c93a9cf4b286aa1bcc9131251f7cb98c1815ef2f59d1a87930e7bbfcf5b784b01c0c81001e0767e1133c72540a62264b95f8ea8e1d0ea495950f1c919d02a8acd6fc1b8b6ec087d2aab8c93b721bad24bae1344362b300b65e5c7225ee50e02d0644aefb83b21b01624d5788a1b17508eaf0b843f3ea8256f3c29eb551bd5a4007df0dc830ec3a2ab43a01f13d004d6625bfa035a5cf07508d2a13c1ef57c6bc73ae3a5debbb0217ae6554babc981f976ad61b342f93670905585e2fa7ca9ed46e0af1593244bdd0c145b6f5dd80b17ca11a39d4098d17b685cca82494fbcedccf223fbadcdeb6a45f8b20ddeda46bd9bdd1a8d342adc7e8cc6d4a60505d48f465399c5a9193de90d7bdaeb9dba4b540389997f51f3e8d9b5fc88a56e91cdb8e42b44bf5a2444e92dcf2cf33c95edc57503a7a7e3b96b5defb85d7b2cb2f5e7fd894ba08023aafb06cde0beb9ca19ee083a593068e6f2e43caf3dd686f5bf057bb8d38eae0ed54e6e4c77a8afb371cbdbaef9e37dcd8278bf782e4e2b3d97e7505684f1ed553f5f5612d92eb4d529f35cf498e03d48fa72c75daec814e022ccf4d2b83b6c236f3619638cb3a8a524f561c9ccc92d3b0666b3d079da0bd98377d8f4dac7c28de7b1e215d73c0edea3a34ea991def3b4530ac6f4b5704a4be219e50b66467f1f8184297f2e2357681637b882f9211e05c7f2cf47d5851204ae38888a814622308789048d08b240caa6a70d3cba9801e4883673e0809e8d4878a2b3a26cd96106507d5b33dd813eb403f76f23943fcf35fe52f80ef9db104834e9fe4ff2083f250aa64d82076a3fd4546e6528962272db5bc36129af3aec3be46b599db5b61b9038dd5b54746b99fa274cf2a2512f92821aec7be3b8b8ee5e67bf65ec2c378da6f04db008799eba7112d5ade8101563e0d66d21b4a312e35f044c1855fee5c46882ca37d302ad3225ad09abd32e7ac4ef0e2ae8deced25726124103458973a12f06621549019a6daf963ffddd6a9f68f73de1433c4a2fcfb30e04ee448484655220ae9ea7637f720ad854ec80f773f04cb7ecb3c1cff205a9461d311f5280430b5729cefe7785b035e59c88c988406fc82afe49ad3f1a8ffad8396006edd957b6b974e88dbb3a48236e7c53ca2124859827c20dd259cd33a85cc9c8b12e7f88ec5b6fa6f839515f08c90cd9b7c4aae07b88de0fb67ea610c624036f6bb026ee83e746bfc4896e82e2e9c1bbac625c6b6eb5291f6b2ab2eb2bd817993b112c84ace357269361698b489dfccbf9f953609ec0a13514dd5b5fe3a85227567ed512667a9f4c393d589e5933ebfde18eaff91be5c0c86110bdd29ae9115aed0b957a1fbec599c91ae50232c4afe8528137c6ff7f48eadda0241d913045898a3f821a277fa3a95eef18f8c6f037ff25040880b07db37c3916cbcbeb8b683a92572c5f58ad6010c239b06bd98791dc1de051a33a1bcf70b078debc6de8bb14f1483f56d7f0ef3f93ce0829e4fd6ed6825419796d2e044c237d878cd640d322ce424f1a4f0ff41e2c0c93b440569ae4275932f31997546ed96760e3ae9dba30b4c02a0dc65d27e9df27eb8b83cb0f5e5475a2c684ad9f7ce4eb0b897da3ee849632689745a80ffd27bfd61f50ce6627c1a1bd3da7e2623119e9b75aca0b7eb9f499ec33d38db3736a2a28f9920e8e89be8c6a
+
+4 decode data from cassandra manually:
+
+	s
+��tsu<xx2@openwave.com>SMTP��%[1.0�
+multipartmixedAUNIQUEMARKER7BIT	boundaryAUNIQUEMARKERW�<�textplain8bit���textplainattachment	filenameattach.txtbase64nameattach.txt:/ C�%�B!/	:Cat5�%�B�xx2�xx1�Sending Attachement� Sun, 17 Jun 2018 00:04:44 -0400%91427e32-71e3-11e8-9554-fb8ebe13d069*�H��4*�H��6
+.X-Intermail-Unknown-MIME-Type=unparsedmessage�Return-Path: <xx2@openwave.com>
+Received: from [127.0.1.1] (really [10.37.2.214]) by mx1.openwave.com
+(InterMail vM.9.05.03.00 201-2473-138-1) with ESMTP
+id <20180617040444.APQ27874.mx1.openwave.com@[127.0.1.1]>
+for <xx1@openwave.com>; Sun, 17 Jun 2018 00:04:44 -0400
+From: xx2
+To: xx1
+Subject: Sending Attachement
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary=AUNIQUEMARKER
+Date: Sun, 17 Jun 2018 00:04:44 -0400
+Message-Id: <20180617040444.APQ27874.mx1.openwave.com@[127.0.1.1]>
+
+This is a multi-part message in MIME format.
+--AUNIQUEMARKER
+Content-Type: text/plain
+Content-Transfer-Encoding:8bit
+
+-This is a test email to send an attachement,haha,are you OK? we love world !!!!!!ucucucucucucucucucucucucucuc
+--AUNIQUEMARKER
+Content-Type: text/plain; name="attach.txt"
+Content-Transfer-Encoding:base64
+Content-Disposition: attachment; filename="attach.txt"
+
+d29ybGQgcGVhY2UuYXJlIHUgT0s/aGFoYWhhaGFoYWhh
+--AUNIQUEMARKER--
+
+
+5 IMAP fetch email:
+
+Return-Path: <xx2@openwave.com>
+Received: from [127.0.1.1] (really [10.37.2.214]) by mx1.openwave.com
+          (InterMail vM.9.05.03.00 201-2473-138-1) with ESMTP
+          id <20180617040444.APQ27874.mx1.openwave.com@[127.0.1.1]>
+          for <xx1@openwave.com>; Sun, 17 Jun 2018 00:04:44 -0400
+From: xx2
+To: xx1
+Subject: Sending Attachement
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary=AUNIQUEMARKER
+Date: Sun, 17 Jun 2018 00:04:44 -0400
+Message-Id: <20180617040444.APQ27874.mx1.openwave.com@[127.0.1.1]>
+
+This is a multi-part message in MIME format.
+--AUNIQUEMARKER
+Content-Type: text/plain
+Content-Transfer-Encoding:8bit
+
+-This is a test email to send an attachement,haha,are you OK? we love world !!!!!!ucucucucucucucucucucucucucuc
+--AUNIQUEMARKER
+Content-Type: text/plain; name="attach.txt"
+Content-Transfer-Encoding:base64
+Content-Disposition: attachment; filename="attach.txt"
+
+d29ybGQgcGVhY2UuYXJlIHUgT0s/aGFoYWhhaGFoYWhh
+--AUNIQUEMARKER--
+ FLAGS (\Recent \Seen))
+
+a OK FETCH completed
+
+
+2 messages the same.pass

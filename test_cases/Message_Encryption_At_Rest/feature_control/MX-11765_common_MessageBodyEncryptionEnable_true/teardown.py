@@ -7,6 +7,14 @@
 #               /*/mss/compressionEnabled: [true]   # need mss restart
 # (2) create 6 accounts:testuser1@openwave.com -test6@openwave.com
 # (3) clear current popserv.stat file
+import basic_function
+import basic_class
+import imap_operations
+import smtp_operations
+import global_variables
+import remote_operations
+import mxos_operations_MessageBodyEncryption
+import time
 
 basic_class.mylogger_record.debug('Preparing... get some variables needed for tests')
 
