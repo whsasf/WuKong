@@ -14,18 +14,21 @@ session = cluster.connect('KeyspaceBlobStore')
 session.default_consistency_level  = ConsistencyLevel.LOCAL_QUORUM
 
 for i in range(0,20):
-    target = 'select * from "CF_Message_{}" where key=0x7703da9871fc11e89ca2786b69956731 and column1 >=101;'.format(i)
+    target = 'select * from "CF_Message_{}" where key=0x{};'.format(i,'81e019d2-72d7-11e8-9758-7e690f5ae993'.replace('-',''))
     
-    #print(target)
+    print(target)
     rows = session.execute(target,timeout=6000)
-    print(rows[:])
-    #if rows:
+    #print(rows[:])
+    if rows:
         #print('i===='+str(i))
         #print(list(rows))
         #[print(row[2]) for row in rows]
         #print('------------------------------------------------------------------------------')  
-     #   for row in rows:
-      #      print(row[2])
+        for row in rows:
+            #print(row[0])
+            if row[1] == 101:
+                print(row[2])
+            #print(row[2])
         #    print(c)
             #tmp = row[2].decode('utf-8','ignore')
             #print(r'{}'.format(tmp))

@@ -46,6 +46,10 @@ else:
 basic_class.mylogger_record.info('new passphrase uid is: '+str(cuid))        
 mxos_operations_MessageBodyEncryption.create_passphrase(mx1_mxos1_host_ip,mx1_mxos1_port,str(cuid),AES_mode1,ASE_key128)
 
+# restart mss to froce to use new encryption key
+remote_operations.remote_operation(mx1_mss1_host_ip,root_account,root_passwd,'su - {0} -c \'~/lib/imservctrl killStart mss\''.format(mx_account),0)
+time.sleep(60)
+
 basic_class.mylogger_record.info('step2:create 2 accounts')
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do account-create {1}$i@{2}   {1}$i default;done\''.format(mx_account,test_account_base,default_domain),1,'Mailbox Created Successfully',2)
 remote_operations.remote_operation(mx1_host1_ip,root_account,root_passwd,'su - {0} -c \'for ((i=1;i<=2;i++));do immsgdelete {1}$i@{2}   -all;done\''.format(mx_account,test_account_base,default_domain),0)

@@ -9,7 +9,7 @@ def cassandra_cqlsh_fetch_messagebody(blobip,blobport,messageid,decryption_flag)
     import basic_class
     import encryption_decryption_related    
     
-    iv = global_variables.get_values('AES_128_iv')  #AES_128_iv
+    iv = global_variables.get_values('AES_iv')  #AES_iv
     # get passphrase value
     if decryption_flag != 0:
         if '128' in decryption_flag:
@@ -17,7 +17,7 @@ def cassandra_cqlsh_fetch_messagebody(blobip,blobport,messageid,decryption_flag)
         elif '192' in decryption_flag:
             passphrase = global_variables.get_values('ASE_key192')
         elif '256' in decryption_flag:
-            passphrase = global_variables.get_values('ASE_key192')
+            passphrase = global_variables.get_values('ASE_key256')
         else:
             pass 
     else:
@@ -27,27 +27,27 @@ def cassandra_cqlsh_fetch_messagebody(blobip,blobport,messageid,decryption_flag)
     #session.row_factory = dict_factory
     
     for i in range(0,20):
-        target = 'select * from "CF_Message_{0}" where key=0x{1} and column1 >=101;'.format(i,messageid)
+        target = 'select * from "CF_Message_{0}" where key=0x{1};'.format(i,messageid)
         basic_class.mylogger_record.debug('target:')
         basic_class.mylogger_recordnf.debug(target)
         
         raw_datas = session.execute(target,timeout=6000)                
         if raw_datas:
-
+            
             basic_class.mylogger_record.debug('raw_datas stored in KeyspaceBlobStore.CF_Message_{0} is:'.format(i))
             basic_class.mylogger_recordnf.debug(raw_datas[:])  
 
-            for raw_data in raw_datas:                
-                basic_class.mylogger_record.debug('raw message body is:')
-                basic_class.mylogger_recordnf.debug(raw_data[2])
+            for raw_data in raw_datas:  
+                if raw_data[1] == 101: # this calomn contains the message body data               
+                    basic_class.mylogger_record.debug('raw message body is:')
+                    basic_class.mylogger_recordnf.debug(raw_data[2])
                 
-                if decryption_flag == 0:   # no need decryption first
-                    basic_class.mylogger_record.info('mesage body is not encrypted')
-                    plain_data = raw_data[2]
-                else:                      # need decrypt,raw_data[2] is contains the message body raw data                   
-                    basic_class.mylogger_record.info('mesage body is encrypted, need decrypt first')
-    
-                    plain_data = encryption_decryption_related.decrypt_aes(decryption_flag,passphrase,iv,raw_data[2])                
+                    if decryption_flag == 0:   # no need decryption first
+                        basic_class.mylogger_record.info('mesage body is not encrypted')
+                        plain_data = raw_data[2]
+                    else:                      # need decrypt,raw_data[2] is contains the message body raw data                   
+                        basic_class.mylogger_record.info('mesage body is encrypted, need decrypt first')
+                        plain_data = encryption_decryption_related.decrypt_aes(decryption_flag,passphrase,iv,raw_data[2])                
             
             basic_class.mylogger_record.debug('plain message body data is:')
             basic_class.mylogger_recordnf.debug(plain_data)  

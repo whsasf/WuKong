@@ -11,7 +11,7 @@ import basic_class
 def fast_send_mail (mtahost,mtaport,fromuser,tousers,\
     marker = 'AUNIQUEMARKER',\
     mimeinfo = 'This is a multi-part message in MIME format.',\
-    body = '-This is a test email to send an attachement,haha,are you OK? we love world !!!!!!ucucucucucucucucucucucucucuc',\
+    body = '-xxxxxxxxxxThis is a test email to send an attachement,haha,are you OK? we love world !!!!!!ucucucucucucucucucucucucucuc',\
     ):
     """ this function is used to send email"""
     #import basic libs
